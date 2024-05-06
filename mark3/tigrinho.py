@@ -140,7 +140,7 @@ def robozinho():
     pyautogui.hotkey("ctrl", "w")
 
 
-    caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+    caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
     try:
         with open(caminho) as fd:
@@ -159,11 +159,12 @@ def robozinho():
         pyautogui.press(["tab"]*6, interval=0.5)
         pyautogui.press("enter")
         time.sleep(1.2)
+        
         pyautogui.press("enter")
         time.sleep(1.2)
         pyautogui.press("enter")
-        time.sleep(2)
-        caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+        time.sleep(3)
+        caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
         auxiliar = False
         try:
             with open(caminho) as fd:
