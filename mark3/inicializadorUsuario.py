@@ -18,9 +18,9 @@ def encontrar_imagem(imagem):
             print("Imagem não encontrada.")
             pass
 
-clicar = encontrar_imagem(".../Imagens/microsiga.png")
+clicar = encontrar_imagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png')
 pyautogui.click(clicar)
-clicar2 = encontrar_imagem(".../Imagens/verDocumentos.png")
+clicar2 = encontrar_imagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png')
 pyautogui.click(clicar2)
 time.sleep(1)        
 pyautogui.hotkey("alt", "d", interval=0.04)  

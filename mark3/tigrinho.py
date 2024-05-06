@@ -44,7 +44,7 @@ def encontrarImagemLocalizada(imagem):
             print("Imagem não encontrada")
             pass
 
-def clicarMicrosiga(imagem=".../Imagens/microsiga.png"):
+def clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png'):
     clique = encontrarImagemLocalizada(imagem)
     pyautogui.click(clique)
 
@@ -52,7 +52,7 @@ def clicarMicrosiga(imagem=".../Imagens/microsiga.png"):
 def robozinho():
     clicarMicrosiga()
     time.sleep(0.7)
-    clicar2 = encontrarImagem(".../Imagens/verDocumentos.png")
+    clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png')
     pyautogui.click(clicar2, clicks=2, interval=0.1)
     time.sleep(1)        
     pyautogui.hotkey("alt", "d", interval=0.1)  
@@ -147,11 +147,11 @@ def robozinho():
             doc = xmltodict.parse(fd.read())
     except:
         driver.quit()
-        exportarXML = encontrarImagemLocalizada(".../Imagens/exportarXML.png")
+        exportarXML = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\exportarXML.png')
         time.sleep(1)
         pyautogui.click(exportarXML, clicks=2, interval=0.07)
         time.sleep(1)
-        clicar_servidor = encontrarImagemLocalizada(".../Imagens/clicarServidor.png")
+        clicar_servidor = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarServidor.png')
         pyautogui.click(clicar_servidor, clicks=3, interval=0.07)
         pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\mark3\\xmlFiscalio\\")
         pyautogui.hotkey("ctrl", "v")
@@ -174,11 +174,11 @@ def robozinho():
             pyautogui.hotkey(["tab"]*3, interval=0.1)
             pyautogui.press("down")
             driver.quit()
-            clicarMicrosiga(imagem=".../Imagens/microsigaSelecionado.png")
+            clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             return robozinho()
         else:
             time.sleep(1.2)
-            clicarMicrosiga(imagem=".../Imagens/microsigaSelecionado.png")
+            clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             time.sleep(0.5)
 
 
@@ -304,11 +304,11 @@ def robozinho():
 
 
     clicarMicrosiga()
-    clicar2 = encontrarImagem(".../Imagens/DadosDaNota.png")
+    clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\DadosDaNota.png')
     pyautogui.click(clicar2, clicks=2, interval=0.1)
     time.sleep(0.5)
     try:
-        aparece_click = encontrarImagem(".../Imagens/NCMsegue.png")
+        aparece_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\NCMsegue.png')
         if type(aparece_click) == pyscreeze.Box:
             time.sleep(0.5)
             pyautogui.press("enter")
@@ -323,20 +323,20 @@ def robozinho():
         pyautogui.press("tab", interval=0.5)
         pyautogui.press("enter")
     else:
-        clicar = encontrarImagem(".../Imagens/CancelarFilial.png")
+        clicar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarFilial.png')
         pyautogui.click(clicar, clicks=2, interval=0.07)
         pyautogui.hotkey("shift", "tab", interval=0.1)
         pyautogui.press("down")
         driver.quit()
-        clicarMicrosiga(imagem=".../Imagens/microsigaSelecionado.png")
+        clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
         return robozinho()
 
     try:
         time.sleep(0.5)
-        aparece_enter = encontrarImagem(".../Imagens/AtencaoEstoque.png")
+        aparece_enter = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AtencaoEstoque.png')
         if type(aparece_enter) == pyscreeze.Box: 
             pyautogui.press("enter")
-        aparece_enter2 = encontrarImagem(".../Imagens/TES102.png")
+        aparece_enter2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\TES102.png')
         if type(aparece_enter2) == pyscreeze.Box:
             pyautogui.press("enter") 
             pyautogui.press(["tab"]*2)
@@ -349,21 +349,21 @@ def robozinho():
 
     while True:
         time.sleep(1)
-        tela_de_lancamento = encontrarImagem(".../Imagens/AbriuOProcesso.png")
+        tela_de_lancamento = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbriuOProcesso.png')
         if type(tela_de_lancamento) == pyscreeze.Box:
-            clicar = encontrarImagemLocalizada(".../Imagens/clicarValorUnit.png")
+            clicar = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarValorUnit.png')
             pyautogui.click(clicar)
             break
         
-        lancamento_retroativo = encontrarImagem(".../Imagens/LancamentoRetroativo.png")
-        nota_ja_lancada = encontrarImagem(".../Imagens/ProcessoJaLancado.png")
-        fornecedor_bloqueado = encontrarImagem(".../Imagens/FornecedorBloqueado.png")
+        lancamento_retroativo = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\LancamentoRetroativo.png')
+        nota_ja_lancada = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ProcessoJaLancado.png')
+        fornecedor_bloqueado = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\FornecedorBloqueado.png')
         if type(lancamento_retroativo) == pyscreeze.Box or type(nota_ja_lancada) == pyscreeze.Box or type(fornecedor_bloqueado) == pyscreeze.Box:
             time.sleep(0.5)
             pyautogui.press("enter")
             time.sleep(1)
 
-        erro_generico = encontrarImagem(".../Imagens/ErroGenerico.png")
+        erro_generico = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroGenerico.png')
         if type(erro_generico) == pyscreeze.Box:
             time.sleep(0.5)
             pyautogui.press("enter", interval=1) 
@@ -376,28 +376,28 @@ def robozinho():
             clicarMicrosiga()
             return robozinho()
         
-        chave_nao_encontrada = encontrarImagem(".../Imagens/chaveNaoEncontradaNoSefaz.png")
+        chave_nao_encontrada = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\chaveNaoEncontradaNoSefaz.png')
         if type(chave_nao_encontrada) == pyscreeze.Box:
             time.sleep(0.5)
             pyautogui.press("enter")
             time.sleep(0.5)
-            clicar2 = encontrarImagem(".../Imagens/CancelarLancamento.png")
+            clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
             while type(clicar2) != pyscreeze.Box:
-                clicar2 = encontrarImagem(".../Imagens/CancelarLancamento.png") 
+                clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png') 
                 time.sleep(0.7)
             pyautogui.click(clicar2, clicks=2, interval=0.07)
             time.sleep(1.5)
             pyautogui.press("esc", interval=1)
             pyautogui.press("enter", interval=0.5)
-            aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+            aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             while type(aguarde) == pyscreeze.Box:
-                aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+                aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                 time.sleep(0.3)
             pyautogui.hotkey("shift", "tab", interval=0.1)
             pyautogui.press("down")
             driver.quit()
             time.sleep(0.5)
-            clicarMicrosiga(imagem=".../Imagens/microsigaSelecionado.png")
+            clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             return robozinho()
 
 
@@ -414,7 +414,7 @@ def robozinho():
         if valor_do_item_no_siga != valor_do_item_na_NF:
             pyautogui.write(lista[indiceX][0])
             time.sleep(0.3)
-            encontrar = encontrarImagem(".../Imagens/valitenErrado.png")
+            encontrar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\valitenErrado.png')
             if type(encontrar) == pyscreeze.Box:
                 pyautogui.press("enter")
                 pyautogui.press("esc")
@@ -428,12 +428,12 @@ def robozinho():
                     pyautogui.press(["right"]*3)
                 else:
                     cancelar_lancamento = True
-                    clicar2 = encontrarImagem(".../Imagens/CancelarLancamento.png")
+                    clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
                     time.sleep(0.5)
                     pyautogui.click(clicar2, clicks=2, interval=0.1)
-                    aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+                    aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                     while type(aguarde) == pyscreeze.Box:
-                        aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+                        aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                         time.sleep(1)
                     pyautogui.hotkey("shift", "tab", interval=0.1)
                     pyautogui.press("down")
@@ -600,12 +600,12 @@ def robozinho():
                         tes = "403"
         elif codigo == 7:
             cancelar_lancamento = True
-            clicar2 = encontrarImagem(".../Imagens/CancelarLancamento.png")
+            clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
             time.sleep(0.3)
             pyautogui.click(clicar2)
-            aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+            aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             while type(aguarde) == pyscreeze.Box:
-                aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+                aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                 time.sleep(1)
             pyautogui.hotkey("shift", "tab")
             pyautogui.press(["down"]*1)
@@ -839,11 +839,11 @@ def robozinho():
         time.sleep(1)
 
 
-    proxima_etapa = encontrarImagem(".../Imagens/AbaDescontos.png")
+    proxima_etapa = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDescontos.png')
     time.sleep(0.3)
     pyautogui.click(proxima_etapa, clicks=2, interval=0.1)
     time.sleep(0.3)
-    clicar = encontrarImagemLocalizada(".../Imagens/ClicarNaAbaDescontos.png")
+    clicar = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ClicarNaAbaDescontos.png')
     x, y = clicar
     pyautogui.click(x, y)
     pyautogui.hotkey(["shift", "tab"]*2, interval=0.07)
@@ -853,10 +853,10 @@ def robozinho():
     time.sleep(0.7)
 
         
-    clicar = encontrarImagem(".../Imagens/AbaDuplicatas.png")
+    clicar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDuplicatas.png')
     pyautogui.click(clicar, clicks=2, interval=0.1)
     time.sleep(0.3)
-    clicar2 = encontrarImagemLocalizada(".../Imagens/naturezaDuplicata.png")
+    clicar2 = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
     pyautogui.click(clicar2)
     pyautogui.hotkey("ctrl", "c", interval=0.1)
     natureza_perc = pyperclip.paste() 
@@ -870,7 +870,7 @@ def robozinho():
             pyautogui.hotkey("ctrl", "c", interval=0.1)
             natureza_perc = pyperclip.paste() 
         maior_perc = max(lista_perc)
-        clicar2 = encontrarImagem(".../Imagens/naturezaDuplicata.png")
+        clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
         pyautogui.click(clicar2)
         pyautogui.press("up")
         time.sleep(0.2)
@@ -893,44 +893,44 @@ def robozinho():
         time.sleep(1)
 
 
-    salvar = encontrarImagem(".../Imagens/salvarLancamento.png")
+    salvar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
     pyautogui.click(salvar, clicks=2, interval=0.05)
     time.sleep(2)
-    erro_de_serie = encontrarImagem(".../Imagens/ErroDeSerie.png")
+    erro_de_serie = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroDeSerie.png')
     if type(erro_de_serie) == pyscreeze.Box:
         pyautogui.press("enter", interval=0.2) 
-        espec_doc = encontrarImagem(".../Imagens/CorrigirErroDeSerie.png")
+        espec_doc = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CorrigirErroDeSerie.png')
         pyautogui.click(espec_doc, clicks=2)
         pyautogui.write("NF")
         pyautogui.press("enter")
         pyautogui.click(salvar, clicks=2)
-    erro_esquisito = encontrarImagem(".../Imagens/erroEsquisito.png")
+    erro_esquisito = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroEsquisito.png')
     if type(erro_esquisito) == pyscreeze.Box:
         pyautogui.press("esc")
         quit()
-    erro_quantidade = encontrarImagem(".../Imagens/erroDeQuantidade.png")
+    erro_quantidade = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroDeQuantidade.png')
     if type(erro_quantidade) == pyscreeze.Box:
         pyautogui.press("enter")
-        clicar2 = encontrarImagem(".../Imagens/CancelarLancamento.png")
+        clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
         time.sleep(0.3)
         pyautogui.click(clicar2, clicks=2, interval=0.07)
-        aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+        aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
         while type(aguarde) == pyscreeze.Box:
-            aguarde = encontrarImagem(".../Imagens/Aguarde.png") 
+            aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             time.sleep(1)
         pyautogui.hotkey("shift", "tab", interval=0.1)
         pyautogui.press("down")
         driver.quit()
         clicarMicrosiga()
         return robozinho()
-    erro_de_parcela = encontrarImagem(".../Imagens/corrigirValorParcela.png")  
+    erro_de_parcela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\corrigirValorParcela.png')  
     if type(erro_de_parcela) == pyscreeze.Box:
         while type(erro_de_parcela) == pyscreeze.Box:
             pyautogui.press("enter")
             time.sleep(2)
-            erro_de_parcela = encontrarImagem(".../Imagens/corrigirValorParcela.png")
+            erro_de_parcela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\corrigirValorParcela.png')
         lista_parc = []
-        valor_parcela = encontrarImagemLocalizada(".../Imagens/clicarParcela.png")
+        valor_parcela = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
         pyautogui.click(valor_parcela)
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         valor_parcela = pyperclip.paste()
@@ -951,35 +951,35 @@ def robozinho():
         ultima_parcela = parcela_duplicada + diferenca_NF_siga
         ultima_parcela = "{:.2f}".format(ultima_parcela)
         ultima_parcela = str(ultima_parcela)
-        valor_parcela = encontrarImagemLocalizada(".../Imagens/clicarParcela.png")
+        valor_parcela = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
         pyautogui.click(valor_parcela)
         descida = len(lista_parc) - 1
         pyautogui.press(["down"]*descida)
         pyautogui.write(ultima_parcela)
         time.sleep(1)
-        salvar = encontrarImagem(".../Imagens/salvarLancamento.png")
+        salvar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
         pyautogui.click(salvar, clicks=2, interval=0.07)
 
 
-    etapa_final = encontrarImagem(".../Imagens/etapaFinal.png")
+    etapa_final = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
     while type(etapa_final) != pyscreeze.Box:
         time.sleep(0.2)
-        etapa_final = encontrarImagem(".../Imagens/etapaFinal.png")
+        etapa_final = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
     pyautogui.press(["tab"]*3, interval=0.5)
     pyautogui.press("enter")
     time.sleep(1)
-    ultimo_click = encontrarImagem(".../Imagens/finalizarLancamento.png")
+    ultimo_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
     if type(ultimo_click) != pyscreeze.Box:
         while type(ultimo_click) != pyscreeze.Box:
             time.sleep(0.2)
-            ultimo_click = encontrarImagem(".../Imagens/finalizarLancamento.png")
+            ultimo_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
     pyautogui.press("tab", interval=0.5)
     pyautogui.press("enter")
     time.sleep(1)
-    ultima_tela = encontrarImagem(".../Imagens/ultimaTela.png")
+    ultima_tela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
     while type(ultima_tela) == pyscreeze.Box:
         time.sleep(0.2)
-        ultima_tela = encontrarImagem(".../Imagens/ultimaTela.png")
+        ultima_tela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
 
     driver.quit()
              
