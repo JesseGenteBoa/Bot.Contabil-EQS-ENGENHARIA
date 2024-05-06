@@ -140,7 +140,7 @@ def robozinho():
     pyautogui.hotkey("ctrl", "w")
 
 
-    caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+    caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
     try:
         with open(caminho) as fd:
