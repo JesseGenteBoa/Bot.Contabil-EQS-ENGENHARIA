@@ -153,7 +153,7 @@ def robozinho():
         time.sleep(1)
         clicar_servidor = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarServidor.png')
         pyautogui.click(clicar_servidor, clicks=3, interval=0.07)
-        pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\mark3\\xmlFiscalio\\")
+        pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\")
         pyautogui.hotkey("ctrl", "v")
         time.sleep(1)
         pyautogui.press(["tab"]*6, interval=0.5)

@@ -1,0 +1,37 @@
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe Id="NFe28240510638544000137550010001613311104409533" versao="4.00"><ide><cUF>28</cUF><cNF>10440953</cNF><natOp>VENDA DE MERC.ADQ.OU REC TERC</natOp><mod>55</mod><serie>1</serie><nNF>161331</nNF><dhEmi>2024-05-04T10:49:42-03:00</dhEmi><dhSaiEnt>2024-05-04T10:49:42-03:00</dhSaiEnt><tpNF>1</tpNF><idDest>2</idDest><cMunFG>2800308</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>3</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>1</indFinal><indPres>1</indPres><indIntermed>0</indIntermed><procEmi>0</procEmi><verProc>1</verProc></ide><emit><CNPJ>10638544000137</CNPJ><xNome>ZB - MATERIAIS DE CONSTRUCAO LTDA</xNome><xFant>ZABATA (ZB)</xFant><enderEmit><xLgr>AV JOSINO J DE ALMEIDA, 604</xLgr><nro>604</nro><xBairro>FAROLANDIA</xBairro><cMun>2800308</cMun><xMun>Aracaju</xMun><UF>SE</UF><CEP>49030000</CEP><cPais>1058</cPais><xPais>BRASIL</xPais></enderEmit><IE>271240946</IE><CRT>1</CRT></emit><dest><CNPJ>80464753000197</CNPJ><xNome>EQS ENGENHARIA LTDA</xNome><enderDest><xLgr>RUA JUDITE MELO DOS SANTOS, 135</xLgr><nro>135</nro><xCpl>GALP?O 2</xCpl><xBairro>AREA INDUSTRIAL</xBairro><cMun>4216602</cMun><xMun>Sao Jose</xMun><UF>SC</UF><CEP>88104765</CEP><cPais>1058</cPais><xPais>BRASIL</xPais></enderDest><indIEDest>1</indIEDest><IE>251642550</IE></dest><det nItem="1"><prod><cProd>98528</cProd><cEAN>7898025460052</cEAN><xProd>THINNER 2750 5,0L - ANJO</xProd><NCM>38140090</NCM><CFOP>6102</CFOP><uCom>UN</uCom><qCom>1.0000</qCom><vUnCom>127.5000000000</vUnCom><vProd>127.50</vProd><cEANTrib>7898025460052</cEANTrib><uTrib>UN</uTrib><qTrib>1.0000</qTrib><vUnTrib>127.5000000000</vUnTrib><indTot>1</indTot></prod><imposto><vTotTrib>43.58</vTotTrib><ICMS><ICMSSN101><orig>0</orig><CSOSN>101</CSOSN><pCredSN>3.00</pCredSN><vCredICMSSN>3.83</vCredICMSSN></ICMSSN101></ICMS><IPI><cEnq>999</cEnq><IPINT><CST>53</CST></IPINT></IPI><PIS><PISNT><CST>08</CST></PISNT></PIS><COFINS><COFINSNT><CST>08</CST></COFINSNT></COFINS></imposto></det><total><ICMSTot><vBC>0.00</vBC><vICMS>0.00</vICMS><vICMSDeson>0.00</vICMSDeson><vFCP>0.00</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>0.00</vFCPST><vFCPSTRet>0.00</vFCPSTRet><vProd>127.50</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vIPIDevol>0.00</vIPIDevol><vPIS>0.00</vPIS><vCOFINS>0.00</vCOFINS><vOutro>0.00</vOutro><vNF>127.50</vNF><vTotTrib>43.58</vTotTrib></ICMSTot></total><transp><modFrete>9</modFrete></transp><cobr><fat><nFat>32954</nFat><vOrig>127.50</vOrig><vDesc>0.00</vDesc><vLiq>127.50</vLiq></fat><dup><nDup>001</nDup><dVenc>2024-05-04</dVenc><vDup>127.50</vDup></dup></cobr><pag><detPag><indPag>0</indPag><tPag>03</tPag><vPag>127.50</vPag><card><tpIntegra>2</tpIntegra></card></detPag></pag><infAdic><infCpl>Tributos Totais Incidentes (Lei Federal 12.741 /2012): R$ 43,58 FONTE: IBPT  Pedido: 19487  Vend: JUCYMARA SOUZA SANTANA</infCpl></infAdic></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI="#NFe28240510638544000137550010001613311104409533"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>+7i9+m0TmZ7CQ0FEM0Bw/dt3/Vg=</DigestValue></Reference></SignedInfo><SignatureValue>pzXKzEs/fAUZNovXu01k3lw1A9SgnGd2VEdUJcPq//enWTrCltm8ewmK7OGkKeYuHrzYQ43OBzXm
+pFZcZlFFHt8ZkIHEkxshmzeshunBKzCe/ljIsmoeITJLCSqONHuRBJUXsJqPiutZmi+zhXlO6+4N
+OdV7yAs0HFUKB9R/8/BFEVI6wkbWE2FvSHA9+SLv/L6gOjj9TjYM00K6DXX6QfNLT8YiQZ8qwqdb
+kKgfZoTjRkLgVb3cXpg5vWiE577rzGTheAvGpKh9ECNiwj8rMADzE5G6rtzm9l4uodW+uDErNTi/
+dZG//5KcKlPPOHhGmoAA2BW1M6Q7mpmBJXdAHw==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIHUjCCBTqgAwIBAgIIZDgkBAha4M4wDQYJKoZIhvcNAQELBQAwWTELMAkGA1UEBhMCQlIxEzAR
+BgNVBAoTCklDUC1CcmFzaWwxFTATBgNVBAsTDEFDIFNPTFVUSSB2NTEeMBwGA1UEAxMVQUMgU09M
+VVRJIE11bHRpcGxhIHY1MB4XDTI0MDQwODE4MDIwMFoXDTI1MDQwODE4MDIwMFowge8xCzAJBgNV
+BAYTAkJSMRMwEQYDVQQKEwpJQ1AtQnJhc2lsMQswCQYDVQQIEwJTRTEQMA4GA1UEBxMHQXJhY2Fq
+dTEeMBwGA1UECxMVQUMgU09MVVRJIE11bHRpcGxhIHY1MRcwFQYDVQQLEw40NjM1NzExMzAwMDE0
+MDEcMBoGA1UECxMTQ2VydGlmaWNhZG8gRGlnaXRhbDEaMBgGA1UECxMRQ2VydGlmaWNhZG8gUEog
+QTExOTA3BgNVBAMTMFpCIC0gTUFURVJJQUlTIERFIENPTlNUUlVDQU8gTFREQToxMDYzODU0NDAw
+MDEzNzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALxwKtLa7Tk3GB11e/KgSbVR8jkD
+2PmaF3EGgRIdau3z3kVZUGzjtrf+5af1ulypbFECIJivQF5s7jxKnUjOXRDnFeq8PDhi39TM/dt7
+9qU83n45W20JrSNsjDpQcCmDA0jl/0zSftnZ5bk1Oa90jlP+0nhPj9SNAqkRR5Ma7FsmAXP3bnhL
+xOuRLp8+15gwi/y3ReIDKGfNiZZ84OLyR8oJ8D76kcKQKXCO5G1olpLRavNF0Q99YUuGs+Qqh/rP
+v7ArT3/C+gmzAiEASeEW1jsqRmFzrP/TMtI2Eds6+uToSyHcHree8LSkH2pFK2ElO9FaJ/O1sgyb
+4x3gOETkL6sCAwEAAaOCAoUwggKBMAkGA1UdEwQCMAAwHwYDVR0jBBgwFoAUxVLtJYAJ35yCyJ9H
+xt20XzHdubEwVAYIKwYBBQUHAQEESDBGMEQGCCsGAQUFBzAChjhodHRwOi8vY2NkLmFjc29sdXRp
+LmNvbS5ici9sY3IvYWMtc29sdXRpLW11bHRpcGxhLXY1LnA3YjCBwAYDVR0RBIG4MIG1gRtjb250
+YXRvQGF4aWFjb250YWJpbC5jb20uYnKgKAYFYEwBAwKgHxMdRVJBQ0xJREVTIEJJU1BPIERBIENS
+VVogRklMSE+gGQYFYEwBAwOgEBMOMTA2Mzg1NDQwMDAxMzegOAYFYEwBAwSgLxMtMDIwMzE5NjY0
+MzY1OTM5MDUwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwoBcGBWBMAQMHoA4TDDAwMDAwMDAw
+MDAwMDBdBgNVHSAEVjBUMFIGBmBMAQIBJjBIMEYGCCsGAQUFBwIBFjpodHRwOi8vY2NkLmFjc29s
+dXRpLmNvbS5ici9kb2NzL2RwYy1hYy1zb2x1dGktbXVsdGlwbGEucGRmMB0GA1UdJQQWMBQGCCsG
+AQUFBwMCBggrBgEFBQcDBDCBjAYDVR0fBIGEMIGBMD6gPKA6hjhodHRwOi8vY2NkLmFjc29sdXRp
+LmNvbS5ici9sY3IvYWMtc29sdXRpLW11bHRpcGxhLXY1LmNybDA/oD2gO4Y5aHR0cDovL2NjZDIu
+YWNzb2x1dGkuY29tLmJyL2xjci9hYy1zb2x1dGktbXVsdGlwbGEtdjUuY3JsMB0GA1UdDgQWBBR6
+/kSvxfp1OyaqwPMaPVPvBr8EmzAOBgNVHQ8BAf8EBAMCBeAwDQYJKoZIhvcNAQELBQADggIBAGxZ
+/96vs4rWZM0jrJEYFUi2PUmlOJAm6ciTJJ9QXu78Vi+t/YQfEgiwspx1DnV+yzk9QwG9SNiBOwnB
+kG09Ft1GMcBBtqSVfzPE6dUZEpJEKHGi9c7zT58M6kTJYaSNihggOSihwYwsmTWzeutNhkRBzdCZ
+SxJ9nWtCG8K9ek+p38+TiayVyCRuMDPBNpjrnIEjPer4YSl8xuB7JuEI6X9mYG93uu7cLh33FiXo
+jbtUfCUZRE89AJvBCK1ZnMHmQLra6JVp9XTC27pbPSN+aoz5DhbN2v6jj9p/ThDWsdmHkUeWMdEu
+7kn+mOTdrZcxoscNDy2cHcby9CcgTnvOXzUTyWhv7D/aFkEzb3rF/6DO2U09yJTEVCyLFUzAtlVI
+NULivjQedv/n+y6dCWnLYhnv8U4MSBPqSDMn/zmG5rQu5JXaFQcAyd1w1ntT44rkVZIosPrRQIkm
+RkicYs4k4LL6IOVoThNhFrb7XVqsGAc0cj0hfKST8BNblJA7ltGV/QaWmuJ4aKaXJT65PGZwfGt0
+ZroK9mpL3sDNCPEWYjLrhV/oOSBCUggxJlL1g1ot551sjVTlVaq2hz0vbR/cNKkRUk7ap9O8iJ8g
+ZtdmicWF45TDE59Ac5k0WAWy3jYW7AHKiGQlMVpAuRYw6Pm3veoGMjRXI5CCeeR/J+WU1n/i</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><infProt><tpAmb>1</tpAmb><verAplic>SVRS202404251203</verAplic><chNFe>28240510638544000137550010001613311104409533</chNFe><dhRecbto>2024-05-04T10:49:42-03:00</dhRecbto><nProt>328240007605992</nProt><digVal>+7i9+m0TmZ7CQ0FEM0Bw/dt3/Vg=</digVal><cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo></infProt></protNFe></nfeProc>
