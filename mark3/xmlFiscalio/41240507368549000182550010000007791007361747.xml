@@ -1,0 +1,37 @@
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe Id="NFe41240507368549000182550010000007791007361747" versao="4.00"><ide><cUF>41</cUF><cNF>00736174</cNF><natOp>VENDAS DE MERCADORIAS ADQUIRIDAS DE TERCEIROS</natOp><mod>55</mod><serie>1</serie><nNF>779</nNF><dhEmi>2024-05-02T17:41:17-03:00</dhEmi><dhSaiEnt>2024-05-02T17:41:17-03:00</dhSaiEnt><tpNF>1</tpNF><idDest>2</idDest><cMunFG>4108304</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>7</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>1</indFinal><indPres>1</indPres><procEmi>0</procEmi><verProc>4.01</verProc></ide><emit><CNPJ>07368549000182</CNPJ><xNome>VIDRACARIA DALMAZO LTDA</xNome><xFant>VIDRACARIA ALVORADA</xFant><enderEmit><xLgr>RUA AGENOR MARINS</xLgr><nro>120</nro><xBairro>JARDIM PANORAMA</xBairro><cMun>4108304</cMun><xMun>FOZ DO IGUACU</xMun><UF>PR</UF><CEP>85856010</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>4535253483</fone></enderEmit><IE>9033743146</IE><CRT>1</CRT></emit><dest><CNPJ>80464753000197</CNPJ><xNome>EQS ENGENHARIA SA</xNome><enderDest><xLgr>R JUDITE MELO DOS SANTOS</xLgr><nro>135</nro><xCpl>GALPAO 02</xCpl><xBairro>AREA INDUSTRIAL</xBairro><cMun>4216602</cMun><xMun>SAO JOSE</xMun><UF>SC</UF><CEP>88104765</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>4832818333</fone></enderDest><indIEDest>9</indIEDest><IE>251642550</IE></dest><det nItem="1"><prod><cProd>1519</cProd><cEAN>SEM GTIN</cEAN><xProd>MIOLO PARA PORTA DE GIRO</xProd><NCM>76042920</NCM><CEST>2806100</CEST><CFOP>6102</CFOP><uCom>UN</uCom><qCom>1.0000</qCom><vUnCom>30.0000000000</vUnCom><vProd>30.00</vProd><cEANTrib>SEM GTIN</cEANTrib><uTrib>UN</uTrib><qTrib>1.0000</qTrib><vUnTrib>30.0000000000</vUnTrib><indTot>1</indTot></prod><imposto><vTotTrib>9.63</vTotTrib><ICMS><ICMSSN102><orig>0</orig><CSOSN>102</CSOSN></ICMSSN102></ICMS><IPI><CNPJProd>00000000000000</CNPJProd><cSelo>N</cSelo><qSelo>0</qSelo><cEnq>999</cEnq><IPITrib><CST>99</CST><vBC>0.00</vBC><pIPI>0.00</pIPI><vIPI>0.00</vIPI></IPITrib></IPI><PIS><PISOutr><CST>49</CST><vBC>0.00</vBC><pPIS>0.00</pPIS><vPIS>0.00</vPIS></PISOutr></PIS><COFINS><COFINSOutr><CST>49</CST><vBC>0.00</vBC><pCOFINS>0.00</pCOFINS><vCOFINS>0.00</vCOFINS></COFINSOutr></COFINS></imposto></det><total><ICMSTot><vBC>0.00</vBC><vICMS>0.00</vICMS><vICMSDeson>0.00</vICMSDeson><vFCPUFDest>0</vFCPUFDest><vICMSUFDest>0</vICMSUFDest><vICMSUFRemet>0</vICMSUFRemet><vFCP>0</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>0</vFCPST><vFCPSTRet>0</vFCPSTRet><vProd>30.00</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vIPIDevol>0.00</vIPIDevol><vPIS>0.00</vPIS><vCOFINS>0.00</vCOFINS><vOutro>0.00</vOutro><vNF>30.00</vNF><vTotTrib>9.63</vTotTrib></ICMSTot></total><transp><modFrete>0</modFrete><vol><qVol>1</qVol><esp>VOLUMES</esp><marca>VIDRACARIA ALVORADA</marca><pesoL>0.000</pesoL><pesoB>0.000</pesoB></vol></transp><cobr><fat><nFat>779</nFat><vOrig>30.00</vOrig><vDesc>0.00</vDesc><vLiq>30.00</vLiq></fat></cobr><pag><detPag><tPag>90</tPag><vPag>0.00</vPag></detPag></pag><infRespTec><CNPJ>04329365000115</CNPJ><xContato>wvetro</xContato><email>notafiscal@wvetro.com.br</email><fone>4331724200</fone><idCSRT>99</idCSRT><hashCSRT>YWFhYWFhYWFhYWFhYWFhYWFhYWE=</hashCSRT></infRespTec></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI="#NFe41240507368549000182550010000007791007361747"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>lzG6QGyzVK/ATl2TBWC4l+XckPY=</DigestValue></Reference></SignedInfo><SignatureValue>HtMZq3Dgj32nih3PPPEwLqYg8o7AOHOY9dFsHHtLf+/nDhWaBjOQYAYvAlJfFfOEFC87wdM0XFmf
+4QfV/AnjVmnp8fgtZI6uvb9uxSeVsWzg+g0wt+S2O8lfIikovLGjwIj0heLRAXewytnMR9DEuKW/
+4aDGBJHVFomgyDeDjSdr8xeoJnOIbAGumiLGDs3Ui7jrVfn9Hnk76vvluda4TTANiu3ZM0uC5aDl
+cFm057/2XyqMjFk5Dfy4CGeIM/pINHL52Kwf/VMy7p8XXxn5bc33q7S2nHd05YRsU9kxQ+qQVJ6s
+2iqmQWdPWzY8e4o8XoX4rXTXgwmOZENgv/RlbA==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIHQjCCBSqgAwIBAgIIVG0kAwE7CcgwDQYJKoZIhvcNAQELBQAwWTELMAkGA1UEBhMCQlIxEzAR
+BgNVBAoTCklDUC1CcmFzaWwxFTATBgNVBAsTDEFDIFNPTFVUSSB2NTEeMBwGA1UEAxMVQUMgU09M
+VVRJIE11bHRpcGxhIHY1MB4XDTI0MDMwMTE0MDQwMFoXDTI1MDMwMTE0MDQwMFowgeQxCzAJBgNV
+BAYTAkJSMRMwEQYDVQQKEwpJQ1AtQnJhc2lsMQswCQYDVQQIEwJHTzEYMBYGA1UEBxMPQWJhZGlh
+IGRlIEdvaWFzMR4wHAYDVQQLExVBQyBTT0xVVEkgTXVsdGlwbGEgdjUxFzAVBgNVBAsTDjI5Nzcz
+OTIyMDAwMTEzMRMwEQYDVQQLEwpQcmVzZW5jaWFsMRowGAYDVQQLExFDZXJ0aWZpY2FkbyBQSiBB
+MTEvMC0GA1UEAxMmVklEUkFDQVJJQSBEQUxNQVpPIExUREE6MDczNjg1NDkwMDAxODIwggEiMA0G
+CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCPVYpmOTfoqBPP3mJntc0oJhqHLyzA+22yC2XT+6g3
+pNZ+FvWzLOGiBi0dXTYfBkKdZ5YUtQz1k4uiUdpRUko0CD46yq012yI0Z/nT7yhZq64hC/RiLQlM
+g/ComVFrp7h2XQfhASClxoiyH2kSxplkCXyxvzKTLmc2I/V7CyhgvTLG0DSj9tCZI2yaL/umCFAB
+JPdvAVXFtb9je3faf4AYegLgVNIqAdWWaMhXoWeqHy3gTBpK5jMWlI5CDBkd42gmOXUAQQ2o2iYu
+VLSBs3NKWMKPw5oWx2vjRF35ZWhxnAtX07/7tObr5tCQgGBv2dko5uD7tXVRzIIlB9NA68wNAgMB
+AAGjggKAMIICfDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFMVS7SWACd+cgsifR8bdtF8x3bmxMFQG
+CCsGAQUFBwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL2NjZC5hY3NvbHV0aS5jb20uYnIvbGNy
+L2FjLXNvbHV0aS1tdWx0aXBsYS12NS5wN2IwgbsGA1UdEQSBszCBsIEfc3RpbG9jb250YWJpbGlk
+YWRlZm96QGdtYWlsLmNvbaAfBgVgTAEDAqAWExRKT0FPIEJBVElTVEEgREFMTUFaT6AZBgVgTAED
+A6AQEw4wNzM2ODU0OTAwMDE4MqA4BgVgTAEDBKAvEy0xNTA0MTk2ODcwMzE0NjQwOTkxMDAwMDAw
+MDAwMDAwMDAwMDAwMDAwMDAwMDCgFwYFYEwBAwegDhMMMDAwMDAwMDAwMDAwMF0GA1UdIARWMFQw
+UgYGYEwBAgEmMEgwRgYIKwYBBQUHAgEWOmh0dHA6Ly9jY2QuYWNzb2x1dGkuY29tLmJyL2RvY3Mv
+ZHBjLWFjLXNvbHV0aS1tdWx0aXBsYS5wZGYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwME
+MIGMBgNVHR8EgYQwgYEwPqA8oDqGOGh0dHA6Ly9jY2QuYWNzb2x1dGkuY29tLmJyL2xjci9hYy1z
+b2x1dGktbXVsdGlwbGEtdjUuY3JsMD+gPaA7hjlodHRwOi8vY2NkMi5hY3NvbHV0aS5jb20uYnIv
+bGNyL2FjLXNvbHV0aS1tdWx0aXBsYS12NS5jcmwwHQYDVR0OBBYEFJDuavZMuekjWcuIFzdmjBn6
+Bgx5MA4GA1UdDwEB/wQEAwIF4DANBgkqhkiG9w0BAQsFAAOCAgEAs3ADvWcd/NA3zNLglhiIVhpG
+VDyhp1d3wUruk7WbpY01dHpM18p15PdHpkRfIidyBzgX9ZpHLjD6W7vzppb5s7VqTU05vukXWZHy
+xviowe1DoIHd+j157GSpfBNbX3Xox2RIBmMInrJkd7Yn/YvKiky1X9FmMYjTqXeZzZBcq0xd1qwT
+AAwdpqIf7GO9H4rRqSd7wKKf6UPeLvAox1ZrSIknoBGAoReeQg9UDjLEHeCMyDD5/L8TDWsgXH0n
+3GkuLX8Bhv+QmhknOMS+R0gVfpFTSBk61F4l2Bwhh0AE68ZZ13kdI/ULx3o+oRvMyD4wiugvsnOj
+Avq4AyNzm8oBRrRiboQOdNFhtqU43CWVFh0Uhpeqb4gs+WYX5eBeQ8FBKbK4BEpf04Us6huyqrtB
+KJuKlC2NbIu2HCzPTY/aPPGi+Rk1hRYEByBFbHrIRzcLSokz+dXULCkiSLJR99fTXM0w4oz4a6xY
+6OXJvGMV81FxAd21JmkMBX+i34NbmxHdhNdIfZQDVbxoy69MV8E2nV7hUZwCFEFcqOMyBS20i+V7
+iLtLVpWgW4YJKsMaWPAdLhvr6XtXwfCTlax/vcZJYubyHu59gyGiOTeNz4vD9Lka3cohM6ITUPUV
+s5OYN8QOQUHZZiKNfTwuY3T/jl/8ny8Zk/v7oLuDRXF/iwmCXPs=</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe versao="4.00"><infProt Id="ID141240129503564"><tpAmb>1</tpAmb><verAplic>PR-v4_8_40</verAplic><chNFe>41240507368549000182550010000007791007361747</chNFe><dhRecbto>2024-05-02T17:40:20-03:00</dhRecbto><nProt>141240129503564</nProt><digVal>lzG6QGyzVK/ATl2TBWC4l+XckPY=</digVal><cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo></infProt></protNFe></nfeProc>

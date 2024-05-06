@@ -1,0 +1,37 @@
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe Id="NFe29240540125844000183550010000394741428904701" versao="4.00"><ide><cUF>29</cUF><cNF>42890470</cNF><natOp>VENDA</natOp><mod>55</mod><serie>1</serie><nNF>39474</nNF><dhEmi>2024-05-03T14:26:00-03:00</dhEmi><tpNF>1</tpNF><idDest>2</idDest><cMunFG>2927408</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>1</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>0</indFinal><indPres>0</indPres><procEmi>3</procEmi><verProc>4.01_sebrae_b045</verProc></ide><emit><CNPJ>40125844000183</CNPJ><xNome>OXIGÊNIO MARES EIRELI</xNome><xFant>OXIGÊNIO MARES</xFant><enderEmit><xLgr>RUA AGRÁRIO DE MENEZES</xLgr><nro>31</nro><xCpl>OXIGÊNIO MARES</xCpl><xBairro>MARES</xBairro><cMun>2927408</cMun><xMun>Salvador</xMun><UF>BA</UF><CEP>40445041</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>7133151913</fone></enderEmit><IE>174423977</IE><CRT>1</CRT></emit><dest><CNPJ>80464753000197</CNPJ><xNome>EQS ENGENHARIA S.A</xNome><enderDest><xLgr>R JUDITE MELO DOS SANTOS</xLgr><nro>135</nro><xBairro>AREA INDUSTRIAL</xBairro><cMun>4216602</cMun><xMun>Sao Jose</xMun><UF>SC</UF><CEP>88104765</CEP><cPais>1058</cPais><xPais>BRASIL</xPais></enderDest><indIEDest>1</indIEDest><IE>251642550</IE></dest><autXML><CNPJ>13937073000156</CNPJ></autXML><det nItem="1"><prod><cProd>01</cProd><cEAN>SEM GTIN</cEAN><xProd>NITROGÊNIO INDUSTRIAL</xProd><NCM>23099090</NCM><CFOP>6101</CFOP><uCom>UND</uCom><qCom>1.0000</qCom><vUnCom>172.5000000000</vUnCom><vProd>172.50</vProd><cEANTrib>SEM GTIN</cEANTrib><uTrib>UND</uTrib><qTrib>1.0000</qTrib><vUnTrib>172.5000000000</vUnTrib><indTot>1</indTot></prod><imposto><ICMS><ICMSSN102><orig>0</orig><CSOSN>102</CSOSN></ICMSSN102></ICMS><PIS><PISNT><CST>08</CST></PISNT></PIS><COFINS><COFINSNT><CST>08</CST></COFINSNT></COFINS></imposto></det><total><ICMSTot><vBC>0.00</vBC><vICMS>0.00</vICMS><vICMSDeson>0.00</vICMSDeson><vFCPUFDest>0.00</vFCPUFDest><vICMSUFDest>0.00</vICMSUFDest><vICMSUFRemet>0.00</vICMSUFRemet><vFCP>0.00</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>0.00</vFCPST><vFCPSTRet>0.00</vFCPSTRet><qBCMono>0.00</qBCMono><vICMSMono>0.00</vICMSMono><qBCMonoReten>0.00</qBCMonoReten><vICMSMonoReten>0.00</vICMSMonoReten><qBCMonoRet>0.00</qBCMonoRet><vICMSMonoRet>0.00</vICMSMonoRet><vProd>172.50</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vIPIDevol>0.00</vIPIDevol><vPIS>0.00</vPIS><vCOFINS>0.00</vCOFINS><vOutro>0.00</vOutro><vNF>172.50</vNF><vTotTrib>0.00</vTotTrib></ICMSTot></total><transp><modFrete>9</modFrete></transp><pag><detPag><indPag>0</indPag><tPag>03</tPag><vPag>172.50</vPag></detPag></pag><infRespTec><CNPJ>43728245000142</CNPJ><xContato>suporte</xContato><email>suporteemissores@sebraesp.com.br</email><fone>08005700800</fone></infRespTec></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI="#NFe29240540125844000183550010000394741428904701"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>919UWwuaJYJyhfu1XXuRdMxchM4=</DigestValue></Reference></SignedInfo><SignatureValue>GYbUtrHWIFyPe2piz5e0hjs6r0OCtumjGaPojz+3s/zABXrgeJh31rgYkC0DkcOEljJmV9gW3jsO
+h5QCz9DRqvj/efFoyPw/qHhnz0XvUCKNeD03VMP0e+0MnyKXoxnp0hjQ7dmzddzqe7cGYhJBxZiY
+BZhlotoxhnmG5DfYQYOp83FXaQgE7kzXdA4jdhEkQP+9B5/LehOL7g6yqi12yTDOPNYjQ/TvHe5d
+Hk/cKarRa5+CC6Iyx/09NlhS3rky0aAgCIEsBHkjpMfWaDjVtSVsx4G8mI7n4jBj18R7e6DXId0K
+CiIfZxXEZQv/gWlVYD67XEQdEnoiFf9ulOEEOw==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIHOTCCBSGgAwIBAgIIUgMjECA4x7QwDQYJKoZIhvcNAQELBQAwWTELMAkGA1UEBhMCQlIxEzAR
+BgNVBAoTCklDUC1CcmFzaWwxFTATBgNVBAsTDEFDIFNPTFVUSSB2NTEeMBwGA1UEAxMVQUMgU09M
+VVRJIE11bHRpcGxhIHY1MB4XDTIzMTAyMDE0MzQwMFoXDTI0MTAxOTE0MzQwMFowgd8xCzAJBgNV
+BAYTAkJSMRMwEQYDVQQKEwpJQ1AtQnJhc2lsMQswCQYDVQQIEwJCQTERMA8GA1UEBxMIU2FsdmFk
+b3IxHjAcBgNVBAsTFUFDIFNPTFVUSSBNdWx0aXBsYSB2NTEXMBUGA1UECxMOMzgwMzgwMDYwMDAx
+MjAxGTAXBgNVBAsTEFZpZGVvY29uZmVyZW5jaWExGjAYBgNVBAsTEUNlcnRpZmljYWRvIFBKIEEx
+MSswKQYDVQQDEyJPWElHRU5JTyBNQVJFUyBMVERBOjQwMTI1ODQ0MDAwMTgzMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiATpqtnBvuBr4gHXAHEq4fQ3qBrfAszUpathLq+raMXQh1OG
+edHn2iMcy1pgG9/YPGh2PcUOJ4lMX7DJXGlwPQeWuChu2Umz0TqnwxKub6t4zIqlRehnsqXIZwr6
+4OnOmbJcxwdJYIgrqhSCvZ6ijAKkhc6b+g6TODrNPfGjcKQfTloROneeh/LSiUJVQc6DO7ZZZOnK
+OsyDI0FkVT8AQh5Rj5tUB/lgdQxXKROxGa1okNvRFOiSeEPL4kFuia8JJ7wgM/+LdkPPvA4bmXfd
+9IfUYlrtuPDzJSRGAqhVYriJIIZhsYPkvehJ4femGwJmpHcMyU8E5+KSBKLTssbWawIDAQABo4IC
+fDCCAngwCQYDVR0TBAIwADAfBgNVHSMEGDAWgBTFUu0lgAnfnILIn0fG3bRfMd25sTBUBggrBgEF
+BQcBAQRIMEYwRAYIKwYBBQUHMAKGOGh0dHA6Ly9jY2QuYWNzb2x1dGkuY29tLmJyL2xjci9hYy1z
+b2x1dGktbXVsdGlwbGEtdjUucDdiMIG3BgNVHREEga8wgayBF294aWdlbmlvbWFyZXNAZ21haWwu
+Y29toCMGBWBMAQMCoBoTGE1BSVJJUyBTSUxWQSBERSBPTElWRUlSQaAZBgVgTAEDA6AQEw40MDEy
+NTg0NDAwMDE4M6A4BgVgTAEDBKAvEy0xMzA3MjAwMDg2MTg4MjA2NTI5MDAwMDAwMDAwMDAwMDAw
+MDAwMDAwMDAwMDCgFwYFYEwBAwegDhMMMDAwMDAwMDAwMDAwMF0GA1UdIARWMFQwUgYGYEwBAgEm
+MEgwRgYIKwYBBQUHAgEWOmh0dHA6Ly9jY2QuYWNzb2x1dGkuY29tLmJyL2RvY3MvZHBjLWFjLXNv
+bHV0aS1tdWx0aXBsYS5wZGYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMIGMBgNVHR8E
+gYQwgYEwPqA8oDqGOGh0dHA6Ly9jY2QuYWNzb2x1dGkuY29tLmJyL2xjci9hYy1zb2x1dGktbXVs
+dGlwbGEtdjUuY3JsMD+gPaA7hjlodHRwOi8vY2NkMi5hY3NvbHV0aS5jb20uYnIvbGNyL2FjLXNv
+bHV0aS1tdWx0aXBsYS12NS5jcmwwHQYDVR0OBBYEFNUyrD1ZEe4lFN+JnRi4YhsM4yovMA4GA1Ud
+DwEB/wQEAwIF4DANBgkqhkiG9w0BAQsFAAOCAgEAMf9aSb/+vyZmenO9bJJJULi+iI/HrsjeJUQk
+oyAlD4MBTQBz9ww05prDVGtOEYoMrYqPbW9sYAgsU6CnsoHalzchcTEKAPLEFFlxFsV8KVxCavTA
+lWdMlOEv1J7lUD4tNhs6xU1YGUA6gb1+e0dbpj+pSzicbrIvYvvDZGrhUYwqW1vkjhx4BBmgiz5R
+KM3fHP6IpWto8YL09WWxsXhqiMoKnV/mFq1wj+6xgsTgyGOvg7O68X+6GwNcFOjSlNRYMtbFytAu
+O1PKGSVG5vdc/QSD1CeNUAixrkbKO5M/TYJ78E1Mdve63zoW77abnovK/ALWCeBhRB1fVuwxgSG0
+zSlUgFjlrPa7vIi63Y5uw51487GSFMliBDm9U6/xplxPhdyHrde7fQck5EY32p7h9Qil/2lcYZ7z
+uwC83g10wtAmP1ZvUwwy4s/PpcPX/xCTzccgSUCrIFa22TZwZMX7TuhvU3KdhfVLlKXr+GcihcTC
+tbvDRYLfSVgnnRMGJcxZfEAm11P1hsxAMmaqJX9QC5gONrhF/17ngyYoz8hv5AisvKaBTQRilTku
+i7AKox7Ir7YnUqN4rYG8V/U4Ea9exQAOZ3W0mMDHNpliPi+2fbRWfOVBRfZl3iRf7ihWn9EPklEA
+CxFwH4sYoSCgZh+jQFkQa7puft3TjyiaB6iBwYk=</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe versao="4.00"><infProt xmlns="http://www.portalfiscal.inf.br/nfe" Id="NFe129240753011586"><tpAmb>1</tpAmb><verAplic>6.0</verAplic><chNFe>29240540125844000183550010000394741428904701</chNFe><dhRecbto>2024-05-03T14:33:21-03:00</dhRecbto><nProt>129240753011586</nProt><digVal>919UWwuaJYJyhfu1XXuRdMxchM4=</digVal><cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo></infProt></protNFe></nfeProc>
