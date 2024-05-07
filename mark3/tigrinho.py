@@ -195,9 +195,9 @@ def robozinho():
 
     totais_nota_fiscal = doc["nfeProc"]["NFe"]["infNFe"]["total"]["ICMSTot"]
     teremos_frete = totais_nota_fiscal["vFrete"]
-    formatador(teremos_frete)
+    teremos_frete = formatador(teremos_frete)
     teremos_despesas_acessorias = totais_nota_fiscal["vOutro"]
-    formatador(teremos_despesas_acessorias)
+    teremos_despesas_acessorias = formatador(teremos_despesas_acessorias)
     valor_total_da_nf = totais_nota_fiscal["vNF"]
     valor_total_da_nf = float(valor_total_da_nf)
     valor_total_da_nf = "{:.2f}".format(valor_total_da_nf)
