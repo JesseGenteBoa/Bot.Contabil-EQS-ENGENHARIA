@@ -47,11 +47,13 @@ def clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Docume
     clique = encontrarImagemLocalizada(imagem)
     pyautogui.click(clique)
 
+def voltarEDescer(passos=1):
+    pyautogui.hotkey(["shift", "tab"]*passos, interval=0.15)
+    pyautogui.press("down")
 
 def reiniciarPortal():
     clicarMicrosiga()
-    pyautogui.hotkey(["shift", "tab"]*3, interval=0.1)
-    pyautogui.press("down")
+    voltarEDescer(passos=3)
     
 
 def robozinho():
@@ -178,18 +180,22 @@ def robozinho():
             clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             time.sleep(0.5)
 
+    def formatador(variavel, casas_decimais="{:.2f}"):
+        variavel = float(variavel)
+        variavel = casas_decimais.format(variavel)
+        variavel = str(variavel)
+        variavel = variavel.replace(".", ",")
+
+    def formatador2(variavel):
+        variavel = float(variavel)
+        variavel = "{:.2f}".format(variavel)
+        variavel = str(variavel)
 
     totais_nota_fiscal = doc["nfeProc"]["NFe"]["infNFe"]["total"]["ICMSTot"]
     teremos_frete = totais_nota_fiscal["vFrete"]
-    teremos_frete = float(teremos_frete)
-    teremos_frete = "{:.2f}".format(teremos_frete)
-    teremos_frete = str(teremos_frete)
-    teremos_frete = teremos_frete.replace(".", ",")
+    formatador(teremos_frete)
     teremos_despesas_acessorias = totais_nota_fiscal["vOutro"]
-    teremos_despesas_acessorias = float(teremos_despesas_acessorias)
-    teremos_despesas_acessorias = "{:.2f}".format(teremos_despesas_acessorias)
-    teremos_despesas_acessorias = str(teremos_despesas_acessorias)
-    teremos_despesas_acessorias = teremos_despesas_acessorias.replace(".", ",")
+    formatador(teremos_despesas_acessorias)
     valor_total_da_nf = totais_nota_fiscal["vNF"]
     valor_total_da_nf = float(valor_total_da_nf)
     valor_total_da_nf = "{:.2f}".format(valor_total_da_nf)
@@ -200,18 +206,11 @@ def robozinho():
     valores_do_item = []
 
     def coletarDadosXML():
-        valor_prod = coletor_xml["vProd"]
+        valor_prod = coletor_xml["vProd"] 
         quantidade_comprada = coletor_xml["qCom"]
-        quantidade_comprada = float(quantidade_comprada)
-        quantidade_comprada = "{:.6f}".format(quantidade_comprada)
-        quantidade_comprada = str(quantidade_comprada)
-        quantidade_comprada = quantidade_comprada.replace(".", ",")
+        formatador(quantidade_comprada, casas_decimais="{:.6f}")
         valor_unitario = coletor_xml["vUnCom"]
-        valor_unitario = float(valor_unitario)
-        valor_unitario = "{:.6f}".format(valor_unitario)
-        valor_unitario = str(valor_unitario)
-        valor_unitario = valor_unitario.replace(".", ",")
-        valor_unitario = str(valor_unitario)
+        formatador(valor_unitario, casas_decimais="{:.6f}")
         valores_do_item.append(valor_prod)
         valores_do_item.append(quantidade_comprada)
         valores_do_item.append(valor_unitario)
@@ -236,9 +235,7 @@ def robozinho():
 
         if valor_icms != "0.00":
             aliquota_icms = descompactar_lista["pICMS"]
-            aliquota_icms = float(aliquota_icms)
-            aliquota_icms = "{:.2f}".format(aliquota_icms)
-            aliquota_icms = str(aliquota_icms)
+            formatador2(aliquota_icms)
             bc_icms = descompactar_lista["vBC"]
             valores_do_item.append((bc_icms, aliquota_icms))
 
@@ -255,18 +252,14 @@ def robozinho():
 
         if valor_icms_st != "0.00":
             aliquota_icms_st = descompactar_lista["pICMSST"]
-            aliquota_icms_st = float(aliquota_icms_st)
-            aliquota_icms_st = "{:.2f}".format(aliquota_icms_st)
-            aliquota_icms_st = str(aliquota_icms_st)
+            formatador2(aliquota_icms_st)
             bc_icms_st = descompactar_lista["vBCST"]
             valores_do_item.append((bc_icms_st, aliquota_icms_st))
 
         try:
             busca_ipi_xml = impostos_xml["IPI"]["IPITrib"]
             valor_ipi = busca_ipi_xml["vIPI"]
-            valor_ipi = float(valor_ipi)
-            valor_ipi = "{:.2f}".format(valor_ipi)
-            valor_ipi = str(valor_ipi)
+            formatador2(valor_ipi)
         except KeyError:
             valor_ipi = "0.00"
 
@@ -274,9 +267,7 @@ def robozinho():
 
         if valor_ipi != "0.00":
             aliquota_ipi = busca_ipi_xml["pIPI"]
-            aliquota_ipi = float(aliquota_ipi)
-            aliquota_ipi = "{:.2f}".format(aliquota_ipi)
-            aliquota_ipi = str(aliquota_ipi)
+            formatador2(aliquota_ipi)
             bc_ipi = busca_ipi_xml["vBC"]
             valores_do_item.append((bc_ipi, aliquota_ipi))
 
@@ -300,6 +291,8 @@ def robozinho():
                 break
 
 
+    
+
     clicarMicrosiga()
     clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\DadosDaNota.png')
     pyautogui.click(clicar2, clicks=2, interval=0.1)
@@ -322,8 +315,7 @@ def robozinho():
     else:
         clicar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarFilial.png')
         pyautogui.click(clicar, clicks=2, interval=0.07)
-        pyautogui.hotkey("shift", "tab", interval=0.1)
-        pyautogui.press("down")
+        voltarEDescer()
         driver.quit()
         clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
         return robozinho()
@@ -366,8 +358,7 @@ def robozinho():
             pyautogui.press("enter", interval=2) 
             pyautogui.press("esc", interval=2) 
             pyautogui.press("enter", interval=2)    
-            pyautogui.hotkey("shift", "tab", interval=0.5)
-            pyautogui.press("down")
+            voltarEDescer()
             driver.quit()
             time.sleep(1)
             clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
@@ -390,8 +381,7 @@ def robozinho():
             while type(aguarde) == pyscreeze.Box:
                 aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                 time.sleep(0.3)
-            pyautogui.hotkey("shift", "tab", interval=0.1)
-            pyautogui.press("down")
+            voltarEDescer()
             driver.quit()
             time.sleep(0.5)
             clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
@@ -432,8 +422,7 @@ def robozinho():
                     while type(aguarde) == pyscreeze.Box:
                         aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                         time.sleep(1)
-                    pyautogui.hotkey("shift", "tab", interval=0.1)
-                    pyautogui.press("down")
+                    voltarEDescer()
                     driver.quit()
                     clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             else:
@@ -488,7 +477,7 @@ def robozinho():
             indices_e_impostos.append(ctrl_imposto)
     except IndexError:
         pass
-        
+
 
     def copiarNatureza():
         pyautogui.press("right", interval=0.7)
@@ -604,8 +593,7 @@ def robozinho():
             while type(aguarde) == pyscreeze.Box:
                 aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
                 time.sleep(1)
-            pyautogui.hotkey("shift", "tab")
-            pyautogui.press(["down"]*1)
+            voltarEDescer()
             driver.quit()
             clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsigaSelecionado.png')
             tes = cancelar_lancamento
@@ -915,8 +903,7 @@ def robozinho():
         while type(aguarde) == pyscreeze.Box:
             aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             time.sleep(1)
-        pyautogui.hotkey("shift", "tab", interval=0.2)
-        pyautogui.press("down")
+        voltarEDescer()
         driver.quit()
         clicarMicrosiga()
         return robozinho()
