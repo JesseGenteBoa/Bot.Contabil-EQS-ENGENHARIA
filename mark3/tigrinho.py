@@ -42,10 +42,17 @@ def encontrarImagemLocalizada(imagem):
             print("Imagem não encontrada")
             pass
 
+
 def clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png'):
     clique = encontrarImagemLocalizada(imagem)
     pyautogui.click(clique)
 
+
+def reiniciarPortal():
+    clicarMicrosiga()
+    pyautogui.hotkey(["shift", "tab"]*3, interval=0.1)
+    pyautogui.press("down")
+    
 
 def robozinho():
     clicarMicrosiga()
@@ -79,9 +86,7 @@ def robozinho():
                         verificador = processos_ja_vistos.index(chave_de_acesso)
                         pyautogui.hotkey("alt", "tab", interval=0.05)
                         pyautogui.hotkey("ctrl", "w")
-                        clicarMicrosiga()
-                        pyautogui.hotkey(["shift", "tab"]*3, interval=0.1)
-                        pyautogui.press("down")
+                        reiniciarPortal()
                         driver.quit()
                         clicarMicrosiga()
                         return robozinho() 
@@ -97,9 +102,7 @@ def robozinho():
                             elemento4 = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/app-processo-pagamento-nota-manutencao/po-page-default/po-page/div/po-page-content/div/div[2]/po-tabs/div[2]/po-tab[2]/div[2]/po-table/po-container/div/div/div/div/div/table/tbody/tr/td[4]/div/span/div[3]/po-input/po-field-container/div/div[2]/input')
                             boleto = elemento4.get_attribute("value")
                             if len(boleto) == 0:
-                                clicarMicrosiga()
-                                pyautogui.hotkey(["shift", "tab"]*3, interval=0.1)
-                                pyautogui.press("down")
+                                reiniciarPortal()
                                 driver.quit()
                                 time.sleep(0.5)
                                 clicarMicrosiga()
@@ -124,15 +127,11 @@ def robozinho():
         if tempo_max == 15:
             pyautogui.press(["enter"])
         if tempo_max == 40:
-            break
-
-    if tempo_max == 40: 
-        clicarMicrosiga()
-        pyautogui.hotkey(["shift", "tab"]*3, interval=0.1)
-        pyautogui.press("down")
-        driver.quit()
-        clicarMicrosiga()
-        return robozinho()
+            reiniciarPortal()
+            driver.quit()
+            clicarMicrosiga()
+            return robozinho()
+        
 
     pyautogui.hotkey("alt", "tab", interval=0.05)
     pyautogui.hotkey("ctrl", "w")
@@ -157,7 +156,6 @@ def robozinho():
         pyautogui.press(["tab"]*6, interval=0.5)
         pyautogui.press("enter")
         time.sleep(1.5)
-        
         pyautogui.press("enter")
         time.sleep(1.5)
         pyautogui.press("enter")
@@ -358,17 +356,17 @@ def robozinho():
         nota_ja_lancada = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ProcessoJaLancado.png')
         fornecedor_bloqueado = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\FornecedorBloqueado.png')
         if type(lancamento_retroativo) == pyscreeze.Box or type(nota_ja_lancada) == pyscreeze.Box or type(fornecedor_bloqueado) == pyscreeze.Box:
-            time.sleep(0.5)
+            time.sleep(1)
             pyautogui.press("enter")
             time.sleep(1)
 
         erro_generico = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroGenerico.png')
         if type(erro_generico) == pyscreeze.Box:
-            time.sleep(0.5)
-            pyautogui.press("enter", interval=1) 
-            pyautogui.press("esc", interval=1.5) 
-            pyautogui.press("enter", interval=1)    
-            pyautogui.hotkey("shift", "tab", interval=0.1)
+            time.sleep(1)
+            pyautogui.press("enter", interval=2) 
+            pyautogui.press("esc", interval=2) 
+            pyautogui.press("enter", interval=2)    
+            pyautogui.hotkey("shift", "tab", interval=0.5)
             pyautogui.press("down")
             driver.quit()
             time.sleep(1)
@@ -377,17 +375,17 @@ def robozinho():
         
         chave_nao_encontrada = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\chaveNaoEncontradaNoSefaz.png')
         if type(chave_nao_encontrada) == pyscreeze.Box:
-            time.sleep(0.5)
+            time.sleep(1)
             pyautogui.press("enter")
-            time.sleep(0.5)
+            time.sleep(1)
             clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
             while type(clicar2) != pyscreeze.Box:
                 clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png') 
-                time.sleep(0.7)
+                time.sleep(1)
             pyautogui.click(clicar2, clicks=2, interval=0.07)
-            time.sleep(1.5)
+            time.sleep(2)
             pyautogui.press("esc", interval=1)
-            pyautogui.press("enter", interval=0.5)
+            pyautogui.press("enter", interval=1)
             aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             while type(aguarde) == pyscreeze.Box:
                 aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
