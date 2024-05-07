@@ -835,6 +835,14 @@ def robozinho():
     pyautogui.write(teremos_despesas_acessorias, interval=0.07)
     time.sleep(0.7)
 
+
+    def formatador3(variavel):
+        variavel = variavel.replace(",", ".")
+        variavel = float(variavel)
+
+    def formatador4(variavel):
+        valor_parcela = valor_parcela.replace(".", "")
+        formatador3(variavel)
         
     clicar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDuplicatas.png')
     pyautogui.click(clicar, clicks=4, interval=0.1)
@@ -846,8 +854,7 @@ def robozinho():
     if natureza_perc != "0,00":
         lista_perc = []
         while sum(lista_perc) < 100.0:
-            natureza_perc = natureza_perc.replace(",", ".")
-            natureza_perc = float(natureza_perc)
+            formatador3(natureza_perc)
             lista_perc.append(natureza_perc)
             pyautogui.press("down", interval=0.1)
             pyautogui.hotkey("ctrl", "c", interval=0.1)
@@ -859,14 +866,12 @@ def robozinho():
         time.sleep(0.2)
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         perc_majoritario = pyperclip.paste()
-        perc_majoritario = perc_majoritario.replace(",", ".")
-        perc_majoritario = float(perc_majoritario)
+        formatador3(perc_majoritario)
         while perc_majoritario != maior_perc:
             pyautogui.press("down", interval=0.1)
             pyautogui.hotkey("ctrl", "c", interval=0.1)
             perc_majoritario = pyperclip.paste()
-            perc_majoritario = perc_majoritario.replace(",", ".")
-            perc_majoritario = float(perc_majoritario)
+            formatador3(perc_majoritario)
         pyautogui.press("left")
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         natureza_duplicata = pyperclip.paste()
@@ -916,17 +921,13 @@ def robozinho():
         pyautogui.click(valor_parcela)
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         valor_parcela = pyperclip.paste()
-        valor_parcela = valor_parcela.replace(".", "")
-        valor_parcela = valor_parcela.replace(",", ".")
-        valor_parcela = float(valor_parcela)
+        formatador4(valor_parcela)
         lista_parc.append(valor_parcela)
         while sum(lista_parc) < valor_total_da_nf:
             pyautogui.press("down")
             pyautogui.hotkey("ctrl", "c", interval=0.1)
             valor_parcela = pyperclip.paste()
-            valor_parcela = valor_parcela.replace(".", "")
-            valor_parcela = valor_parcela.replace(",", ".")
-            valor_parcela = float(valor_parcela)
+            formatador4(valor_parcela)
             lista_parc.append(valor_parcela)
         parcela_duplicada = lista_parc.pop()
         diferenca_NF_siga = valor_total_da_nf - sum(lista_parc)
