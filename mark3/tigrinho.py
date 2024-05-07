@@ -289,8 +289,6 @@ def robozinho():
                 const_item += 1
             except IndexError:
                 break
-
-
     
 
     clicarMicrosiga()
