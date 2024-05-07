@@ -104,12 +104,12 @@ def robozinho():
                         try:
                             elemento4 = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/app-processo-pagamento-nota-manutencao/po-page-default/po-page/div/po-page-content/div/div[2]/po-tabs/div[2]/po-tab[2]/div[2]/po-table/po-container/div/div/div/div/div/table/tbody/tr/td[4]/div/span/div[3]/po-input/po-field-container/div/div[2]/input')
                             boleto = elemento4.get_attribute("value")
-                            #if len(boleto) == 0:
-                            #    reiniciarPortal()
-                            #    driver.quit()
-                            #    time.sleep(0.5)
-                            #    clicarMicrosiga()
-                            #    return robozinho() 
+                            if len(boleto) == 0:
+                                reiniciarPortal()
+                                driver.quit()
+                                time.sleep(0.5)
+                                clicarMicrosiga()
+                                return robozinho() 
                             break
 
                         except Exception as e:
