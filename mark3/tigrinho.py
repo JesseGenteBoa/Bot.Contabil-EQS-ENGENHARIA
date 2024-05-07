@@ -60,7 +60,7 @@ def robozinho():
     clicarMicrosiga()
     time.sleep(1)
     clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png')
-    pyautogui.click(clicar2, clicks=2, interval=0.1)
+    pyautogui.click(clicar2, clicks=4, interval=0.1)
     time.sleep(1)        
     pyautogui.hotkey("alt", "d", interval=0.1)  
     pyautogui.hotkey("ctrl", "c")
@@ -103,12 +103,12 @@ def robozinho():
                         try:
                             elemento4 = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/app-processo-pagamento-nota-manutencao/po-page-default/po-page/div/po-page-content/div/div[2]/po-tabs/div[2]/po-tab[2]/div[2]/po-table/po-container/div/div/div/div/div/table/tbody/tr/td[4]/div/span/div[3]/po-input/po-field-container/div/div[2]/input')
                             boleto = elemento4.get_attribute("value")
-                            if len(boleto) == 0:
-                                reiniciarPortal()
-                                driver.quit()
-                                time.sleep(0.5)
-                                clicarMicrosiga()
-                                return robozinho() 
+                            #if len(boleto) == 0:
+                            #    reiniciarPortal()
+                            #    driver.quit()
+                            #    time.sleep(0.5)
+                            #    clicarMicrosiga()
+                            #    return robozinho() 
                             break
 
                         except Exception as e:
@@ -295,7 +295,7 @@ def robozinho():
 
     clicarMicrosiga()
     clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\DadosDaNota.png')
-    pyautogui.click(clicar2, clicks=2, interval=0.1)
+    pyautogui.click(clicar2, clicks=4, interval=0.1)
     time.sleep(0.5)
     try:
         aparece_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\NCMsegue.png')
