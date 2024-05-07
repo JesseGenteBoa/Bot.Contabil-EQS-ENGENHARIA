@@ -910,7 +910,7 @@ def robozinho():
             aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
             time.sleep(1)
         voltarEDescer()
-        driver.quit()
+        driver.quit() 
         clicarMicrosiga()
         return robozinho()
     erro_de_parcela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\corrigirValorParcela.png')  
