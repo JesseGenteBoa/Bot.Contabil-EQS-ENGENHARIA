@@ -269,7 +269,7 @@ def robozinho():
 
         if valor_ipi != "0.00":
             aliquota_ipi = busca_ipi_xml["pIPI"]
-            formatador2(aliquota_ipi)
+            aliquota_ipi = formatador2(aliquota_ipi)
             bc_ipi = busca_ipi_xml["vBC"]
             valores_do_item.append((bc_ipi, aliquota_ipi))
 
