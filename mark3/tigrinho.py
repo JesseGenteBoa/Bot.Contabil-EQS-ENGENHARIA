@@ -185,11 +185,13 @@ def robozinho():
         variavel = casas_decimais.format(variavel)
         variavel = str(variavel)
         variavel = variavel.replace(".", ",")
+        return variavel
 
     def formatador2(variavel):
         variavel = float(variavel)
         variavel = "{:.2f}".format(variavel)
         variavel = str(variavel)
+        return variavel
 
     totais_nota_fiscal = doc["nfeProc"]["NFe"]["infNFe"]["total"]["ICMSTot"]
     teremos_frete = totais_nota_fiscal["vFrete"]
@@ -208,9 +210,9 @@ def robozinho():
     def coletarDadosXML():
         valor_prod = coletor_xml["vProd"] 
         quantidade_comprada = coletor_xml["qCom"]
-        formatador(quantidade_comprada, casas_decimais="{:.6f}")
+        quantidade_comprada = formatador(quantidade_comprada, casas_decimais="{:.6f}")
         valor_unitario = coletor_xml["vUnCom"]
-        formatador(valor_unitario, casas_decimais="{:.6f}")
+        valor_unitario = formatador(valor_unitario, casas_decimais="{:.6f}")
         valores_do_item.append(valor_prod)
         valores_do_item.append(quantidade_comprada)
         valores_do_item.append(valor_unitario)
@@ -235,7 +237,7 @@ def robozinho():
 
         if valor_icms != "0.00":
             aliquota_icms = descompactar_lista["pICMS"]
-            formatador2(aliquota_icms)
+            aliquota_icms = formatador2(aliquota_icms)
             bc_icms = descompactar_lista["vBC"]
             valores_do_item.append((bc_icms, aliquota_icms))
 
@@ -252,14 +254,14 @@ def robozinho():
 
         if valor_icms_st != "0.00":
             aliquota_icms_st = descompactar_lista["pICMSST"]
-            formatador2(aliquota_icms_st)
+            aliquota_icms_st = formatador2(aliquota_icms_st)
             bc_icms_st = descompactar_lista["vBCST"]
             valores_do_item.append((bc_icms_st, aliquota_icms_st))
 
         try:
             busca_ipi_xml = impostos_xml["IPI"]["IPITrib"]
             valor_ipi = busca_ipi_xml["vIPI"]
-            formatador2(valor_ipi)
+            valor_ipi = formatador2(valor_ipi)
         except KeyError:
             valor_ipi = "0.00"
 
@@ -510,7 +512,6 @@ def robozinho():
         "2020029": 5, "2020053": 5,
         "2020018": 6, "2040001": 6, "2040003": 6
     }
-    
         return codigo.get(natureza, 7)
     
     
@@ -839,10 +840,12 @@ def robozinho():
     def formatador3(variavel):
         variavel = variavel.replace(",", ".")
         variavel = float(variavel)
+        return variavel
 
     def formatador4(variavel):
         valor_parcela = valor_parcela.replace(".", "")
         formatador3(variavel)
+        return variavel
         
     clicar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDuplicatas.png')
     pyautogui.click(clicar, clicks=4, interval=0.1)
@@ -854,7 +857,7 @@ def robozinho():
     if natureza_perc != "0,00":
         lista_perc = []
         while sum(lista_perc) < 100.0:
-            formatador3(natureza_perc)
+            natureza_perc = formatador3(natureza_perc)
             lista_perc.append(natureza_perc)
             pyautogui.press("down", interval=0.1)
             pyautogui.hotkey("ctrl", "c", interval=0.1)
@@ -866,12 +869,12 @@ def robozinho():
         time.sleep(0.2)
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         perc_majoritario = pyperclip.paste()
-        formatador3(perc_majoritario)
+        perc_majoritario = formatador3(perc_majoritario)
         while perc_majoritario != maior_perc:
             pyautogui.press("down", interval=0.1)
             pyautogui.hotkey("ctrl", "c", interval=0.1)
             perc_majoritario = pyperclip.paste()
-            formatador3(perc_majoritario)
+            perc_majoritario = formatador3(perc_majoritario)
         pyautogui.press("left")
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         natureza_duplicata = pyperclip.paste()
@@ -921,13 +924,13 @@ def robozinho():
         pyautogui.click(valor_parcela)
         pyautogui.hotkey("ctrl", "c", interval=0.1)
         valor_parcela = pyperclip.paste()
-        formatador4(valor_parcela)
+        valor_parcela = formatador4(valor_parcela)
         lista_parc.append(valor_parcela)
         while sum(lista_parc) < valor_total_da_nf:
             pyautogui.press("down")
             pyautogui.hotkey("ctrl", "c", interval=0.1)
             valor_parcela = pyperclip.paste()
-            formatador4(valor_parcela)
+            valor_parcela = formatador4(valor_parcela)
             lista_parc.append(valor_parcela)
         parcela_duplicada = lista_parc.pop()
         diferenca_NF_siga = valor_total_da_nf - sum(lista_parc)
