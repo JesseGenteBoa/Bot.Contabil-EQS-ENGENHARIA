@@ -61,7 +61,7 @@ def robozinho():
     time.sleep(1)
     clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png')
     time.sleep(0.5)
-    pyautogui.click(clicar2, clicks=2)
+    pyautogui.click(clicar2, clicks=3)
     time.sleep(1)        
     pyautogui.hotkey("alt", "d", interval=0.1)  
     pyautogui.hotkey("ctrl", "c")
