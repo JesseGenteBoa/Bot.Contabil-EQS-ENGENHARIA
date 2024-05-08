@@ -20,8 +20,10 @@ def encontrar_imagem(imagem):
 
 clicar = encontrar_imagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png')
 pyautogui.click(clicar)
+time.sleep(0.5)
 clicar2 = encontrar_imagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png')
-pyautogui.click(clicar2)
+time.sleep(0.5)
+pyautogui.click(clicar2, clicks=2)
 time.sleep(1)        
 pyautogui.hotkey("alt", "d", interval=0.04)  
 pyautogui.hotkey("ctrl", "c")

@@ -838,6 +838,10 @@ def robozinho():
     time.sleep(0.7)
 
 
+    def descerECopiar():
+        pyautogui.press("down", interval=0.1)
+        pyautogui.hotkey("ctrl", "c", interval=0.1)
+
     def formatador3(variavel):
         variavel = variavel.replace(",", ".")
         variavel = float(variavel)
@@ -860,8 +864,7 @@ def robozinho():
         while sum(lista_perc) < 100.0:
             natureza_perc = formatador3(natureza_perc)
             lista_perc.append(natureza_perc)
-            pyautogui.press("down", interval=0.1)
-            pyautogui.hotkey("ctrl", "c", interval=0.1)
+            descerECopiar()
             natureza_perc = pyperclip.paste() 
         maior_perc = max(lista_perc)
         clicar2 = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
@@ -872,8 +875,7 @@ def robozinho():
         perc_majoritario = pyperclip.paste()
         perc_majoritario = formatador3(perc_majoritario)
         while perc_majoritario != maior_perc:
-            pyautogui.press("down", interval=0.1)
-            pyautogui.hotkey("ctrl", "c", interval=0.1)
+            descerECopiar()
             perc_majoritario = pyperclip.paste()
             perc_majoritario = formatador3(perc_majoritario)
         pyautogui.press("left")
@@ -886,8 +888,9 @@ def robozinho():
 
 
     salvar = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
+    time.sleep(0.7)
     pyautogui.click(salvar, clicks=2, interval=0.1)
-    time.sleep(2)
+    time.sleep(2.3)
     erro_de_serie = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroDeSerie.png')
     if type(erro_de_serie) == pyscreeze.Box:
         pyautogui.press("enter", interval=0.2) 
@@ -928,8 +931,7 @@ def robozinho():
         valor_parcela = formatador4(valor_parcela)
         lista_parc.append(valor_parcela)
         while sum(lista_parc) < valor_total_da_nf:
-            pyautogui.press("down")
-            pyautogui.hotkey("ctrl", "c", interval=0.1)
+            descerECopiar()
             valor_parcela = pyperclip.paste()
             valor_parcela = formatador4(valor_parcela)
             lista_parc.append(valor_parcela)
@@ -954,7 +956,7 @@ def robozinho():
         etapa_final = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
     pyautogui.press(["tab"]*3, interval=0.9)
     pyautogui.press("enter")
-    time.sleep(1)
+    time.sleep(1.5)
     ultimo_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
     if type(ultimo_click) != pyscreeze.Box:
         while type(ultimo_click) != pyscreeze.Box:
@@ -962,7 +964,7 @@ def robozinho():
             ultimo_click = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
     pyautogui.press("tab", interval=0.9)
     pyautogui.press("enter")
-    time.sleep(1)
+    time.sleep(1.5)
     ultima_tela = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
     while type(ultima_tela) == pyscreeze.Box:
         time.sleep(0.2)
