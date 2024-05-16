@@ -1,13 +1,14 @@
-import pyautogui
+from pyautogui import *
+import pydirectinput
 import time
 
 def encontrarImagem(imagem):
     cont = 0
     while True:
         try:
-            encontrou = pyautogui.locateOnScreen(imagem, grayscale=True, confidence = 0.8)
+            encontrou = locateOnScreen(imagem, grayscale=True, confidence = 0.8)
             return encontrou
-        except pyautogui.ImageNotFoundException:
+        except:
             time.sleep(1)
             cont += 1
             if cont == 3:
@@ -19,9 +20,9 @@ def encontrarImagemLocalizada(imagem):
     cont = 0
     while True:
         try:
-            x, y = pyautogui.locateCenterOnScreen(imagem, grayscale=True, confidence=0.99)
+            x, y = locateCenterOnScreen(imagem, grayscale=True, confidence=0.89)
             return (x, y)
-        except pyautogui.ImageNotFoundException:
+        except:
             time.sleep(1)
             cont += 1
             if cont == 3:
@@ -53,16 +54,16 @@ def formatador4(variavel):
     return variavel
 
 def descerECopiar():
-    pyautogui.press("down", interval=0.1)
-    pyautogui.hotkey("ctrl", "c", interval=0.1)
+    press("down", interval=0.1)
+    hotkey("ctrl", "c", interval=0.1)
 
 def clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png'):
-    clique = encontrarImagemLocalizada(imagem)
-    pyautogui.click(clique)
+    x, y = encontrarImagemLocalizada(imagem)
+    pydirectinput.click(x, y)
 
 def voltarEDescer(passos=1):
-    pyautogui.hotkey(["shift", "tab"]*passos, interval=0.15)
-    pyautogui.press("down")
+    hotkey(["shift", "tab"]*passos, interval=0.15)
+    press("down")
 
 def reiniciarPortal():
     clicarMicrosiga()
