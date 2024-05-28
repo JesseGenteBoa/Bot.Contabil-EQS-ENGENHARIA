@@ -251,6 +251,7 @@ def robozinho():
             time.sleep(1)
             press("enter")
             time.sleep(1)
+            cont = 0
         erro_esquisito = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroEsquisito2.png')
         if type(erro_esquisito) == pyscreeze.Box:
             time.sleep(1)
@@ -286,7 +287,7 @@ def robozinho():
             time.sleep(0.3)
             utils.clicarMicrosiga()
             return robozinho()
-        if cont == 15:
+        if cont == 20:
             press("enter")
             cont = 0
             
