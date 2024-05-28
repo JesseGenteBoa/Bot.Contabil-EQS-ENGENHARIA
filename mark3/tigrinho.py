@@ -233,10 +233,11 @@ def robozinho():
     finally:
         pass
 
-
+    cont = 0
     while True:
         time.sleep(1)
         tela_de_lancamento = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbriuOProcesso.png')
+        cont +=1
         if type(tela_de_lancamento) == pyscreeze.Box:
             time.sleep(0.5)
             press(["tab"]*10)
@@ -285,6 +286,9 @@ def robozinho():
             time.sleep(0.3)
             utils.clicarMicrosiga()
             return robozinho()
+        if cont == 15:
+            press("enter")
+            cont = 0
             
 
     for i, ctrl_imposto in enumerate(indices_e_impostos):
@@ -602,6 +606,7 @@ def robozinho():
         utils.clicarMicrosiga()
         return robozinho()
 
+    cont = 0
     etapa_final = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
     while type(etapa_final) != pyscreeze.Box:
         time.sleep(0.2)
@@ -614,6 +619,10 @@ def robozinho():
         while type(ultimo_enter) != pyscreeze.Box:
             time.sleep(0.2)
             ultimo_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
+            cont +=1
+            if cont == 10:
+                press("enter")
+                cont = 0
     press("tab", interval=0.9)
     press("enter")
     time.sleep(1.5)
@@ -621,7 +630,11 @@ def robozinho():
     while type(ultima_tela) == pyscreeze.Box:
         time.sleep(0.2)
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
-    
+        cont +=1
+        if cont == 10:
+            press("enter")
+            cont = 0
+
     hotkey("win", "d")
     time.sleep(0.2)
     driver.quit()
