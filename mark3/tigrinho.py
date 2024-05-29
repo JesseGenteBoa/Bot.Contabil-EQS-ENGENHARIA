@@ -108,9 +108,7 @@ def robozinho():
             driver.quit()
             time.sleep(0.2)
             return robozinho()  
-
-    time.sleep(0.3)
-    driver.quit()    
+        
     time.sleep(0.3)
     hotkey("alt", "tab")
     time.sleep(0.3)
@@ -124,6 +122,7 @@ def robozinho():
         with open(caminho) as fd:
             doc = xmltodict.parse(fd.read())
     except:
+        driver.quit()
         while True:
             exportarXML = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\exportarXML.png'
             encontrar = utils.encontrarImagemLocalizada
@@ -160,6 +159,8 @@ def robozinho():
         if auxiliar == True:
             hotkey(["tab"]*3, interval=0.1)
             press("down")
+            time.sleep(0.5)
+            driver.quit()
             time.sleep(0.5)
             utils.clicarMicrosiga()
             return robozinho()
@@ -203,6 +204,8 @@ def robozinho():
                 x, y = clicar_cancelar
                 mouseClique(x,y, clicks=2, interval=0.07)
                 utils.voltarEDescer()
+                time.sleep(0.3)
+                driver.quit()
                 time.sleep(0.3)
                 utils.clicarMicrosiga()
                 return robozinho()
@@ -256,6 +259,8 @@ def robozinho():
             time.sleep(1)
             utils.voltarEDescer()
             time.sleep(0.5)
+            driver.quit()
+            time.sleep(1)
             utils.clicarMicrosiga()
             return robozinho()
         erro_generico = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroGenerico.png')
@@ -266,6 +271,8 @@ def robozinho():
             press("enter", interval=2)    
             utils.voltarEDescer()
             time.sleep(0.5)
+            driver.quit()
+            time.sleep(1)
             utils.clicarMicrosiga()
             return robozinho()
         chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\chaveNaoEncontradaNoSefaz.png')
@@ -275,6 +282,8 @@ def robozinho():
             time.sleep(1)
             utils.cancelarLancamento()
             utils.voltarEDescer()
+            time.sleep(0.3)
+            driver.quit()
             time.sleep(0.3)
             utils.clicarMicrosiga()
             return robozinho()
@@ -288,12 +297,14 @@ def robozinho():
         if ctrl_imposto == 0:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = itens[i]
             natureza = operadoresLancamento.copiarNatureza()
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             if tes in ["102", "405", "408"]:
@@ -309,6 +320,7 @@ def robozinho():
         elif ctrl_imposto == 1:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
@@ -316,6 +328,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             if tes in ["406", "421", "423"]:
@@ -330,6 +343,7 @@ def robozinho():
         elif ctrl_imposto == 2:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
@@ -337,6 +351,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             if tes in ["102", "405", "408"]:
@@ -353,6 +368,7 @@ def robozinho():
         elif ctrl_imposto == 3:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
             base_ipi, aliq_ipi = base_e_aliq_ipi
@@ -360,6 +376,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             if tes in ["406", "421", "423", "102", "403", "411"]:
@@ -373,6 +390,7 @@ def robozinho():
         elif ctrl_imposto == 4:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
@@ -381,6 +399,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             if tes in ["406", "421", "423", "102", "411"]:
@@ -395,6 +414,7 @@ def robozinho():
         elif ctrl_imposto == 5:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
@@ -403,6 +423,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             operadoresLancamento.inserirDesconto(desc_no_item)
@@ -415,6 +436,7 @@ def robozinho():
         elif ctrl_imposto == 6:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
@@ -423,6 +445,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             operadoresLancamento.inserirDesconto(desc_no_item)
@@ -435,6 +458,7 @@ def robozinho():
         elif ctrl_imposto == 7:
             verificador = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
+                driver.quit()
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
@@ -444,6 +468,7 @@ def robozinho():
             codigo = operadoresLancamento.selecionarCaso(natureza)
             tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
             if tes == True:
+                driver.quit()
                 return robozinho()
             operadoresLancamento.escreverTES(tes)
             operadoresLancamento.inserirDesconto(desc_no_item)
@@ -487,14 +512,13 @@ def robozinho():
             valor_parcela = utils.formatador4(valor_parcela)
             lista_parc.append(valor_parcela)
         somatoria = utils.formatador2(sum(lista_parc))
-        somatoria = float(somatoria)
         diferenca_NF_siga = somatoria - valor_total_da_nf
         if somatoria != valor_total_da_nf:
             if diferenca_NF_siga > 10:
                 parcela_duplicada = lista_parc.pop()
-            diferenca_NF_siga = valor_total_da_nf - somatoria 
+            diferenca_NF_siga = valor_total_da_nf - somatoria
             ultima_parcela = parcela_duplicada + diferenca_NF_siga
-            ultima_parcela = "{:.2f}".format(ultima_parcela)  
+            ultima_parcela = "{:.2f}".format(ultima_parcela) 
             mouseClique(x,y)
             descida = len(lista_parc) - 1
             press(["down"]*descida)
@@ -581,6 +605,7 @@ def robozinho():
         mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
         x, y = mudar_a_selecao
         mouseClique(x,y, clicks=2)
+        driver.quit() 
         time.sleep(0.3)
         utils.clicarMicrosiga()
         return robozinho()
@@ -619,14 +644,15 @@ def robozinho():
             if cont == 10:
                 press("enter")
                 cont = 0
-    
 
     hotkey("win", "d")
     time.sleep(0.2)
-    
+    driver.quit()
+    time.sleep(0.2)
     
     return robozinho()
 
 
 if __name__ == "__main__":
     robozinho()
+    
