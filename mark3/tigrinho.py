@@ -629,7 +629,6 @@ def robozinho():
                 cont = 0
     press("tab", interval=0.9)
     press("enter")
-    time.sleep(1.5)
     aux = False
     while True:
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
@@ -642,7 +641,6 @@ def robozinho():
             break
         else:
             cont +=1
-            time.sleep(0.2)
             if cont == 10:
                 press("enter")
                 cont = 0
