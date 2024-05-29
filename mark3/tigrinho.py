@@ -78,14 +78,17 @@ def robozinho():
                                 time.sleep(0.2)
                                 driver.quit()
                                 time.sleep(0.2)
-                                return robozinho() 
-                            break
+                                return robozinho()
+                            else:
+                                driver.quit() 
+                                break
 
                         except Exception as e:
                             tempo_max += 1 
                             pass  
 
                     else:
+                        driver.quit() 
                         break                                           
 
                 except Exception as e:
@@ -108,12 +111,8 @@ def robozinho():
             driver.quit()
             time.sleep(0.2)
             return robozinho()  
-
-    time.sleep(0.3)
-    driver.quit()    
-    time.sleep(0.3)
-    hotkey("alt", "tab")
-    time.sleep(0.3)
+   
+    time.sleep(0.2)
     hotkey("ctrl", "w")
     time.sleep(0.3)
 
@@ -623,7 +622,6 @@ def robozinho():
 
     hotkey("win", "d")
     time.sleep(0.2)
-    
     
     return robozinho()
 
