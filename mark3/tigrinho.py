@@ -627,14 +627,19 @@ def robozinho():
     press("tab", interval=0.9)
     press("enter")
     time.sleep(1.5)
-    ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
-    while type(ultima_tela) == pyscreeze.Box:
-        time.sleep(0.2)
+    while True:
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
-        cont +=1
-        if cont == 10:
-            press("enter")
-            cont = 0
+        if type(ultima_tela) == pyscreeze.Box:
+            while type(ultimo_tela) == pyscreeze.Box:
+                time.sleep(0.2)
+                ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
+            break
+        else:
+            cont +=1
+            time.sleep(0.2)
+            if cont == 10:
+                press("enter")
+                cont = 0
 
     hotkey("win", "d")
     time.sleep(0.2)
