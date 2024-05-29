@@ -511,14 +511,14 @@ def robozinho():
             valor_parcela = pyperclip.paste()
             valor_parcela = utils.formatador4(valor_parcela)
             lista_parc.append(valor_parcela)
-        diferenca_NF_siga = sum(lista_parc) - valor_total_da_nf
-        if sum(lista_parc) != valor_total_da_nf:
+        somatoria = utils.formatador2(sum(lista_parc))
+        diferenca_NF_siga = somatoria - valor_total_da_nf
+        if somatoria != valor_total_da_nf:
             if diferenca_NF_siga > 10:
                 parcela_duplicada = lista_parc.pop()
-            diferenca_NF_siga = valor_total_da_nf - sum(lista_parc) 
+            diferenca_NF_siga = valor_total_da_nf - somatoria
             ultima_parcela = parcela_duplicada + diferenca_NF_siga
-            ultima_parcela = "{:.2f}".format(ultima_parcela)
-            ultima_parcela = str(ultima_parcela)  
+            ultima_parcela = "{:.2f}".format(ultima_parcela) 
             mouseClique(x,y)
             descida = len(lista_parc) - 1
             press(["down"]*descida)
