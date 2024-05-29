@@ -630,7 +630,7 @@ def robozinho():
     while True:
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
         if type(ultima_tela) == pyscreeze.Box:
-            while type(ultimo_tela) == pyscreeze.Box:
+            while type(ultima_tela) == pyscreeze.Box:
                 time.sleep(0.2)
                 ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
             break
