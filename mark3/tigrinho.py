@@ -291,6 +291,7 @@ def robozinho():
             press("enter")
             cont = 0
             
+            
 
     for i, ctrl_imposto in enumerate(indices_e_impostos):
         if ctrl_imposto == 0:
@@ -521,11 +522,13 @@ def robozinho():
             mouseClique(x,y)
             descida = len(lista_parc) - 1
             press(["down"]*descida)
-            write(ultima_parcela)
+            time.sleep(0.4)
+            write(ultima_parcela, interval=0.03)
         time.sleep(1)
-    natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
     while True:
+        natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
         if type(natureza_duplicata_clique) != tuple:
+            moveTo(150, 250)
             mouseClique(x,y, clicks=4, interval=0.1)
             time.sleep(0.3)
         else:
@@ -627,12 +630,15 @@ def robozinho():
     press("tab", interval=0.9)
     press("enter")
     time.sleep(1.5)
+    aux = False
     while True:
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
         if type(ultima_tela) == pyscreeze.Box:
+            aux = True
             while type(ultima_tela) == pyscreeze.Box:
-                time.sleep(0.2)
                 ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
+                time.sleep(0.2)
+        if aux == True:
             break
         else:
             cont +=1
@@ -651,9 +657,4 @@ def robozinho():
 
 if __name__ == "__main__":
     robozinho()
-
     
-
-
-
-        
