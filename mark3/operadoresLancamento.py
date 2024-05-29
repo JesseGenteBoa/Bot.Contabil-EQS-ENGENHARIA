@@ -6,6 +6,15 @@ import time
 import utils
 
 
+def escreverValorUnit(valor_unit_convertido, passos=6):
+    press(["right"]*passos)
+    valor_unit_convertido = utils.formatador(valor_unit_convertido, casas_decimais="{:.6f}")
+    time.sleep(0.2)
+    write(valor_unit_convertido)
+    time.sleep(0.2)
+    press(["right"]*3)
+ 
+ 
 def verificarValorDoItem(lista, indiceX):
         time.sleep(0.7)
         cancelar_lancamento = False
@@ -14,8 +23,9 @@ def verificarValorDoItem(lista, indiceX):
         hotkey("ctrl", "c")
         time.sleep(0.7)
         valor_do_item_no_siga = pyperclip.paste()
-        valor_do_item_no_siga = valor_do_item_no_siga.replace(".", "")
+        valor_do_item_no_siga = utils.formatador4(valor_do_item_no_siga)
         valor_do_item_na_NF = lista[indiceX][0]
+        valor_do_item_na_NF = utils.formatador3(valor_do_item_na_NF)
         if valor_do_item_no_siga != valor_do_item_na_NF:
             write(lista[indiceX][0])
             time.sleep(0.5)
@@ -27,19 +37,35 @@ def verificarValorDoItem(lista, indiceX):
                 time.sleep(0.2)
                 hotkey("ctrl", "c", interval=0.5)
                 quantidade_siga = pyperclip.paste()
-                if quantidade_siga == lista[indiceX][1]:
-                    press("right")
-                    time.sleep(0.2)
-                    write(lista[indiceX][2])
-                    time.sleep(0.2)
-                    press(["right"]*3)
+                quantidade_siga = utils.formatador3(quantidade_siga)
+                quantidade_NF = lista[indiceX][1]
+                quantidade_NF = utils.formatador3(quantidade_NF)
+                valor_unit_NF = lista[indiceX][2]
+                valor_unit_NF = utils.formatador3(valor_unit_NF)
+                if quantidade_siga == quantidade_NF:
+                    escreverValorUnit(valor_unit_NF, passos=1)
                 else:
-                    cancelar_lancamento = True
-                    utils.cancelarLancamento()
-                    mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
-                    x, y = mudar_a_selecao
-                    mouseClique(x,y, clicks=4, interval=0.4)
-                    time.sleep(1)
+                    press(["left"]*5)
+                    time.sleep(0.2)
+                    hotkey("ctrl", "c", interval=0.5)
+                    desc_prod = pyperclip.paste()
+                    desc_prod = desc_prod.lower()
+                    if "abracadeira" in desc_prod:
+                        quantidade_convertida = quantidade_NF * 100
+                        if quantidade_convertida == quantidade_siga:
+                            valor_unit_convertido = valor_unit_NF / 100
+                            escreverValorUnit(valor_unit_convertido)
+                        else:
+                            cancelar_lancamento = True
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                    elif "gas" in desc_prod:
+                        valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
+                        escreverValorUnit(valor_unit_convertido)
+                    else:
+                        cancelar_lancamento = True
+                        utils.cancelarLancamento()
+                        utils.mudarSelecao()
             else:
                 press("left")
         return cancelar_lancamento
