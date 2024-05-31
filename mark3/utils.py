@@ -121,3 +121,10 @@ def cancelarLancamento():
     while type(aguarde) == pyscreeze.Box:
         aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
         time.sleep(1)
+
+
+def mudarSelecao():
+    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
+    x, y = mudar_a_selecao
+    mouseClique(x,y, clicks=4, interval=0.4)
+    time.sleep(1)
