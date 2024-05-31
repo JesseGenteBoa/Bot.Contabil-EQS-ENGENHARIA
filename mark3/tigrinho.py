@@ -489,8 +489,10 @@ def robozinho():
         somatoria = float(somatoria)
         diferenca_NF_siga = somatoria - valor_total_da_nf
         if somatoria != valor_total_da_nf:
-            if diferenca_NF_siga > 10:
+            if lista_parc[-3:-2] != lista_parc[-2:-1]:
                 parcela_duplicada = lista_parc.pop()
+                somatoria = utils.formatador2(sum(lista_parc))
+                somatoria = float(somatoria)
             diferenca_NF_siga = valor_total_da_nf - somatoria 
             ultima_parcela = parcela_duplicada + diferenca_NF_siga
             ultima_parcela = "{:.2f}".format(ultima_parcela)  
@@ -604,6 +606,7 @@ def robozinho():
     press("tab", interval=0.9)
     press("enter")
     aux = False
+    cont2 = 0
     while True:
         ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
         if type(ultima_tela) == pyscreeze.Box:
@@ -613,11 +616,15 @@ def robozinho():
                 time.sleep(0.2)
         if aux == True:
             break
-        else:
+        ultimo_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
+        if type(ultimo_enter) == pyscreeze.Box:
             cont +=1
-            if cont == 10:
+            if cont == 5:
+                aux = True
                 press("enter")
-                cont = 0
+        if cont2 == 3:
+            break
+        cont2 +=1
     
 
     hotkey("win", "d")
