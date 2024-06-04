@@ -16,6 +16,7 @@ def escreverValorUnit(valor_unit_convertido, passos=6):
  
  
 def verificarValorDoItem(lista, indiceX):
+    razoes = []
     time.sleep(0.7)
     cancelar_lancamento = False
     press(["right"]*4)
@@ -29,7 +30,7 @@ def verificarValorDoItem(lista, indiceX):
     if valor_do_item_no_siga != valor_do_item_na_NF:
         write(lista[indiceX][0])
         time.sleep(0.5)
-        encontrar = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\valitenErrado.png')
+        encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
         if type(encontrar) == pyscreeze.Box:
             press("enter")
             press("esc")
@@ -56,19 +57,31 @@ def verificarValorDoItem(lista, indiceX):
                         valor_unit_convertido = valor_unit_NF / 100
                         escreverValorUnit(valor_unit_convertido)
                     else:
-                        cancelar_lancamento = True
-                        utils.cancelarLancamento()
-                        utils.mudarSelecao()
-                elif "gas" in desc_prod:
+                        quantidade_total = utils.contarItemFracionado(quantidade_siga, quantidade_convertida)
+                        if sum(quantidade_total) != quantidade_convertida:
+                            cancelar_lancamento = True
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        for qtd in quantidade_total:
+                            razao = qtd / quantidade_convertida
+                            razoes.append(razao)
+                        press(["right"]*6)
+                elif "gas" in desc_prod or "pedrisco" in desc_prod:
                     valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                     escreverValorUnit(valor_unit_convertido)
                 else:
-                    cancelar_lancamento = True
-                    utils.cancelarLancamento()
-                    utils.mudarSelecao()
+                    quantidade_total = utils.contarItemFracionado(quantidade_siga, quantidade_NF)
+                    if sum(quantidade_total) != quantidade_NF:
+                        cancelar_lancamento = True
+                        utils.cancelarLancamento()
+                        utils.mudarSelecao()
+                    for qtd in quantidade_total:
+                        razao = qtd / quantidade_NF
+                        razoes.append(razao)
+                    press(["right"]*6)
         else:
             press("left")
-    return cancelar_lancamento
+    return cancelar_lancamento, razoes
 
 
 def copiarNatureza():
@@ -203,6 +216,7 @@ def inserirDesconto(desc_no_item):
     press(["right"]*3)
     time.sleep(0.5)
     press("enter")
+    desc_no_item = utils.formatador2(desc_no_item)
     write(desc_no_item, interval=0.02)
     time.sleep(0.5)
 
@@ -211,6 +225,7 @@ def inserirFrete(frete_no_item):
     press(["right"]*105)
     time.sleep(0.6)
     press("enter")
+    frete_no_item = utils.formatador2(frete_no_item)
     write(frete_no_item, interval=0.05)
     time.sleep(0.6)
 
@@ -218,6 +233,7 @@ def inserirFrete(frete_no_item):
 def inserirSeguro(seg_no_item):
     time.sleep(0.3)
     press("enter")
+    seg_no_item = utils.formatador2(seg_no_item)
     write(seg_no_item, interval=0.05)
     time.sleep(0.6)
 
@@ -225,6 +241,7 @@ def inserirSeguro(seg_no_item):
 def inserirDespesa(desp_no_item):
     time.sleep(0.3)
     press("enter")
+    desp_no_item = utils.formatador2(desp_no_item)
     write(desp_no_item, interval=0.05)
     time.sleep(0.6)
     press(["left"]*112)
@@ -234,6 +251,7 @@ def inserirICMS(icms_no_item, bc_icms, aliq_icms):
     press(["right"]*7)
     time.sleep(0.5)
     press("enter")
+    bc_icms = utils.formatador2(bc_icms)
     write(bc_icms)
     press(["right"]*8)
     time.sleep(0.5)
@@ -243,6 +261,7 @@ def inserirICMS(icms_no_item, bc_icms, aliq_icms):
     press(["left"]*9)
     time.sleep(0.5)
     press("enter")
+    icms_no_item = utils.formatador2(icms_no_item)
     write(icms_no_item)
 
 
@@ -250,12 +269,14 @@ def inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=9):
     press(["right"]*passosST)
     time.sleep(0.4)
     press("enter")
+    base_icms_ST = utils.formatador2(base_icms_ST)
     write(base_icms_ST)
     time.sleep(0.4)
     press("enter")
     write(aliq_icms_ST)
     time.sleep(0.4)
     press("enter")
+    icmsST_no_item = utils.formatador2(icmsST_no_item)
     write(icmsST_no_item)
     press(["left"]*12)    
     
@@ -264,6 +285,7 @@ def inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12):
     press(["right"]*passosIPI)
     time.sleep(0.5)
     press("enter")
+    base_ipi = utils.formatador2(base_ipi)
     write(base_ipi)
     press(["right"]*5)
     time.sleep(0.5)
@@ -272,5 +294,6 @@ def inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12):
     press(["left"]*6)
     time.sleep(0.5)
     press("enter")
+    ipi_no_item = utils.formatador2(ipi_no_item)
     write(ipi_no_item)
     press(["left"]*14)
