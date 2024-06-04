@@ -285,174 +285,370 @@ def robozinho():
 
     for i, ctrl_imposto in enumerate(indices_e_impostos):
         if ctrl_imposto == 0:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = itens[i]
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            if tes in ["102", "405", "408"]:
-                operadoresLancamento.zerarImposto()
-            elif tes in ["406", "421", "423"]:
-                operadoresLancamento.zerarImposto()
-                operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SEM IMPOSTO
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    ipi_no_item = ipi_no_item * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                if tes in ["102", "405", "408"]:
+                    operadoresLancamento.zerarImposto()
+                elif tes in ["406", "421", "423"]:
+                    operadoresLancamento.zerarImposto()
+                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up")
+                                      #SEQUENCIA LOGICA DE LANÇAMENTO SEM IMPOSTO
         elif ctrl_imposto == 1:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            if tes in ["406", "421", "423"]:
-                operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
-            press(["left"]*9)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    bc_icms = bc_icms * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    ipi_no_item = ipi_no_item * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                if tes in ["406", "421", "423"]:
+                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                press(["left"]*9)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up")
+                                        #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS
         elif ctrl_imposto == 2:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            if tes in ["102", "405", "408"]:
-                operadoresLancamento.zerarImposto()
-            elif tes in ["406", "421", "423"]:
-                operadoresLancamento.zerarImposto()
-                operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    bc_icms_ST = bc_icms_ST * razao
+                    ipi_no_item = ipi_no_item * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                if tes in ["102", "405", "408"]:
+                    operadoresLancamento.zerarImposto()
+                elif tes in ["406", "421", "423"]:
+                    operadoresLancamento.zerarImposto()
+                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up")
+                                        #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST
         elif ctrl_imposto == 3:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
             base_ipi, aliq_ipi = base_e_aliq_ipi
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            if tes in ["406", "421", "423", "102", "403", "411"]:
-                operadoresLancamento.zerarImposto()
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA IPI
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    ipi_no_item = ipi_no_item * razao
+                    base_ipi = base_ipi * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                if tes in ["406", "421", "423", "102", "403", "411"]:
+                    operadoresLancamento.zerarImposto()
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up")
+                                        #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA IPI
         elif ctrl_imposto == 4:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
             base_ipi, aliq_ipi = base_e_aliq_ipi
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            if tes in ["406", "421", "423", "102", "411"]:
-                operadoresLancamento.zerarImposto()
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
-            operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=0)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST E IPI
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    base_icms_ST = base_icms_ST * razao
+                    ipi_no_item = ipi_no_item * razao
+                    base_ipi = base_ipi * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                if tes in ["406", "421", "423", "102", "411"]:
+                    operadoresLancamento.zerarImposto()
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
+                operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=0)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up") 
+                                         #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST E IPI
         elif ctrl_imposto == 5:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
             base_ipi, aliq_ipi = base_e_aliq_ipi
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
-            operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=3)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E IPI
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    base_icms = base_icms * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    ipi_no_item = ipi_no_item * razao
+                    base_ipi = base_ipi * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=3)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up") 
+                                        #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E IPI
         elif ctrl_imposto == 6:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
-            operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
-            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E ICMSST
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    base_icms = base_icms * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    base_icms_ST = base_icms_ST * razao
+                    ipi_no_item = ipi_no_item * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up") 
+                                            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E ICMSST
         elif ctrl_imposto == 7:
-            verificador = operadoresLancamento.verificarValorDoItem(itens, i)
+            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
                 return robozinho()
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
             bc_icms, aliq_icms = base_e_aliq_icms
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
             base_ipi, aliq_ipi = base_e_aliq_ipi
-            natureza = operadoresLancamento.copiarNatureza()
-            codigo = operadoresLancamento.selecionarCaso(natureza)
-            tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
-            if tes == True:
-                return robozinho()
-            operadoresLancamento.escreverTES(tes)
-            operadoresLancamento.inserirDesconto(desc_no_item)
-            operadoresLancamento.inserirFrete(frete_no_item)
-            operadoresLancamento.inserirSeguro(seg_no_item)
-            operadoresLancamento.inserirDespesa(desp_no_item)
-            operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
-            operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
-            operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12)
-            #SEQUENCIA LOGICA DE LANÇAMENTO PARA TODOS OS IMPOSTOS
+            item = []
+            cont = 0
+            if item_fracionado != []:
+                for razao in item_fracionado:
+                    desc_no_item = desc_no_item * razao
+                    frete_no_item = frete_no_item * razao
+                    seg_no_item = seg_no_item * razao
+                    desp_no_item = desp_no_item * razao
+                    icms_no_item = icms_no_item * razao
+                    base_icms = base_icms * razao
+                    icmsST_no_item = icmsST_no_item * razao
+                    base_icms_ST = base_icms_ST * razao
+                    ipi_no_item = ipi_no_item * razao
+                    base_ipi = base_ipi * razao
+                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
+            else:
+                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
+            for lista in item:
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
+                natureza = operadoresLancamento.copiarNatureza()
+                codigo = operadoresLancamento.selecionarCaso(natureza)
+                tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
+                if tes == True:
+                    return robozinho()
+                operadoresLancamento.escreverTES(tes)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
+                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
+                operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12)
+                press("down")
+                cont+=1
+                if len(item) > 1:
+                    press(["right"]*4)
+                    if cont == len(item):
+                        press(["left"]*4)
+            press("up") 
+                                        #SEQUENCIA LOGICA DE LANÇAMENTO PARA TODOS OS IMPOSTOS
 
         if len(indices_e_impostos) > 1:
             press("down")
@@ -480,7 +676,7 @@ def robozinho():
     valor_parcela = utils.formatador4(valor_parcela)
     if valor_parcela != valor_total_da_nf:
         lista_parc.append(valor_parcela)
-        while sum(lista_parc) < valor_total_da_nf:
+        while round(sum(lista_parc),2) < valor_total_da_nf:
             utils.descerECopiar()
             valor_parcela = pyperclip.paste()
             valor_parcela = utils.formatador4(valor_parcela)
@@ -517,7 +713,7 @@ def robozinho():
     natureza_perc = pyperclip.paste() 
     if natureza_perc != "0,00":
         lista_perc = []
-        while sum(lista_perc) < 100.0:
+        while round(sum(lista_perc),2) < 100.0:
             natureza_perc = utils.formatador3(natureza_perc)
             lista_perc.append(natureza_perc)
             utils.descerECopiar()
