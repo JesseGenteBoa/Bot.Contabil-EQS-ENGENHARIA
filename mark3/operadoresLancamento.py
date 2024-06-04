@@ -1,5 +1,4 @@
 from pyautogui import *
-from pydirectinput import click as mouseClique
 import pyperclip
 import pyscreeze
 import time
