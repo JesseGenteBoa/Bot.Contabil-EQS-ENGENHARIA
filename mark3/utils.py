@@ -122,9 +122,35 @@ def cancelarLancamento():
         aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
         time.sleep(1)
 
-
 def mudarSelecao():
     mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
     x, y = mudar_a_selecao
     mouseClique(x,y, clicks=4, interval=0.4)
     time.sleep(1)
+
+def contarItemFracionado(quantidade_siga, quantidade_real):
+    cont = 0
+    quantidade_total = []
+    quantidade_total.append(quantidade_siga)
+    press("left")
+    time.sleep(0.2)
+    hotkey("ctrl", "c", interval=0.5)
+    cod_item = pyperclip.paste()
+    while sum(quantidade_total) < quantidade_real:
+        press("down")
+        time.sleep(0.2)
+        hotkey("ctrl", "c", interval=0.5)
+        item_dividido = pyperclip.paste()
+        cont += 1
+        if item_dividido == cod_item:
+            press(["right"]*6)
+            hotkey("ctrl", "c", interval=0.5)
+            qtd_dividida = pyperclip.paste()
+            qtd_dividida = formatador3(qtd_dividida)
+            quantidade_total.append(qtd_dividida)
+            press(["left"]*6)
+        else:
+            break
+    press(["right"]*5)
+    press(["up"]*cont)
+    return quantidade_total
