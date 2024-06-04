@@ -36,29 +36,33 @@ class ProcessadorXML:
 
         try:
             valor_desconto_xml = coletor_xml["vDesc"]
+            valor_desconto_xml = utils.formatador3(valor_desconto_xml)
         except KeyError:
-            valor_desconto_xml = "0.00"
+            valor_desconto_xml = 0.00
 
         self.valores_do_item.append(valor_desconto_xml)
 
         try:
             valor_frete_xml = coletor_xml["vFrete"]
+            valor_frete_xml = utils.formatador3(valor_frete_xml)
         except KeyError:
-            valor_frete_xml = "0.00"
+            valor_frete_xml = 0.00
 
         self.valores_do_item.append(valor_frete_xml)
 
         try:
             valor_seguro_xml = coletor_xml["vSeg"]
+            valor_seguro_xml = utils.formatador3(valor_seguro_xml)
         except KeyError:
-            valor_seguro_xml = "0.00"
+            valor_seguro_xml = 0.00
 
         self.valores_do_item.append(valor_seguro_xml)
 
         try:
             valor_desp_xml = coletor_xml["vOutro"]
+            valor_desp_xml = utils.formatador3(valor_desp_xml)
         except KeyError:
-            valor_desp_xml = "0.00"
+            valor_desp_xml = 0.00
 
         self.valores_do_item.append(valor_desp_xml)
 
@@ -68,15 +72,17 @@ class ProcessadorXML:
             atributos_icms = list(atributos_icms)
             descompactar_lista = atributos_icms[0]
             valor_icms = descompactar_lista["vICMS"]
+            valor_icms = utils.formatador3(valor_icms)
         except KeyError:
-            valor_icms = "0.00"
+            valor_icms = 0.00
 
         self.valores_do_item.append(valor_icms)
 
-        if valor_icms != "0.00":
+        if valor_icms != 0.00:
             aliquota_icms = descompactar_lista["pICMS"]
             aliquota_icms = utils.formatador2(aliquota_icms)
             bc_icms = descompactar_lista["vBC"]
+            bc_icms = utils.formatador3(bc_icms)
             self.valores_do_item.append((bc_icms, aliquota_icms))
 
         try:
@@ -85,30 +91,34 @@ class ProcessadorXML:
             atributos_icms = list(atributos_icms)
             descompactar_lista = atributos_icms[0]
             valor_icms_st = descompactar_lista["vICMSST"]
+            valor_icms_st = utils.formatador3(valor_icms_st)
         except KeyError:
-            valor_icms_st = "0.00"
+            valor_icms_st = 0.00
 
         self.valores_do_item.append(valor_icms_st)
 
-        if valor_icms_st != "0.00":
+        if valor_icms_st != 0.00:
             aliquota_icms_st = descompactar_lista["pICMSST"]
             aliquota_icms_st = utils.formatador2(aliquota_icms_st)
             bc_icms_st = descompactar_lista["vBCST"]
+            bc_icms_st = utils.formatador3(bc_icms_st)
             self.valores_do_item.append((bc_icms_st, aliquota_icms_st))
 
         try:
             busca_ipi_xml = impostos_xml["IPI"]["IPITrib"]
             valor_ipi = busca_ipi_xml["vIPI"]
             valor_ipi = utils.formatador2(valor_ipi)
+            valor_ipi = float(valor_ipi)
         except KeyError:
-            valor_ipi = "0.00"
+            valor_ipi = 0.00
 
         self.valores_do_item.append(valor_ipi)
 
-        if valor_ipi != "0.00":
+        if valor_ipi != 0.00:
             aliquota_ipi = busca_ipi_xml["pIPI"]
             aliquota_ipi = utils.formatador2(aliquota_ipi)
             bc_ipi = busca_ipi_xml["vBC"]
+            bc_ipi = utils.formatador3(bc_ipi)
             self.valores_do_item.append((bc_ipi, aliquota_ipi))
 
         return self.valores_do_item
@@ -122,17 +132,17 @@ class ProcessadorXML:
                 tem_icms = False
                 tem_icms_st = False
                 tem_ipi = False
-                if valores_do_item[cont+7] != "0.00":
+                if valores_do_item[cont+7] != 0.00:
                     cont+=8
                     tem_icms = True
                 else:
                     cont+=7
-                if valores_do_item[cont+1] != "0.00":
+                if valores_do_item[cont+1] != 0.00:
                     cont+=3
                     tem_icms_st = True
                 else:
                     cont+=2
-                if valores_do_item[cont] != "0.00":
+                if valores_do_item[cont] != 0.00:
                     cont+=2
                     tem_ipi = True
                 else:
@@ -160,7 +170,3 @@ class ProcessadorXML:
             pass
 
         return self.itens, self.indices_e_impostos
-
-
-
-
