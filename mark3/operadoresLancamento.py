@@ -28,7 +28,7 @@ def verificarValorDoItem(lista, indiceX):
     valor_do_item_na_NF = utils.formatador3(valor_do_item_na_NF)
     if valor_do_item_no_siga != valor_do_item_na_NF:
         write(lista[indiceX][0])
-        time.sleep(0.5)
+        time.sleep(0.8)
         encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
         if type(encontrar) == pyscreeze.Box:
             press("enter")
@@ -56,28 +56,30 @@ def verificarValorDoItem(lista, indiceX):
                         valor_unit_convertido = valor_unit_NF / 100
                         escreverValorUnit(valor_unit_convertido)
                     else:
-                        quantidade_total = utils.contarItemFracionado(quantidade_siga, quantidade_convertida)
+                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
                         if sum(quantidade_total) != quantidade_convertida:
                             cancelar_lancamento = True
                             utils.cancelarLancamento()
                             utils.mudarSelecao()
-                        for qtd in quantidade_total:
-                            razao = qtd / quantidade_convertida
-                            razoes.append(razao)
-                        press(["right"]*6)
-                elif "gas" in desc_prod or "pedrisco" in desc_prod:
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_convertida
+                                razoes.append(razao)
+                            press(["right"]*3)
+                elif "gas" in desc_prod or "pedrisco" in desc_prod or "cabo" in desc_prod:
                     valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                     escreverValorUnit(valor_unit_convertido)
                 else:
-                    quantidade_total = utils.contarItemFracionado(quantidade_siga, quantidade_NF)
+                    quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
                     if sum(quantidade_total) != quantidade_NF:
                         cancelar_lancamento = True
                         utils.cancelarLancamento()
                         utils.mudarSelecao()
-                    for qtd in quantidade_total:
-                        razao = qtd / quantidade_NF
-                        razoes.append(razao)
-                    press(["right"]*6)
+                    else:
+                        for qtd in quantidade_total:
+                            razao = qtd / quantidade_NF
+                            razoes.append(razao)
+                        press(["right"]*3)
         else:
             press("left")
     return cancelar_lancamento, razoes
@@ -92,7 +94,7 @@ def copiarNatureza():
         natureza = "2050006"
         press("enter")
         write(natureza)
-    elif natureza in ["2020082", " 2020083"]:
+    elif natureza in ["2020082", "2020083"]:
         natureza = "2050008"
         press("enter")
         write(natureza)
