@@ -6,6 +6,7 @@ import xmltodict
 import pyscreeze
 import utils
 import extratorXML
+import tratamentoItem
 import operadoresLancamento
 from selenium import webdriver                         
 from selenium.webdriver.common.by import By
@@ -17,7 +18,7 @@ FAILSAFE = True
 
 
 def robozinho():
-    ver_documento = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\verDocumentos.png'
+    ver_documento = r'C:\Users\Usuario\Desktop\mark4\Imagens\verDocumentos.png'
     utils.insistirNoClique(ver_documento, cliques=1)
     time.sleep(0.4)
     insistir_no_clique = utils.encontrarImagem(ver_documento)
@@ -33,7 +34,7 @@ def robozinho():
     time.sleep(0.5)
     link = pyperclip.paste()
     options = webdriver.ChromeOptions()
-    options.add_argument(r'user-data-dir=C:\Users\User\AppData\Local\Google\Chrome\User Data\Perfil Selenium')
+    options.add_argument(r'user-data-dir=C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Profile Selenium')
     driver = webdriver.Chrome(options=options)
     time.sleep(0.5)
     driver.get(link)
@@ -117,43 +118,46 @@ def robozinho():
     time.sleep(0.3)
 
 
-    caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+    caminho = "C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
-    try:
-        with open(caminho) as fd:
-            doc = xmltodict.parse(fd.read())
-    except:
-        while True:
-            exportarXML = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\exportarXML.png'
-            encontrar = utils.encontrarImagemLocalizada
-            if type(encontrar) != tuple:  
-                utils.insistirNoClique(exportarXML)
-                time.sleep(2)
-                caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarServidor.png')
-                if type(caixa_de_texto) == tuple:
-                    break
-            else:
-                x, y = encontrar
-                mouseClique(x,y, clicks=2)
-                break
-        time.sleep(2)
-        x, y = caixa_de_texto
-        mouseClique(x,y, clicks=3, interval=0.07)
-        pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\")
-        hotkey("ctrl", "v")
-        time.sleep(1)
-        press(["tab"]*6, interval=0.5)
-        press("enter")
-        time.sleep(1.5)
-        press("enter")
-        time.sleep(1.5)
-        press("enter")
-        time.sleep(3)
-        caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Documentos\\GitHub\\GitHubDoJessezinho\\mark3\\xmlFiscalio\\" + chave_de_acesso + ".xml"
-        auxiliar = False
+    while True:
         try:
             with open(caminho) as fd:
                 doc = xmltodict.parse(fd.read())
+                break
+        except UnicodeDecodeError:
+            with open(caminho, encoding='utf-8') as fd:
+                doc = xmltodict.parse(fd.read())
+                break
+        except FileNotFoundError:
+            while True:
+                exportarXML = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\exportarXML.png'
+                encontrar = utils.encontrarImagemLocalizada
+                if type(encontrar) != tuple:  
+                    utils.insistirNoClique(exportarXML)
+                    time.sleep(2)
+                    caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarServidor.png')
+                    if type(caixa_de_texto) == tuple:
+                        break
+                else:
+                    x, y = encontrar
+                    mouseClique(x,y, clicks=2)
+                    break
+            time.sleep(2)
+            x, y = caixa_de_texto
+            mouseClique(x,y, clicks=3, interval=0.07)
+            pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\beta\\xmlFiscalio\\")
+            hotkey("ctrl", "v")
+            time.sleep(1)
+            press(["tab"]*6, interval=0.5)
+            press("enter")
+            time.sleep(1.5)
+            press("enter")
+            time.sleep(1.5)
+            press("enter")
+            time.sleep(3)
+            caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\beta\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+            auxiliar = False
         except:
             auxiliar = True
         if auxiliar == True:
@@ -198,7 +202,7 @@ def robozinho():
             break
         else:
             try:
-                clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarFilial.png')
+                clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')
                 x, y = clicar_cancelar
                 mouseClique(x,y, clicks=2, interval=0.07)
                 utils.voltarEDescer()
@@ -210,11 +214,11 @@ def robozinho():
 
     try:
         time.sleep(0.5)
-        aparece_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AtencaoEstoque.png')
+        aparece_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\AtencaoEstoque.png')
         if type(aparece_enter) == pyscreeze.Box:
             time.sleep(0.2)
             press("enter")
-        aparece_enter2 = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\TES102.png')
+        aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\TES102.png')
         if type(aparece_enter2) == pyscreeze.Box:
             time.sleep(0.2)
             press("enter")
@@ -232,7 +236,7 @@ def robozinho():
     cont = 0
     while True:
         time.sleep(1)
-        tela_de_lancamento = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbriuOProcesso.png')
+        tela_de_lancamento = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbriuOProcesso.png')
         cont +=1
         if type(tela_de_lancamento) == pyscreeze.Box:
             time.sleep(0.5)
@@ -240,15 +244,15 @@ def robozinho():
             time.sleep(0.8)
             press(["right"]*8)
             break
-        lancamento_retroativo = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\LancamentoRetroativo.png')
-        nota_ja_lancada = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ProcessoJaLancado.png')
-        fornecedor_bloqueado = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\FornecedorBloqueado.png')
+        lancamento_retroativo = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\LancamentoRetroativo.png')
+        nota_ja_lancada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ProcessoJaLancado.png')
+        fornecedor_bloqueado = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\FornecedorBloqueado.png')
         if type(lancamento_retroativo) == pyscreeze.Box or type(nota_ja_lancada) == pyscreeze.Box or type(fornecedor_bloqueado) == pyscreeze.Box:
             time.sleep(1)
             press("enter")
             time.sleep(1)
             cont = 0
-        erro_esquisito = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroEsquisito2.png')
+        erro_esquisito = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroEsquisito2.png')
         if type(erro_esquisito) == pyscreeze.Box:
             time.sleep(1)
             press("enter")
@@ -257,7 +261,7 @@ def robozinho():
             time.sleep(0.5)
             utils.clicarMicrosiga()
             return robozinho()
-        erro_generico = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroGenerico.png')
+        erro_generico = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroGenerico.png')
         if type(erro_generico) == pyscreeze.Box:
             time.sleep(1)
             press("enter", interval=2) 
@@ -267,7 +271,7 @@ def robozinho():
             time.sleep(0.5)
             utils.clicarMicrosiga()
             return robozinho()
-        chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\chaveNaoEncontradaNoSefaz.png')
+        chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\chaveNaoEncontradaNoSefaz.png')
         if type(chave_nao_encontrada) == pyscreeze.Box:
             time.sleep(1)
             press("enter")
@@ -280,29 +284,18 @@ def robozinho():
         if cont == 20:
             press("enter")
             cont = 0
-            
-            
+              
 
     for i, ctrl_imposto in enumerate(indices_e_impostos):
+
+        verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
+        if verificador == True:
+            return robozinho()
+        tratamento_item = tratamentoItem.TratadorItem(item_fracionado, itens, i, ctrl_imposto)
+        item = tratamento_item.tratarItem()
+        cont = 0
+
         if ctrl_imposto == 0:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = itens[i]
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    ipi_no_item = ipi_no_item * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item])
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = lista
                 natureza = operadoresLancamento.copiarNatureza()
@@ -329,26 +322,6 @@ def robozinho():
             press("up")
                                       #SEQUENCIA LOGICA DE LANÇAMENTO SEM IMPOSTO
         elif ctrl_imposto == 1:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item = itens[i]
-            bc_icms, aliq_icms = base_e_aliq_icms
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    bc_icms = bc_icms * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    ipi_no_item = ipi_no_item * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item])
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item = lista
                 natureza = operadoresLancamento.copiarNatureza()
@@ -374,26 +347,6 @@ def robozinho():
             press("up")
                                         #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS
         elif ctrl_imposto == 2:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
-            base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    bc_icms_ST = bc_icms_ST * razao
-                    ipi_no_item = ipi_no_item * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item = lista
                 natureza = operadoresLancamento.copiarNatureza()
@@ -421,26 +374,6 @@ def robozinho():
             press("up")
                                         #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST
         elif ctrl_imposto == 3:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
-            base_ipi, aliq_ipi = base_e_aliq_ipi
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    ipi_no_item = ipi_no_item * razao
-                    base_ipi = base_ipi * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi = lista
                 natureza = operadoresLancamento.copiarNatureza()
@@ -465,28 +398,6 @@ def robozinho():
             press("up")
                                         #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA IPI
         elif ctrl_imposto == 4:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
-            base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            base_ipi, aliq_ipi = base_e_aliq_ipi
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    base_icms_ST = base_icms_ST * razao
-                    ipi_no_item = ipi_no_item * razao
-                    base_ipi = base_ipi * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
                 natureza = operadoresLancamento.copiarNatureza()
@@ -509,33 +420,11 @@ def robozinho():
                     press(["right"]*4)
                     if cont == len(item):
                         press(["left"]*4)
-            press("up") 
+            press("up")
                                          #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST E IPI
         elif ctrl_imposto == 5:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = itens[i]
-            bc_icms, aliq_icms = base_e_aliq_icms
-            base_ipi, aliq_ipi = base_e_aliq_ipi
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    base_icms = base_icms * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    ipi_no_item = ipi_no_item * razao
-                    base_ipi = base_ipi * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi])
             for lista in item:
-                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi = lista
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_icms, aliq_icms, icmsST_no_item, ipi_no_item, base_ipi, aliq_ipi = lista
                 natureza = operadoresLancamento.copiarNatureza()
                 codigo = operadoresLancamento.selecionarCaso(natureza)
                 tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
@@ -546,7 +435,7 @@ def robozinho():
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
-                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirICMS(icms_no_item, base_icms, aliq_icms)
                 operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=3)
                 press("down")
                 cont+=1
@@ -554,33 +443,11 @@ def robozinho():
                     press(["right"]*4)
                     if cont == len(item):
                         press(["left"]*4)
-            press("up") 
+            press("up")
                                         #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E IPI
         elif ctrl_imposto == 6:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item = itens[i]
-            bc_icms, aliq_icms = base_e_aliq_icms
-            base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    base_icms = base_icms * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    base_icms_ST = base_icms_ST * razao
-                    ipi_no_item = ipi_no_item * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
             for lista in item:
-                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item = lista
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item = lista
                 natureza = operadoresLancamento.copiarNatureza()
                 codigo = operadoresLancamento.selecionarCaso(natureza)
                 tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
@@ -591,7 +458,7 @@ def robozinho():
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
-                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirICMS(icms_no_item, base_icms, aliq_icms)
                 operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
                 press("down")
                 cont+=1
@@ -599,35 +466,11 @@ def robozinho():
                     press(["right"]*4)
                     if cont == len(item):
                         press(["left"]*4)
-            press("up") 
+            press("up")
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E ICMSST
         elif ctrl_imposto == 7:
-            verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-            if verificador == True:
-                return robozinho()
-            valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_e_aliq_icms, icmsST_no_item, base_e_aliq_ST, ipi_no_item, base_e_aliq_ipi = itens[i]
-            bc_icms, aliq_icms = base_e_aliq_icms
-            base_icms_ST, aliq_icms_ST = base_e_aliq_ST
-            base_ipi, aliq_ipi = base_e_aliq_ipi
-            item = []
-            cont = 0
-            if item_fracionado != []:
-                for razao in item_fracionado:
-                    desc_no_item = desc_no_item * razao
-                    frete_no_item = frete_no_item * razao
-                    seg_no_item = seg_no_item * razao
-                    desp_no_item = desp_no_item * razao
-                    icms_no_item = icms_no_item * razao
-                    base_icms = base_icms * razao
-                    icmsST_no_item = icmsST_no_item * razao
-                    base_icms_ST = base_icms_ST * razao
-                    ipi_no_item = ipi_no_item * razao
-                    base_ipi = base_ipi * razao
-                    item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
-            else:
-                item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi])
             for lista in item:
-                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, bc_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
+                desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
                 natureza = operadoresLancamento.copiarNatureza()
                 codigo = operadoresLancamento.selecionarCaso(natureza)
                 tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
@@ -638,7 +481,7 @@ def robozinho():
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
-                operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
+                operadoresLancamento.inserirICMS(icms_no_item, base_icms, aliq_icms)
                 operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
                 operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12)
                 press("down")
@@ -647,34 +490,27 @@ def robozinho():
                     press(["right"]*4)
                     if cont == len(item):
                         press(["left"]*4)
-            press("up") 
+            press("up")
                                         #SEQUENCIA LOGICA DE LANÇAMENTO PARA TODOS OS IMPOSTOS
-
+ 
         if len(indices_e_impostos) > 1:
             press("down")
         if i+1 == len(indices_e_impostos):
             press("up")
-        time.sleep(1)
+        time.sleep(1.5)
 
 
-    aba_duplicatas = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDuplicatas.png')
+    aba_duplicatas = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbaDuplicatas.png')
     x, y =  aba_duplicatas
     mouseClique(x,y, clicks=4, interval=0.1)
     time.sleep(0.6)
     lista_parc = []
-    valor_parcela = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
-    while type(valor_parcela) != tuple:
-        moveTo(180, 200)
-        mouseClique(x,y, clicks=4, interval=0.1)
-        valor_parcela = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
-        time.sleep(0.4)
-    x, y = valor_parcela
-    mouseClique(x,y)
+    utils.clicarValorParcela()
     time.sleep(0.5)
     hotkey("ctrl", "c", interval=0.2)
     valor_parcela = pyperclip.paste()
     valor_parcela = utils.formatador4(valor_parcela)
-    if valor_parcela != valor_total_da_nf:
+    if valor_parcela < valor_total_da_nf:
         lista_parc.append(valor_parcela)
         while round(sum(lista_parc),2) < valor_total_da_nf:
             utils.descerECopiar()
@@ -683,14 +519,14 @@ def robozinho():
             lista_parc.append(valor_parcela)
         somatoria = utils.formatador2(sum(lista_parc))
         somatoria = float(somatoria)
-        diferenca_NF_siga = somatoria - valor_total_da_nf
+        parcela_errada = lista_parc[-1]
         if somatoria != valor_total_da_nf:
-            if lista_parc[-3:-2] != lista_parc[-2:-1]:
-                parcela_duplicada = lista_parc.pop()
+            if lista_parc[-1] == lista_parc[-2]:
+                parcela_errada = lista_parc.pop()
                 somatoria = utils.formatador2(sum(lista_parc))
                 somatoria = float(somatoria)
             diferenca_NF_siga = valor_total_da_nf - somatoria 
-            ultima_parcela = parcela_duplicada + diferenca_NF_siga
+            ultima_parcela = parcela_errada + diferenca_NF_siga
             ultima_parcela = "{:.2f}".format(ultima_parcela)  
             mouseClique(x,y)
             descida = len(lista_parc) - 1
@@ -698,16 +534,39 @@ def robozinho():
             time.sleep(0.4)
             write(ultima_parcela, interval=0.03)
         time.sleep(1)
-    while True:
-        natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
-        if type(natureza_duplicata_clique) != tuple:
-            moveTo(150, 250)
-            mouseClique(x,y, clicks=4, interval=0.1)
-            time.sleep(0.3)
-        else:
-            break
-    x, y = natureza_duplicata_clique
-    mouseClique(x,y)
+    elif valor_parcela > valor_total_da_nf:
+        write(valor_total_da_nf)
+        time.sleep(1)
+    utils.clicarNaturezaDuplicata()
+    time.sleep(1)
+    erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
+    if type(erro_parcela) == pyscreeze.Box:
+        press("enter")
+        utils.clicarValorParcela()
+        press(["left"]*2)
+        time.sleep(0.3)
+        hotkey("ctrl", "c", interval=0.1)
+        primeira_parc = pyperclip.paste()
+        ordem_parc = []
+        ordem_parc.append(primeira_parc)
+        if primeira_parc != '':
+            utils.descerECopiar
+            proxima_parcela = pyperclip.paste()
+            ordem_parc.append(proxima_parcela)
+            if ordem_parc[-2] != ordem_parc[-1]:
+                while ordem_parc[-2] != ordem_parc[-1]:
+                    utils.descerECopiar
+                    proxima_parcela = pyperclip.paste()
+                    ordem_parc.append(proxima_parcela)
+                ordem_parc.pop()
+                valor_parcela = valor_total_da_nf / len(ordem_parc)
+                valor_parcela = "{:.2f}".format(valor_parcela)
+                utils.clicarValorParcela()
+                for vezes in range(len(ordem_parc)):
+                    write(valor_parcela)
+                    time.sleep(0.3)
+                    press("down")
+    utils.clicarNaturezaDuplicata()
     time.sleep(0.3)
     hotkey("ctrl", "c", interval=0.2)
     natureza_perc = pyperclip.paste() 
@@ -719,7 +578,7 @@ def robozinho():
             utils.descerECopiar()
             natureza_perc = pyperclip.paste() 
         maior_perc = max(lista_perc)
-        natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
+        natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\naturezaDuplicata.png')
         x, y = natureza_duplicata_clique
         mouseClique(x,y)
         press("up")
@@ -740,14 +599,14 @@ def robozinho():
         time.sleep(1)
 
 
-    salvar = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
+    salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
     salvarx, salvary = salvar
     time.sleep(0.7)
     mouseClique(salvarx,salvary, clicks=2, interval=0.1)
     time.sleep(2)
     cont = 0
     while True:
-        salvar = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
+        salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
         if type(salvar) == tuple:
             mouseClique(salvarx,salvary, clicks=2, interval=0.1)
             cont += 1
@@ -756,10 +615,10 @@ def robozinho():
                 break
         else:
             break
-    erro_de_serie = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ErroDeSerie.png')
+    erro_de_serie = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroDeSerie.png')
     if type(erro_de_serie) == pyscreeze.Box:
         press("enter", interval=0.2) 
-        espec_doc = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CorrigirErroDeSerie.png')
+        espec_doc = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CorrigirErroDeSerie.png')
         x, y = espec_doc
         time.sleep(0.5)
         mouseClique(x,y, clicks=2)
@@ -767,15 +626,15 @@ def robozinho():
         press("enter")
         time.sleep(0.5)
         mouseClique(salvarx,salvary, clicks=2)
-    erro_esquisito = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroEsquisito.png')
+    erro_esquisito = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroEsquisito.png')
     if type(erro_esquisito) == pyscreeze.Box:
         press("esc")
         quit()
-    erro_quantidade = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\erroDeQuantidade.png')
+    erro_quantidade = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroDeQuantidade.png')
     if type(erro_quantidade) == pyscreeze.Box:
         press("enter")
         utils.cancelarLancamento()
-        mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
+        mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\mudarASelecao.png')
         x, y = mudar_a_selecao
         mouseClique(x,y, clicks=2)
         time.sleep(0.3)
@@ -783,18 +642,18 @@ def robozinho():
         return robozinho()
 
     cont = 0
-    etapa_final = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
+    etapa_final = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\etapaFinal.png')
     while type(etapa_final) != pyscreeze.Box:
         time.sleep(0.2)
-        etapa_final = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\etapaFinal.png')
+        etapa_final = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\etapaFinal.png')
     press(["tab"]*3, interval=0.9)
     press("enter")
     time.sleep(1.5)
-    ultimo_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
+    ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
     if type(ultimo_enter) != pyscreeze.Box:
         while type(ultimo_enter) != pyscreeze.Box:
             time.sleep(0.2)
-            ultimo_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
+            ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
             cont +=1
             if cont == 10:
                 press("enter")
@@ -804,15 +663,15 @@ def robozinho():
     aux = False
     cont2 = 0
     while True:
-        ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
+        ultima_tela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ultimaTela.png')
         if type(ultima_tela) == pyscreeze.Box:
             aux = True
             while type(ultima_tela) == pyscreeze.Box:
-                ultima_tela = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\ultimaTela.png')
+                ultima_tela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ultimaTela.png')
                 time.sleep(0.2)
         if aux == True:
             break
-        ultimo_enter = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\finalizarLancamento.png')
+        ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
         if type(ultimo_enter) == pyscreeze.Box:
             cont +=1
             if cont == 5:
