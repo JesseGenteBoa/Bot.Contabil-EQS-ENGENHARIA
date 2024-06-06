@@ -1,6 +1,7 @@
 from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, write
 from pydirectinput import click as mouseClique, moveTo
 import pyscreeze
+import pyperclip
 import time
 
 def encontrarImagem(imagem):
@@ -56,7 +57,7 @@ def descerECopiar():
     press("down", interval=0.1)
     hotkey("ctrl", "c", interval=0.1)
 
-def clicarMicrosiga(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\microsiga.png'):
+def clicarMicrosiga(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\microsiga.png'):
     x, y = encontrarImagemLocalizada(imagem)
     mouseClique(x, y)
 
@@ -89,7 +90,7 @@ def insistirNoClique(imagem, cliques=2):
 
 
 def clicarDadosDaNota():
-    imagem = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\DadosDaNota.png'
+    imagem = r'C:\Users\Usuario\Desktop\mark4\Imagens\DadosDaNota.png'
     encontrar = encontrarImagemLocalizada(imagem)
     if type(encontrar) != tuple:            
         insistirNoClique(imagem)
@@ -98,7 +99,7 @@ def clicarDadosDaNota():
         x, y = encontrar
         mouseClique(x,y, clicks=2)
     try:
-        aparece_enter = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\NCMsegue.png')
+        aparece_enter = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\NCMsegue.png')
         if type(aparece_enter) == pyscreeze.Box:
             time.sleep(0.5)
             press("enter")
@@ -107,28 +108,31 @@ def clicarDadosDaNota():
 
 
 def cancelarLancamento():
-    cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\CancelarLancamento.png')
+    cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarLancamento.png')
     x, y = cancelar_lancamento_click
     time.sleep(0.5)
     mouseClique(x,y, clicks=3, interval=0.1)
     while True:
-        cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\salvarLancamento.png')
+        cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
         if type(cancelar_lancamento_click) == tuple:
             mouseClique(x,y, clicks=2, interval=0.1)
         else:
             break
-    aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
+    aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
     while type(aguarde) == pyscreeze.Box:
-        aguarde = encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\Aguarde.png') 
+        aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
         time.sleep(1)
 
+
 def mudarSelecao():
-    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\mudarASelecao.png')
+    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\mudarASelecao.png')
     x, y = mudar_a_selecao
     mouseClique(x,y, clicks=4, interval=0.4)
     time.sleep(1)
+    
 
-def contarItemFracionado(quantidade_siga, quantidade_real):
+def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
+    valor_unit = formatador(valor_unit, casas_decimais="{:.6f}")
     cont = 0
     quantidade_total = []
     quantidade_total.append(quantidade_siga)
@@ -148,9 +152,40 @@ def contarItemFracionado(quantidade_siga, quantidade_real):
             qtd_dividida = pyperclip.paste()
             qtd_dividida = formatador3(qtd_dividida)
             quantidade_total.append(qtd_dividida)
-            press(["left"]*6)
+            press("right")
+            write(valor_unit)
+            press(["left"]*8)
         else:
             break
-    press(["right"]*5)
     press(["up"]*cont)
+    time.sleep(0.5)
+    press(["right"]*7)
+    time.sleep(0.5)
+    write(valor_unit)
     return quantidade_total
+
+
+def clicarValorParcela():
+    valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+    while type(valor_parcela) != tuple:
+        moveTo(180, 200)
+        aba_duplicatas = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbaDuplicatas.png')
+        x, y =  aba_duplicatas
+        mouseClique(x,y, clicks=4, interval=0.1)
+        valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+        time.sleep(0.4)
+    x, y = valor_parcela
+    mouseClique(x,y)
+
+
+def clicarNaturezaDuplicata():
+    while True:
+        natureza_duplicata_clique = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\naturezaDuplicata.png')
+        if type(natureza_duplicata_clique) != tuple:
+            moveTo(150, 250)
+            mouseClique(x,y, clicks=4, interval=0.1)
+            time.sleep(0.3)
+        else:
+            break
+    x, y = natureza_duplicata_clique
+    mouseClique(x,y)
