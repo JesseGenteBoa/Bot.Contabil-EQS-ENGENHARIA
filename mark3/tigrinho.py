@@ -535,6 +535,7 @@ def robozinho():
             write(ultima_parcela, interval=0.03)
         time.sleep(1)
     elif valor_parcela > valor_total_da_nf:
+        valor_total_da_nf = utils.formatador2(valor_total_da_nf)
         write(valor_total_da_nf)
         time.sleep(1)
     utils.clicarNaturezaDuplicata()
