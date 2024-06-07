@@ -566,8 +566,8 @@ def robozinho():
                     write(valor_parcela)
                     time.sleep(0.3)
                     press("down")
-    utils.clicarNaturezaDuplicata()
-    time.sleep(0.3)
+        utils.clicarNaturezaDuplicata()
+        time.sleep(0.3)
     hotkey("ctrl", "c", interval=0.2)
     natureza_perc = pyperclip.paste() 
     if natureza_perc != "0,00":
