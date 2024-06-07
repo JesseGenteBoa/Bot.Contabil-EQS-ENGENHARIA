@@ -66,7 +66,7 @@ def verificarValorDoItem(lista, indiceX):
                                 razao = qtd / quantidade_convertida
                                 razoes.append(razao)
                             press(["right"]*3)
-                elif "gas" in desc_prod or "pedrisco" in desc_prod or "cabo" in desc_prod:
+                elif "gas" in desc_prod or "pedrisco" in desc_prod or "cabo" in desc_prod or "manta" in desc_prod:
                     valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                     escreverValorUnit(valor_unit_convertido)
                 else:
