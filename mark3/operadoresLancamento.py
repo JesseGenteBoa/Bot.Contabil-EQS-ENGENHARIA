@@ -32,12 +32,16 @@ def verificarValorDoItem(lista, indiceX):
         encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
         if type(encontrar) == pyscreeze.Box:
             press("enter")
+            time.sleep(0.5)
+            encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
+            if type(encontrar) == pyscreeze.Box:
+                press("enter")
             press("esc")
             press(["left"]*5)
             time.sleep(0.2)
             hotkey("ctrl", "c", interval=0.5)
             quantidade_siga = pyperclip.paste()
-            quantidade_siga = utils.formatador3(quantidade_siga)
+            quantidade_siga = utils.formatador4(quantidade_siga)
             quantidade_NF = lista[indiceX][1]
             quantidade_NF = utils.formatador3(quantidade_NF)
             valor_unit_NF = lista[indiceX][2]
@@ -66,7 +70,26 @@ def verificarValorDoItem(lista, indiceX):
                                 razao = qtd / quantidade_convertida
                                 razoes.append(razao)
                             press(["right"]*3)
-                elif "gas" in desc_prod or "pedrisco" in desc_prod or "cabo" in desc_prod or "manta" in desc_prod:
+                elif "gas" in desc_prod:
+                    press("left")
+                    hotkey("ctrl", "c", interval=0.5)
+                    cod_do_item = pyperclip.paste()
+                    press("right")
+                    if cod_do_item == "0651000053":
+                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
+                        if sum(quantidade_total) != quantidade_NF:
+                            cancelar_lancamento = True
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_NF
+                                razoes.append(razao)
+                            press(["right"]*3)
+                    else:
+                        valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
+                        escreverValorUnit(valor_unit_convertido)
+                elif "pedrisco" in desc_prod or "cabo" in desc_prod or "manta" in desc_prod:
                     valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                     escreverValorUnit(valor_unit_convertido)
                 else:
@@ -175,7 +198,7 @@ def definirTES(codigo, ctrl_imposto):
             hotkey("ctrl", "c", interval=0.5)
             item_especifico = pyperclip.paste()
             press(["right"]*2)
-            if item_especifico in ["999949011000", "1303102887", "1302578", "1303100449", "1303100601", "1303100602", "1303100603", "1312000122", "1312000124", "1312000125", "1312000126", "1312000144", "1308002", "1312024", "1303100550", "1303100600", "1303101290", "1303101291", "1303103835", "1303103836", "1303103837", "1312000141"]:
+            if item_especifico in ["999920091200", "999949011000", "1303102887", "1302578", "1303100449", "1303100601", "1303100602", "1303100603", "1312000122", "1312000124", "1312000125", "1312000126", "1312000144", "1308002", "1312024", "1303100550", "1303100600", "1303101290", "1303101291", "1303103835", "1303103836", "1303103837", "1312000141"]:
                 if ctrl_imposto != 0:
                     tes = "421"
                 else:
