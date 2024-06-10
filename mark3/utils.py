@@ -11,7 +11,7 @@ def encontrarImagem(imagem):
             encontrou = locateOnScreen(imagem, grayscale=True, confidence = 0.8)
             return encontrou
         except:
-            time.sleep(1)
+            time.sleep(0.8)
             cont += 1
             if cont == 3:
                 break
@@ -25,7 +25,7 @@ def encontrarImagemLocalizada(imagem):
             x, y = locateCenterOnScreen(imagem, grayscale=True, confidence=0.92)
             return (x, y)
         except:
-            time.sleep(1)
+            time.sleep(0.8)
             cont += 1
             if cont == 3:
                 break
@@ -68,6 +68,20 @@ def voltarEDescer(passos=1):
 def reiniciarPortal():
     clicarMicrosiga()
     voltarEDescer(passos=3)
+
+def cancelar1():
+    time.sleep(0.8)
+    voltarEDescer()
+    time.sleep(0.5)
+    clicarMicrosiga()
+
+def cancelar2():
+    time.sleep(0.5)
+    cancelarLancamento()
+    voltarEDescer()
+    time.sleep(0.3)
+    clicarMicrosiga()
+
 
 def insistirNoClique(imagem, cliques=2):
     while True:
