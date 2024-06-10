@@ -70,6 +70,22 @@ def verificarValorDoItem(lista, indiceX):
                                 razao = qtd / quantidade_convertida
                                 razoes.append(razao)
                             press(["right"]*3)
+                elif "pilha" in desc_prod:
+                    quantidade_convertida = quantidade_NF * 2
+                    if quantidade_convertida == quantidade_siga:
+                        valor_unit_convertido = valor_unit_NF / 2
+                        escreverValorUnit(valor_unit_convertido)
+                    else:
+                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
+                        if sum(quantidade_total) != quantidade_convertida:
+                            cancelar_lancamento = True
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_convertida
+                                razoes.append(razao)
+                            press(["right"]*3)
                 elif "gas" in desc_prod:
                     press("left")
                     hotkey("ctrl", "c", interval=0.5)
