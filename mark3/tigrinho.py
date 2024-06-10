@@ -131,12 +131,12 @@ def robozinho():
                 break
         except FileNotFoundError:
             while True:
-                exportarXML = r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\exportarXML.png'
+                exportarXML = r'C:\Users\Usuario\Desktop\mark4\Imagens\exportarXML.png'
                 encontrar = utils.encontrarImagemLocalizada
                 if type(encontrar) != tuple:  
                     utils.insistirNoClique(exportarXML)
                     time.sleep(2)
-                    caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarServidor.png')
+                    caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarServidor.png')
                     if type(caixa_de_texto) == tuple:
                         break
                 else:
@@ -146,17 +146,31 @@ def robozinho():
             time.sleep(2)
             x, y = caixa_de_texto
             mouseClique(x,y, clicks=3, interval=0.07)
-            pyperclip.copy("C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\beta\\xmlFiscalio\\")
+            pyperclip.copy("C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\")
             hotkey("ctrl", "v")
             time.sleep(1)
             press(["tab"]*6, interval=0.5)
             press("enter")
-            time.sleep(1.5)
-            press("enter")
-            time.sleep(1.5)
-            press("enter")
-            time.sleep(3)
-            caminho = "C:\\Users\\User\\OneDrive - EQS Engenharia Ltda\\Área de Trabalho\\beta\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+            time.sleep(0.8)
+            caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarServidor.png')
+            if type(caixa_de_texto) == tuple:
+                botao_salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\botaoSalvar1.png')
+                x, y = botao_salvar
+                mouseClique(x,y, clicks=2)
+            cont=0
+            while True:
+                aparece_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter.png')
+                if type(aparece_enter) == pyscreeze.Box:
+                    press("enter")
+                    time.sleep(0.8)
+                aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter2.png')
+                if type(aparece_enter2) == pyscreeze.Box:
+                    break
+            while type(aparece_enter2) == pyscreeze.Box:
+                press("enter")
+                time.sleep(0.5)
+                aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter2.png')
+            caminho = "C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\" + chave_de_acesso + ".xml"
             auxiliar = False
         except:
             auxiliar = True
@@ -199,15 +213,18 @@ def robozinho():
         if filial_pedido == filial_xml:
             press("tab", interval=0.5)
             press("enter")
+            time.sleep(1)
+            clicar_confirmar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarConfirmar.png')
+            if type(clicar_confirmar) == tuple:
+                x, y = clicar_confirmar
+                mouseClique(x,y, clicks=2, interval=0.07)
             break
         else:
             try:
                 clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')
                 x, y = clicar_cancelar
                 mouseClique(x,y, clicks=2, interval=0.07)
-                utils.voltarEDescer()
-                time.sleep(0.3)
-                utils.clicarMicrosiga()
+                utils.cancelar1()
                 return robozinho()
             except TypeError:
                 utils.clicarDadosDaNota()
@@ -256,10 +273,7 @@ def robozinho():
         if type(erro_esquisito) == pyscreeze.Box:
             time.sleep(1)
             press("enter")
-            time.sleep(1)
-            utils.voltarEDescer()
-            time.sleep(0.5)
-            utils.clicarMicrosiga()
+            utils.cancelar1()
             return robozinho()
         erro_generico = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroGenerico.png')
         if type(erro_generico) == pyscreeze.Box:
@@ -267,19 +281,13 @@ def robozinho():
             press("enter", interval=2) 
             press("esc", interval=2) 
             press("enter", interval=2)    
-            utils.voltarEDescer()
-            time.sleep(0.5)
-            utils.clicarMicrosiga()
+            utils.cancelar1()
             return robozinho()
         chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\chaveNaoEncontradaNoSefaz.png')
         if type(chave_nao_encontrada) == pyscreeze.Box:
             time.sleep(1)
             press("enter")
-            time.sleep(1)
-            utils.cancelarLancamento()
-            utils.voltarEDescer()
-            time.sleep(0.3)
-            utils.clicarMicrosiga()
+            utils.cancelar2()
             return robozinho()
         if cont == 20:
             press("enter")
@@ -568,7 +576,12 @@ def robozinho():
                     time.sleep(0.3)
                     press("down")
         utils.clicarNaturezaDuplicata()
-        time.sleep(0.3)
+        time.sleep(0.6)
+        erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
+        if type(erro_parcela) == pyscreeze.Box:
+            press("enter")
+            utils.cancelar1()
+            return robozinho()
     hotkey("ctrl", "c", interval=0.2)
     natureza_perc = pyperclip.paste() 
     if natureza_perc != "0,00":
