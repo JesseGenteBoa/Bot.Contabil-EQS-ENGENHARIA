@@ -580,7 +580,7 @@ def robozinho():
         erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
         if type(erro_parcela) == pyscreeze.Box:
             press("enter")
-            utils.cancelar1()
+            utils.cancelar2()
             return robozinho()
     hotkey("ctrl", "c", interval=0.2)
     natureza_perc = pyperclip.paste() 
