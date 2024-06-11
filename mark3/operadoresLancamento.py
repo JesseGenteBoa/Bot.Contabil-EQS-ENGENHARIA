@@ -105,7 +105,7 @@ def verificarValorDoItem(lista, indiceX):
                     else:
                         valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                         escreverValorUnit(valor_unit_convertido)
-                elif "pedrisco" in desc_prod or "cabo" in desc_prod or "manta" in desc_prod:
+                elif "pedrisco" in desc_prod or "cabo" in desc_prod or "manta" in desc_prod or "lona" in desc_prod:
                     valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                     escreverValorUnit(valor_unit_convertido)
                 else:
@@ -131,6 +131,10 @@ def copiarNatureza():
     natureza = pyperclip.paste()
     if natureza == "2020081":
         natureza = "2050006"
+        press("enter")
+        write(natureza)
+    elif natureza == "2020060":
+        natureza = "2050004"
         press("enter")
         write(natureza)
     elif natureza in ["2020082", "2020083"]:
