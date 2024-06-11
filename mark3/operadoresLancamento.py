@@ -141,11 +141,11 @@ def copiarNatureza():
         natureza = "2050008"
         press("enter")
         write(natureza)
-        press("enter")
-        press("left")
-    
+    press("enter")
+    press("left")
+   
     return natureza
-
+    
 
 def selecionarCaso(natureza):
     codigo = {
