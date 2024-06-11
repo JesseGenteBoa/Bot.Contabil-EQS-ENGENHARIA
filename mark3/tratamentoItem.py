@@ -39,16 +39,16 @@ class TratadorItem:
             base_icms_ST, aliq_icms_ST = base_e_aliq_ST
             if self.item_fracionado != []:
                 for razao in self.item_fracionado:
-                        desc = desc_no_item * razao
-                        frete = frete_no_item * razao
-                        seg = seg_no_item * razao
-                        desp = desp_no_item * razao
-                        icmsST = icmsST_no_item * razao
-                        bc_icms_ST = base_icms_ST * razao
-                        self.item.append([desc, frete, seg, desp, icms_no_item, icmsST, bc_icms_ST, aliq_icms_ST, ipi_no_item])
-                else:
-                    self.item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
-        
+                    desc = desc_no_item * razao
+                    frete = frete_no_item * razao
+                    seg = seg_no_item * razao
+                    desp = desp_no_item * razao
+                    icmsST = icmsST_no_item * razao
+                    bc_icms_ST = base_icms_ST * razao
+                    self.item.append([desc, frete, seg, desp, icms_no_item, icmsST, bc_icms_ST, aliq_icms_ST, ipi_no_item])
+            else:
+                self.item.append([desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item])
+    
         elif self.ctrl_imposto == 3:
             valor_do_item, quant_do_item, vl_unit_item, desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item, base_e_aliq_ipi = self.itens[self.i]
             base_ipi, aliq_ipi = base_e_aliq_ipi
