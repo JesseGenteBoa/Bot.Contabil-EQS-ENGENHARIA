@@ -82,6 +82,12 @@ def cancelar2():
     time.sleep(0.3)
     clicarMicrosiga()
 
+def escreverNatureza(natureza):
+    press("enter")
+    write(natureza)
+    press("enter")
+    press("left")
+
 
 def insistirNoClique(imagem, cliques=2):
     while True:
