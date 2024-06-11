@@ -131,18 +131,13 @@ def copiarNatureza():
     natureza = pyperclip.paste()
     if natureza == "2020081":
         natureza = "2050006"
-        press("enter")
-        write(natureza)
+        utils.escreverNatureza(natureza)
     elif natureza == "2020060":
         natureza = "2050004"
-        press("enter")
-        write(natureza)
+        utils.escreverNatureza(natureza)
     elif natureza in ["2020082", "2020083"]:
         natureza = "2050008"
-        press("enter")
-        write(natureza)
-    press("enter")
-    press("left")
+        utils.escreverNatureza(natureza)
    
     return natureza
     
