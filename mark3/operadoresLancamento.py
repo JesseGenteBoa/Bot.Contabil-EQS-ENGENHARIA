@@ -138,12 +138,6 @@ def copiarNatureza():
     elif natureza in ["2020082", "2020083"]:
         natureza = "2050008"
         utils.escreverNatureza(natureza)
-    elif natureza == "2020021":
-        natureza = "2040003"
-        utils.escreverNatureza(natureza)
-    elif natureza == "2020022":
-        natureza = "2040001"
-        utils.escreverNatureza(natureza)
    
     return natureza
     
