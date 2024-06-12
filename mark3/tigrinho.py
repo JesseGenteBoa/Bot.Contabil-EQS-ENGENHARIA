@@ -303,6 +303,15 @@ def robozinho():
         item = tratamento_item.tratarItem()
         cont = 0
 
+    for i, ctrl_imposto in enumerate(indices_e_impostos):
+
+        verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
+        if verificador == True:
+            return robozinho()
+        tratamento_item = tratamentoItem.TratadorItem(item_fracionado, itens, i, ctrl_imposto)
+        item = tratamento_item.tratarItem()
+        cont = 0
+
         if ctrl_imposto == 0:
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = lista
@@ -312,15 +321,15 @@ def robozinho():
                 if tes == True:
                     return robozinho()
                 operadoresLancamento.escreverTES(tes)
+                operadoresLancamento.inserirDesconto(desc_no_item)
+                operadoresLancamento.inserirFrete(frete_no_item)
+                operadoresLancamento.inserirSeguro(seg_no_item)
+                operadoresLancamento.inserirDespesa(desp_no_item)
                 if tes in ["102", "405", "408"]:
                     operadoresLancamento.zerarImposto()
                 elif tes in ["406", "421", "423"]:
                     operadoresLancamento.zerarImposto()
                     operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
-                operadoresLancamento.inserirDesconto(desc_no_item)
-                operadoresLancamento.inserirFrete(frete_no_item)
-                operadoresLancamento.inserirSeguro(seg_no_item)
-                operadoresLancamento.inserirDespesa(desp_no_item)
                 press("down")
                 cont+=1
                 if len(item) > 1:
@@ -338,14 +347,14 @@ def robozinho():
                 if tes == True:
                     return robozinho()
                 operadoresLancamento.escreverTES(tes)
-                if tes in ["406", "421", "423"]:
-                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                 operadoresLancamento.inserirDesconto(desc_no_item)
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
                 operadoresLancamento.inserirICMS(icms_no_item, bc_icms, aliq_icms)
                 press(["left"]*9)
+                if tes in ["406", "421", "423"]:
+                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                 press("down")
                 cont+=1
                 if len(item) > 1:
@@ -363,16 +372,16 @@ def robozinho():
                 if tes == True:
                     return robozinho()
                 operadoresLancamento.escreverTES(tes)
-                if tes in ["102", "405", "408"]:
-                    operadoresLancamento.zerarImposto()
-                elif tes in ["406", "421", "423"]:
-                    operadoresLancamento.zerarImposto()
-                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                 operadoresLancamento.inserirDesconto(desc_no_item)
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
                 operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
+                if tes in ["102", "405", "408"]:
+                    operadoresLancamento.zerarImposto()
+                elif tes in ["406", "421", "423"]:
+                    operadoresLancamento.zerarImposto()
+                    operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                 press("down")
                 cont+=1
                 if len(item) > 1:
@@ -390,13 +399,13 @@ def robozinho():
                 if tes == True:
                     return robozinho()
                 operadoresLancamento.escreverTES(tes)
-                if tes in ["406", "421", "423", "102", "403", "411"]:
-                    operadoresLancamento.zerarImposto()
                 operadoresLancamento.inserirDesconto(desc_no_item)
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
                 operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi)
+                if tes in ["406", "421", "423", "102", "403", "411"]:
+                    operadoresLancamento.zerarImposto()
                 press("down")
                 cont+=1
                 if len(item) > 1:
@@ -414,14 +423,14 @@ def robozinho():
                 if tes == True:
                     return robozinho()
                 operadoresLancamento.escreverTES(tes)
-                if tes in ["406", "421", "423", "102", "411"]:
-                    operadoresLancamento.zerarImposto()
                 operadoresLancamento.inserirDesconto(desc_no_item)
                 operadoresLancamento.inserirFrete(frete_no_item)
                 operadoresLancamento.inserirSeguro(seg_no_item)
                 operadoresLancamento.inserirDespesa(desp_no_item)
                 operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
                 operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=0)
+                if tes in ["406", "421", "423", "102", "411"]:
+                    operadoresLancamento.zerarImposto()
                 press("down")
                 cont+=1
                 if len(item) > 1:
