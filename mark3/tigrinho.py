@@ -325,6 +325,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -350,6 +351,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -377,6 +379,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -401,6 +404,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -426,6 +430,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -449,6 +454,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -472,6 +478,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
@@ -496,6 +503,7 @@ def robozinho():
                 cont+=1
                 if len(item) > 1:
                     press(["right"]*4)
+                    time.sleep(1)
                     if cont == len(item):
                         press(["left"]*4)
             press("up")
