@@ -177,7 +177,10 @@ def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
             press(["left"]*8)
         else:
             break
-    press(["up"]*cont)
+    if len(quantidade_total) > 10:
+        press(["up"]*cont, interval=20)
+    else:
+        press(["up"]*cont, interval=0.1)
     time.sleep(0.5)
     press(["right"]*7)
     time.sleep(0.5)
