@@ -303,15 +303,6 @@ def robozinho():
         item = tratamento_item.tratarItem()
         cont = 0
 
-    for i, ctrl_imposto in enumerate(indices_e_impostos):
-
-        verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
-        if verificador == True:
-            return robozinho()
-        tratamento_item = tratamentoItem.TratadorItem(item_fracionado, itens, i, ctrl_imposto)
-        item = tratamento_item.tratarItem()
-        cont = 0
-
         if ctrl_imposto == 0:
             for lista in item:
                 desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = lista
@@ -567,13 +558,13 @@ def robozinho():
         primeira_parc = pyperclip.paste()
         ordem_parc = []
         ordem_parc.append(primeira_parc)
-        if primeira_parc != '':
-            utils.descerECopiar
+        if primeira_parc == '001':
+            utils.descerECopiar()
             proxima_parcela = pyperclip.paste()
             ordem_parc.append(proxima_parcela)
             if ordem_parc[-2] != ordem_parc[-1]:
                 while ordem_parc[-2] != ordem_parc[-1]:
-                    utils.descerECopiar
+                    utils.descerECopiar()
                     proxima_parcela = pyperclip.paste()
                     ordem_parc.append(proxima_parcela)
                 ordem_parc.pop()
@@ -583,7 +574,16 @@ def robozinho():
                 for vezes in range(len(ordem_parc)):
                     write(valor_parcela)
                     time.sleep(0.3)
+                    press("left")
                     press("down")
+                valor_parcela = utils.formatador3(valor_parcela)
+                valor_atingido = valor_parcela * len(ordem_parc)
+                if round(valor_atingido) != valor_total_da_nf:
+                    diferenca_NF_siga = valor_atingido - valor_total_da_nf
+                    valor_ultima_parcela = valor_parcela - diferenca_NF_siga
+                    valor_ultima_parcela = "{:.2f}".format(valor_ultima_parcela)
+                    write(valor_ultima_parcela)
+                    time.sleep(0.3)
         utils.clicarNaturezaDuplicata()
         time.sleep(0.6)
         erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
