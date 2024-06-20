@@ -1,6 +1,7 @@
 from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, write
 from pydirectinput import click as mouseClique, moveTo
 import pyscreeze
+import pyperclip
 import time
 
 def encontrarImagem(imagem):
@@ -10,7 +11,7 @@ def encontrarImagem(imagem):
             encontrou = locateOnScreen(imagem, grayscale=True, confidence = 0.8)
             return encontrou
         except:
-            time.sleep(1)
+            time.sleep(0.8)
             cont += 1
             if cont == 3:
                 break
@@ -24,7 +25,7 @@ def encontrarImagemLocalizada(imagem):
             x, y = locateCenterOnScreen(imagem, grayscale=True, confidence=0.92)
             return (x, y)
         except:
-            time.sleep(1)
+            time.sleep(0.8)
             cont += 1
             if cont == 3:
                 break
@@ -67,6 +68,26 @@ def voltarEDescer(passos=1):
 def reiniciarPortal():
     clicarMicrosiga()
     voltarEDescer(passos=3)
+
+def cancelar1():
+    time.sleep(0.8)
+    voltarEDescer()
+    time.sleep(0.5)
+    clicarMicrosiga()
+
+def cancelar2():
+    time.sleep(0.5)
+    cancelarLancamento()
+    voltarEDescer()
+    time.sleep(0.3)
+    clicarMicrosiga()
+
+def escreverNatureza(natureza):
+    press("enter")
+    write(natureza)
+    press("enter")
+    press("left")
+    
 
 def insistirNoClique(imagem, cliques=2):
     while True:
@@ -128,3 +149,74 @@ def mudarSelecao():
     x, y = mudar_a_selecao
     mouseClique(x,y, clicks=4, interval=0.4)
     time.sleep(1)
+    
+
+def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
+    valor_unit = formatador(valor_unit, casas_decimais="{:.6f}")
+    cont = 0
+    quantidade_total = []
+    quantidade_total.append(quantidade_siga)
+    press("left")
+    time.sleep(0.2)
+    hotkey("ctrl", "c", interval=0.5)
+    cod_item = pyperclip.paste()
+    try:
+        while sum(quantidade_total) < quantidade_real:
+            press("down")
+            time.sleep(0.5)
+            hotkey("ctrl", "c", interval=0.8)
+            item_dividido = pyperclip.paste()
+            cont += 1
+            if item_dividido == cod_item:
+                press(["right"]*6)
+                hotkey("ctrl", "c", interval=0.8)
+                qtd_dividida = pyperclip.paste()
+                qtd_dividida = formatador4
+                (qtd_dividida)
+                quantidade_total.append(qtd_dividida)
+                press("right")
+                write(valor_unit, interval=0.05)
+                press(["left"]*8)
+            else:
+                break
+    except TypeError:
+        pass
+    if len(quantidade_total) > 10:
+        press(["up"]*cont, interval=20)
+    else:
+        press(["up"]*cont, interval=0.1)
+    time.sleep(0.5)
+    press(["right"]*7)
+    time.sleep(0.5)
+    write(valor_unit, interval=0.05)
+    return quantidade_total
+
+def cancelarEMudar():
+    cancelarLancamento()
+    mudarSelecao()
+
+
+def clicarValorParcela():
+    valor_parcela = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
+    while type(valor_parcela) != tuple:
+        moveTo(180, 200)
+        aba_duplicatas = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\AbaDuplicatas.png')
+        x, y =  aba_duplicatas
+        mouseClique(x,y, clicks=4, interval=0.1)
+        valor_parcela = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\clicarParcela.png')
+        time.sleep(0.4)
+    x, y = valor_parcela
+    mouseClique(x,y)
+
+
+def clicarNaturezaDuplicata():
+    while True:
+        natureza_duplicata_clique = encontrarImagemLocalizada(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\naturezaDuplicata.png')
+        if type(natureza_duplicata_clique) != tuple:
+            moveTo(150, 250)
+            mouseClique(x,y, clicks=4, interval=0.1)
+            time.sleep(0.3)
+        else:
+            break
+    x, y = natureza_duplicata_clique
+    mouseClique(x,y)
