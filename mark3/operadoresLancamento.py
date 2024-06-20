@@ -29,11 +29,11 @@ def verificarValorDoItem(lista, indiceX):
     if valor_do_item_no_siga != valor_do_item_na_NF:
         write(lista[indiceX][0])
         time.sleep(0.8)
-        encontrar = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\valitenErrado.png')
+        encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
         if type(encontrar) == pyscreeze.Box:
             press("enter")
             time.sleep(0.5)
-            encontrar = utils.encontrarImagem(r'C:\Users\User\OneDrive - EQS Engenharia Ltda\Documentos\GitHub\GitHubDoJessezinho\mark3\Imagens\valitenErrado.png')
+            encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
             if type(encontrar) == pyscreeze.Box:
                 press("enter")
             press("esc")
@@ -61,18 +61,15 @@ def verificarValorDoItem(lista, indiceX):
                         escreverValorUnit(valor_unit_convertido)
                     else:
                         quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
-                        try:
-                            if sum(quantidade_total) != quantidade_convertida:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_convertida
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                        except TypeError:
+                        if sum(quantidade_total) != quantidade_convertida:
                             cancelar_lancamento = True
-                            utils.cancelarEMudar()
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_convertida
+                                razoes.append(razao)
+                            press(["right"]*3)
                 elif "pilha" in desc_prod:
                     quantidade_convertida = quantidade_NF * 2
                     if quantidade_convertida == quantidade_siga:
@@ -80,18 +77,15 @@ def verificarValorDoItem(lista, indiceX):
                         escreverValorUnit(valor_unit_convertido)
                     else:
                         quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
-                        try:
-                            if sum(quantidade_total) != quantidade_convertida:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_convertida
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                        except TypeError:
+                        if sum(quantidade_total) != quantidade_convertida:
                             cancelar_lancamento = True
-                            utils.cancelarEMudar()
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_convertida
+                                razoes.append(razao)
+                            press(["right"]*3)
                 elif "gas" in desc_prod:
                     press("left")
                     hotkey("ctrl", "c", interval=0.5)
@@ -99,18 +93,15 @@ def verificarValorDoItem(lista, indiceX):
                     press("right")
                     if cod_do_item == "0651000053":
                         quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
-                        try:
-                            if sum(quantidade_total) != quantidade_NF:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_NF
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                        except TypeError:
+                        if sum(quantidade_total) != quantidade_NF:
                             cancelar_lancamento = True
-                            utils.cancelarEMudar()
+                            utils.cancelarLancamento()
+                            utils.mudarSelecao()
+                        else:
+                            for qtd in quantidade_total:
+                                razao = qtd / quantidade_NF
+                                razoes.append(razao)
+                            press(["right"]*3)
                     else:
                         valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                         escreverValorUnit(valor_unit_convertido)
@@ -119,18 +110,15 @@ def verificarValorDoItem(lista, indiceX):
                     escreverValorUnit(valor_unit_convertido)
                 else:
                     quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
-                    try:
-                        if sum(quantidade_total) != quantidade_NF:
-                            cancelar_lancamento = True
-                            utils.cancelarEMudar()
-                        else:
-                            for qtd in quantidade_total:
-                                razao = qtd / quantidade_NF
-                                razoes.append(razao)
-                            press(["right"]*3)
-                    except TypeError:
+                    if sum(quantidade_total) != quantidade_NF:
                         cancelar_lancamento = True
-                        utils.cancelarEMudar()
+                        utils.cancelarLancamento()
+                        utils.mudarSelecao()
+                    else:
+                        for qtd in quantidade_total:
+                            razao = qtd / quantidade_NF
+                            razoes.append(razao)
+                        press(["right"]*3)
         else:
             press("left")
     return cancelar_lancamento, razoes
@@ -150,9 +138,9 @@ def copiarNatureza():
     elif natureza in ["2020082", "2020083"]:
         natureza = "2050008"
         utils.escreverNatureza(natureza)
-    
+   
     return natureza
-
+    
 
 def selecionarCaso(natureza):
     codigo = {
@@ -225,7 +213,7 @@ def definirTES(codigo, ctrl_imposto):
             hotkey("ctrl", "c", interval=0.5)
             item_especifico = pyperclip.paste()
             press(["right"]*2)
-            if item_especifico in ["1312000156", "999920091200", "999949011000", "1303102887", "1302578", "1303100449", "1303100601", "1303100602", "1303100603", "1312000122", "1312000124", "1312000125", "1312000126", "1312000144", "1308002", "1312024", "1303100550", "1303100600", "1303101290", "1303101291", "1303103835", "1303103836", "1303103837", "1312000141"]:
+            if item_especifico in ["999920091200", "999949011000", "1303102887", "1302578", "1303100449", "1303100601", "1303100602", "1303100603", "1312000122", "1312000124", "1312000125", "1312000126", "1312000144", "1308002", "1312024", "1303100550", "1303100600", "1303101290", "1303101291", "1303103835", "1303103836", "1303103837", "1312000141"]:
                 if ctrl_imposto != 0:
                     tes = "421"
                 else:
