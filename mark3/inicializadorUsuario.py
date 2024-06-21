@@ -6,9 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import utils
 import pyscreeze
+         
 
-
-FAILSAFE = True
+FAILSAFE = False
 
 def inicializarUsuario():
     ver_documento = r'C:\Users\Usuario\Desktop\mark4\Imagens\verDocumentos.png'
@@ -46,6 +46,4 @@ def inicializarUsuario():
     hotkey("alt", "tab", interval=0.1)
     sleep(7)
     utils.checarFailsafe()
-
-
 
