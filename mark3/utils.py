@@ -1,4 +1,4 @@
-from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, position, write, FailSafeException
+from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, position, write, FAILSAFE, FailSafeException
 from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
 from pyperclip import paste
@@ -6,6 +6,7 @@ from time import sleep
 import pyscreeze
 
 
+FAILSAFE = True
 
 def checarFailsafe():
     z, f = position()
