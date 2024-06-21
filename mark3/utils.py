@@ -281,11 +281,8 @@ def acrescerLista(lista, lista2, link):
 
 
 def tratarLista(lista1, lista2):
-    print(lista1, lista2)
     lista_unica = lista1 + lista2
-    print(lista1)
     lista_unica = list(set(lista_unica))
-    print(lista1)
     return lista_unica
 
 
