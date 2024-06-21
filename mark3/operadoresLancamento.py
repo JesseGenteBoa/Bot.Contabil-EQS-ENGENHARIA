@@ -1,9 +1,11 @@
-from pyautogui import hotkey, press, write, FailSafeException
+from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
 from pyperclip import paste
 from time import sleep
 import pyscreeze
 import utils
 
+
+FAILSAFE = True
 
 def escreverValorUnit(valor_unit_convertido, passos=6):
     press(["right"]*passos)
