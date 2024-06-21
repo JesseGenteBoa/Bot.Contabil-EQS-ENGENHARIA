@@ -1,4 +1,4 @@
-from pyautogui import hotkey, press, write, FailSafeException
+from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
 from pyperclip import paste
 from time import sleep
 from selenium import webdriver                         
@@ -6,7 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import utils
 import pyscreeze
-         
+
+
+FAILSAFE = True
 
 def inicializarUsuario():
     ver_documento = r'C:\Users\Usuario\Desktop\mark4\Imagens\verDocumentos.png'
