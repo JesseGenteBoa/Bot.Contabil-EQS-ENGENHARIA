@@ -102,6 +102,17 @@ def abrirGui():
     )
     canvas.place(x = 0, y = 0)
 
+    canvas = Canvas(
+        window,
+        bg = "#E7E7E7",
+        height = 292,
+        width = 788,
+        bd = 0,
+        highlightthickness = 0,
+        relief="solid",
+    )
+    canvas.place(x = 0, y = 186)
+
     label_1_imagem = PhotoImage(
         file=relative_to_assets("imagem_lancadas.png"))
     label_1 = Label(
@@ -283,7 +294,7 @@ def abrirGui():
     )
     button_2.place(
         x=101.0,
-        y=150.0,
+        y=155.0,
         width=590,
         height=60
     )
@@ -379,3 +390,5 @@ def abrirGui():
 
     window.resizable(False, False)
     window.mainloop()
+
+
