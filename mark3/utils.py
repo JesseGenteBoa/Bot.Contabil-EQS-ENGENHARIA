@@ -6,7 +6,7 @@ from time import sleep
 import pyscreeze
 
 
-FAILSAFE = True
+FAILSAFE = False
 
 def checarFailsafe():
     z, f = position()
@@ -291,7 +291,6 @@ def abrirLinkSelenium(lista):
     options = webdriver.ChromeOptions()
     options.add_argument(r'user-data-dir=C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Profile Selenium')
     driver = webdriver.Chrome(options=options)
-    print(lista)
     if len(lista) > 1:
         try:
             driver.get(lista[0])
