@@ -104,7 +104,7 @@ def abrirGui():
 
     canvas = Canvas(
         window,
-        bg = "#E7E7E7",
+        bg = "#E2E2E2",
         height = 292,
         width = 788,
         bd = 0,
@@ -370,7 +370,7 @@ def abrirGui():
     canvas.create_rectangle(
         14.999999999999886,
         21.000000000000057,
-        767.9999999999999,
+        770.9999999999999,
         406.00000000000006,
         fill="#ffffff",
         outline="")
