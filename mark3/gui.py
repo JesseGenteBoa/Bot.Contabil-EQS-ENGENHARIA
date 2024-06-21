@@ -2,11 +2,13 @@ from pathlib import Path
 from PIL import ImageTk, Image
 from tkinter import Tk, Canvas, Button, PhotoImage, Label, IntVar
 from tigrinho import robozinho, FailSafeException
-from pyautogui import FailSafeException
+from pyautogui import FAILSAFE, FailSafeException
 from time import sleep
 from utils import abrirLinkSelenium, tratarLista, checarFailsafe
 from inicializadorUsuario import inicializarUsuario
 
+
+FAILSAFE = True
 
 continuar_loop = False
 lancadas = 0
