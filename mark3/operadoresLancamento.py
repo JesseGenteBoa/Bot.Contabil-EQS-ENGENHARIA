@@ -5,7 +5,7 @@ import pyscreeze
 import utils
 
 
-FAILSAFE = True
+FAILSAFE = False
 
 def escreverValorUnit(valor_unit_convertido, passos=6):
     press(["right"]*passos)
@@ -384,4 +384,3 @@ def inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12):
     press(["left"]*14)
     utils.checarFailsafe()
 
-    
