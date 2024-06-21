@@ -1,15 +1,15 @@
 from pathlib import Path
 from PIL import ImageTk, Image
-from tkinter import Tk, Canvas, Button, PhotoImage, Label, IntVar
+from tkinter import Tk, Canvas, Button, PhotoImage, Label, IntVar, Toplevel
 from tigrinho import robozinho, FailSafeException
 from pyautogui import FAILSAFE, FailSafeException
 from time import sleep
 from utils import abrirLinkSelenium, tratarLista, checarFailsafe
 from inicializadorUsuario import inicializarUsuario
+import mensagens
 
 
-FAILSAFE = True
-
+FAILSAFE = False
 continuar_loop = False
 lancadas = 0
 sem_boleto = []
@@ -67,7 +67,7 @@ def abrirGui():
         try:
             funcao()
             checarFailsafe()
-        except FailSafeException:
+        except:
             raise FailSafeException
 
 
@@ -79,6 +79,16 @@ def abrirGui():
 
     cor_fundo = "#FFFFFF"
     window = Tk()
+  
+    bot = mensagens.Mensagens(window)
+
+    bot.mostrarInfo(bot.info, bot.texto1)
+    bot.mostrarInfo(bot.info2, bot.texto2)
+    bot.mostrarErro(bot.texto3)
+    bot.mostrarInfo(bot.info4, bot.texto4)
+    bot.mostrarAviso(bot.info5, bot.texto5)
+
+    window.deiconify()
 
     robozinhoIcon = r"C:\Users\Usuario\Desktop\mark4\Imagens\robozinho.ico"
     window.iconbitmap(robozinhoIcon)
@@ -392,5 +402,4 @@ def abrirGui():
 
     window.resizable(False, False)
     window.mainloop()
-
 
