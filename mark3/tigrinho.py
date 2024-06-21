@@ -12,7 +12,7 @@ import tratamentoItem
 import operadoresLancamento
 
 
-FAILSAFE = True
+FAILSAFE = False
 contador = 0
 sem_boleto = []
 processo_bloqueado = []
