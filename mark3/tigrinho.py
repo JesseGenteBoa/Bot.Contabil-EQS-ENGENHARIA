@@ -1,4 +1,4 @@
-from pyautogui import hotkey, press, write, FailSafeException
+from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
 from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
 from selenium.webdriver.common.by import By
@@ -12,6 +12,7 @@ import tratamentoItem
 import operadoresLancamento
 
 
+FAILSAFE = True
 contador = 0
 sem_boleto = []
 processo_bloqueado = []
