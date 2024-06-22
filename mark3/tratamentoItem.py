@@ -56,7 +56,6 @@ class TratadorItem:
             base_ipi, aliq_ipi = base_e_aliq_ipi
             if self.item_fracionado != []:
                 for razao in self.item_fracionado:
-                    
                     desc = desc_no_item * razao
                     frete = frete_no_item * razao
                     seg = seg_no_item * razao
