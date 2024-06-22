@@ -141,10 +141,10 @@ def insistirNoClique(imagem, cliques=2):
             checarFailsafe()
             try:
                 mouseClique(250, 150)
-                checarFailsafe()
                 elemento = encontrarImagemLocalizada(imagem)
                 a, b = elemento
                 sleep(0.5)
+                checarFailsafe()
                 mouseClique(a,b, clicks=cliques, interval=0.1)
                 sleep(0.5)
                 break
