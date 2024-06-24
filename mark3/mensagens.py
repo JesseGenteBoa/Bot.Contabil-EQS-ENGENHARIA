@@ -32,6 +32,7 @@ Em seguida, vá para a rotina "Processo Pagamento" no módulo Compras; faça o f
 Aberta a rotina, clique em "Ver Documentos", isso abrirá o portal de compras da EQS; faça o login (esse processo sofre daquela instabilidade mencionada anteriormente, pode ser necessário logar 2x no portal, por via das duvidas, clique em "Ver Documentos" novamente e veja se abre o processo). Feito isso, agora é só inicializar o bot realizando o processo do botão "Inicializar Usuário"; quando concluído, basta dar o play e deixar acontecer!
  
 Para interromper ou finalizar a execução do bot, basta levar o cursor do mouse até o limite do canto superior esquerdo da sua tela e aguardar 10 segundos. Não é preciso fechar a janela do bot, aliás, oriento que a fechem somente no fim do expediente ou quando não quiserem mais acionar o bot, mas o bot pode ser interrompido e reacionado quantas vezes for necessário apenas clicando no botão "Play".
+Se a tela do bot estiver preta, mantenha o cursor no canto extremo do monitor e aguarde mais um pouco.
 """
 
         self.info5 = "Atenção!"
