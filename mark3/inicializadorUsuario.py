@@ -44,6 +44,6 @@ def inicializarUsuario():
     hotkey("alt", "tab", interval=0.1)
     hotkey("ctrl", "w")
     hotkey("alt", "tab", interval=0.1)
-    sleep(7)
+    sleep(5)
     utils.checarFailsafe()
 
