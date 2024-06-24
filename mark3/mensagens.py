@@ -4,15 +4,9 @@ class Mensagens:
     def __init__(self, root):
         self.root = root
         self.root.withdraw()
-        
-        self.info = "Bem-vindo!"
-        self.texto1 = """Olá! Bem vindo ao Bot.Contabil
 
-Vamos explorar como operar esta automação de forma eficiente."""
-        
-
-        self.info2 = "Introdução"
-        self.texto2 = """A seguir, você verá a nossa interface de controle da automação, nela temos indicadores de resultados e alguns botões de controle bem intuitivos. Passarei uma breve explicação do que cada um faz. 
+        self.info = "Bem-vindo ao Bot.Contabil!"
+        self.texto = """A seguir, você verá a nossa interface de controle da automação, nela temos indicadores de resultados e alguns botões de controle bem intuitivos. Passarei uma breve explicação do que cada um faz. 
 
 Botão Inicializar Usuário: Esse botão serve para que o bot possa logar no portal de compras da EQS, - Devido ao servidor trabalhar sempre no limite da capacidade necessária que a empresa demanda, essa etapa pode enfrentar instabilidade e não atingir o resultado esperado de começo. Para garantir um bom funcionamento, execute essa função 2x, primeiro aperte uma e deixe execultar, quando finalizado, aperte novamente para execultar outra vez -.
  
@@ -20,6 +14,10 @@ Botão "Play": Esse botão é o que ativa o Bot, ele só precisa ser acionado 1x
  
 Os demais botões servem apenas para abrir os processos que representam."""
 
+        self.info2 = "Fiscal IO"
+        self.texto2 = """Ao lado do bot temos a plataforma Fiscal IO. Nela você baixa todos os XMLs necessários para que o bot realize os lançamentos.
+
+Vou deixer um breve manual de como baixar os XMLs nessa plataforma."""
 
         self.texto3 = """Cuidado!
 Isso não é o e-commerce da Koerich, não vá apertar todos os botões ao mesmo tempo, apenas um por vez!"""
@@ -40,6 +38,7 @@ Para interromper ou finalizar a execução do bot, basta levar o cursor do mouse
         self.texto5 = """Atenção!
 
 Como mencionado anteriormente, nosso servidor está sempre sobrecarregado, o que pode gerar instabilidade no bot durante sua execução, fazendo-o "crachar" e não conseguir lançar mais nenhum processo. Se acaso perceber algum desses momentos de instabilidade do servidor, verifique se o bot continua execultando seus lançamentos ou se está travado em alguma tela. Se estiver travado, realize o procedimento de interrupção, depois inicialize o usuario novamente e então reacione o robô. Devido alguns momentos de instabilidade serem imperceptiveis, aconcelho que verifique o monitor do bot no mínimo 1x a cada duas horas."""
+
 
     def mostrarInfo(self, info, texto):
         messagebox.showinfo(info, texto)
