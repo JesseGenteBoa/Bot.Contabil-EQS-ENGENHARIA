@@ -82,7 +82,7 @@ def abrirGui():
   
     bot = mensagens.Mensagens(window)
 
-    bot.mostrarInfo(bot.info, bot.texto1)
+    bot.mostrarInfo(bot.info, bot.texto)
     bot.mostrarInfo(bot.info2, bot.texto2)
     bot.mostrarErro(bot.texto3)
     bot.mostrarInfo(bot.info4, bot.texto4)
