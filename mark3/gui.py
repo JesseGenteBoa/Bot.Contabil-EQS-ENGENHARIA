@@ -148,7 +148,6 @@ def abrirGui():
         bg="#ffffff",
         relief="groove"
         )
-    
     label_sub_1.place(
         x=45,
         y=306,
