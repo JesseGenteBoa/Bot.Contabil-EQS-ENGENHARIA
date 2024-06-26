@@ -350,7 +350,6 @@ def robozinho():
             cont = 0
             utils.checarFailsafe()
 
-
             if ctrl_imposto == 0:
                 for lista in item:
                     desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, icmsST_no_item, ipi_no_item = lista
