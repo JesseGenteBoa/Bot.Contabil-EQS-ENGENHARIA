@@ -198,6 +198,8 @@ def cancelarLancamento():
     
 
 def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
+    cancelar_lancamento = False
+    razoes = []
     valor_unit = formatador(valor_unit, casas_decimais="{:.6f}")
     cont = 0
     quantidade_total = []
@@ -237,7 +239,21 @@ def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
     sleep(0.5)
     write(valor_unit, interval=0.05)
     checarFailsafe()
-    return quantidade_total
+    try:
+        if sum(quantidade_total) != quantidade_real:
+            cancelar_lancamento = True
+            cancelarEMudar()
+        else:
+            for qtd in quantidade_total:
+                razao = qtd / quantidade_real
+                razoes.append(razao)
+            press(["right"]*3)
+        checarFailsafe()
+    except TypeError:
+        cancelar_lancamento = True
+        cancelarEMudar()
+        checarFailsafe()
+        return razoes, cancelar_lancamento
 
 
 def clicarValorParcela():
