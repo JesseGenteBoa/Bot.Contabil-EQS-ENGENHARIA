@@ -1,5 +1,5 @@
 from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
-from pydirectinput import click as mouseClique, moveTo
+from pydirectinput import click as mouseClique, moveTo, FAILSAFE
 from selenium import webdriver                         
 from selenium.webdriver.common.by import By
 from pyperclip import paste, copy     
@@ -12,6 +12,7 @@ import tratamentoItem
 import operadoresLancamento
 
 
+FAILSAFE = False
 FAILSAFE = False
 contador = 0
 sem_boleto = []
@@ -370,11 +371,7 @@ def robozinho():
                         operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                         #SEQUENCIA LOGICA DE LANÇAMENTO SEM IMPOSTO
@@ -397,11 +394,7 @@ def robozinho():
                         operadoresLancamento.zerarImposto(passos_ida=12, passos_volta=13)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS
@@ -426,11 +419,7 @@ def robozinho():
                     operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST
@@ -452,11 +441,7 @@ def robozinho():
                         operadoresLancamento.zerarImposto()
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA IPI
@@ -479,11 +464,7 @@ def robozinho():
                     operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=0)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMSST E IPI
@@ -504,11 +485,7 @@ def robozinho():
                     operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=3)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E IPI
@@ -529,14 +506,10 @@ def robozinho():
                     operadoresLancamento.inserirICMSST(icmsST_no_item, base_icms_ST, aliq_icms_ST, passosST=0)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
-                                                #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E ICMSST
+                                            #SEQUENCIA LOGICA DE LANÇAMENTO SÓ PARA ICMS E ICMSST
             elif ctrl_imposto == 7:
                 for lista in item:
                     desc_no_item, frete_no_item, seg_no_item, desp_no_item, icms_no_item, base_icms, aliq_icms, icmsST_no_item, base_icms_ST, aliq_icms_ST, ipi_no_item, base_ipi, aliq_ipi = lista
@@ -555,11 +528,7 @@ def robozinho():
                     operadoresLancamento.inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12)
                     press("down")
                     cont+=1
-                    if len(item) > 1:
-                        press(["right"]*4)
-                        sleep(1)
-                        if cont == len(item):
-                            press(["left"]*4)
+                    operadoresLancamento.corrigirPassosHorizontal(cont, item)
                 press("up")
                 utils.checarFailsafe()
                                             #SEQUENCIA LOGICA DE LANÇAMENTO PARA TODOS OS IMPOSTOS
