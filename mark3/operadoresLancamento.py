@@ -18,9 +18,7 @@ def escreverValorUnit(valor_unit_convertido, passos=6):
  
  
 def verificarValorDoItem(lista, indiceX):
-    razoes = []
     sleep(0.7)
-    cancelar_lancamento = False
     press(["right"]*4)
     sleep(0.7)
     hotkey("ctrl", "c")
@@ -70,21 +68,7 @@ def verificarValorDoItem(lista, indiceX):
                         escreverValorUnit(valor_unit_convertido)
                         utils.checarFailsafe()
                     else:
-                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
-                        try:
-                            if sum(quantidade_total) != quantidade_convertida:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_convertida
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                            utils.checarFailsafe()
-                        except TypeError:
-                            cancelar_lancamento = True
-                            utils.cancelarEMudar()
-                            utils.checarFailsafe()
+                        razoes, cancelar_lancamento = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
                 elif "pilha" in desc_prod:
                     quantidade_convertida = quantidade_NF * 2
                     if quantidade_convertida == quantidade_siga:
@@ -92,21 +76,7 @@ def verificarValorDoItem(lista, indiceX):
                         escreverValorUnit(valor_unit_convertido)
                         utils.checarFailsafe()
                     else:
-                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
-                        try:
-                            if sum(quantidade_total) != quantidade_convertida:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_convertida
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                            utils.checarFailsafe()
-                        except TypeError:
-                            cancelar_lancamento = True
-                            utils.cancelarEMudar()
-                            utils.checarFailsafe()
+                        razoes, cancelar_lancamento = utils.contarItemFracionado(quantidade_siga, valor_unit_convertido, quantidade_convertida)
                 elif "gas" in desc_prod:
                     press("left")
                     hotkey("ctrl", "c", interval=0.5)
@@ -114,21 +84,7 @@ def verificarValorDoItem(lista, indiceX):
                     press("right")
                     utils.checarFailsafe()
                     if cod_do_item == "0651000053":
-                        quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
-                        try:
-                            if sum(quantidade_total) != quantidade_NF:
-                                cancelar_lancamento = True
-                                utils.cancelarEMudar()
-                            else:
-                                for qtd in quantidade_total:
-                                    razao = qtd / quantidade_NF
-                                    razoes.append(razao)
-                                press(["right"]*3)
-                            utils.checarFailsafe()
-                        except TypeError:
-                            cancelar_lancamento = True
-                            utils.cancelarEMudar()
-                            utils.checarFailsafe()
+                        razoes, cancelar_lancamento = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
                     else:
                         valor_unit_convertido = valor_do_item_na_NF / quantidade_siga
                         escreverValorUnit(valor_unit_convertido)
@@ -138,26 +94,18 @@ def verificarValorDoItem(lista, indiceX):
                     escreverValorUnit(valor_unit_convertido)
                     utils.checarFailsafe()
                 else:
-                    quantidade_total = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
-                    try:
-                        if sum(quantidade_total) != quantidade_NF:
-                            cancelar_lancamento = True
-                            utils.cancelarEMudar()
-                        else:
-                            for qtd in quantidade_total:
-                                razao = qtd / quantidade_NF
-                                razoes.append(razao)
-                            press(["right"]*3)
-                        utils.checarFailsafe()
-                    except TypeError:
-                        cancelar_lancamento = True
-                        utils.cancelarEMudar()
-                        utils.checarFailsafe()
+                    razoes, cancelar_lancamento = utils.contarItemFracionado(quantidade_siga, valor_unit_NF, quantidade_NF)
         else:
             press("left")
         utils.checarFailsafe()
     return cancelar_lancamento, razoes
 
+def corrigirPassosHorizontal(cont, item):
+    if len(item) > 1:
+        press(["right"]*4)
+        sleep(1)
+        if cont == len(item):
+            press(["left"]*4)
 
 def copiarNatureza():
     press("right", interval=0.7)
