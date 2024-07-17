@@ -253,7 +253,7 @@ def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
         cancelar_lancamento = True
         cancelarEMudar()
         checarFailsafe()
-        return razoes, cancelar_lancamento
+    return razoes, cancelar_lancamento
 
 
 def clicarValorParcela():
