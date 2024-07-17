@@ -18,6 +18,8 @@ def escreverValorUnit(valor_unit_convertido, passos=6):
  
  
 def verificarValorDoItem(lista, indiceX):
+    cancelar_lancamento = False
+    razoes = []
     sleep(0.7)
     press(["right"]*4)
     sleep(0.7)
