@@ -295,6 +295,20 @@ def acrescerLista(lista, lista2, link):
         verificador = lista2.index(link)
     except:
         lista2.append(link)
+        email = outlook.CreateItem(0)
+        email.To = "entrada.doc@eqsengenharia.com.br"
+        email.Subject = "DANFE PARA LANÇAR"
+        email.HTMLBody = f"""
+        <p>Olá, colaborador!</br></br></p>
+
+        <p></br>Não consegui lançar o processo abaixo, pode me ajudar?</br></p>
+        <p>{link}</br></p>
+        <p></br>Situação: {variavel}</br></p>
+
+        <p></br>Atenciosamente,</br></p>
+        <h3>Bot.Contabil</br></h3>
+        """
+        email.Send()
 
 
 def tratarLista(lista1, lista2):
