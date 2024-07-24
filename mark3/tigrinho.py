@@ -20,13 +20,13 @@ processo_bloqueado = []
 processo_errado = []
 XML_ilegivel = []
 nao_lancadas = []
+processos_ja_vistos = []
 mensagem_sb = "Processo sem boleto."
 mensagem_pb = "Processo Bloqueado."
 mensagem_pe = "Processo com algum erro impeditivo de lançamento."
 mensagem_xi = "Processo com um XML que não consigo ler."
 outlook = win32.Dispatch('outlook.application')
 
-processos_ja_vistos = []
 cnpj_dict = {'80464753000197': '02', '80464753000430': '04', '80464753000510': '05', '80464753000782': '07', '80464753000863': '08', '80464753000944': '09', '80464753001088': '10', '80464753001169': '11', '80464753001240': '12', '80464753001320': '13', '80464753001401': '14', '80464753001592': '15', '80464753001673': '16', '80464753001916': '19', '80464753002050': '20', '80464753002130': '21', '80464753002211': '22', '80464753002564': '25', '80464753002645': '26', '80464753002807': '28', '80464753002998': '29', '80464753003021': '30', '80464753003102': '31', '80464753003293': '32', '80464753003374': '33', '80464753003617': '34', '80464753003536': '35', '80464753003455': '36', '80464753003706': '37', '80464753003960': '39', '80464753004001': '40', '80464753004184': '41', '80464753004265': '42', '80464753004346': '43', '80464753004699': '46', '80464753004770': '47', '80464753004850': '48', '80464753004931': '49', '80464753005075': '50', '80464753005156': '51', '80464753005407': '54', '80464753005580': '55', '80464753005660': '56', '80464753005741': '57', '80464753005822': '58', '80464753005903': '59', '80464753006047': '60'}
 
 
@@ -363,6 +363,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
