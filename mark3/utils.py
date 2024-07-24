@@ -286,7 +286,7 @@ def clicarNaturezaDuplicata():
     checarFailsafe()
 
 
-def acrescerLista(lista, lista2, link):
+def acrescerLista(lista, lista2, link, outlook, variavel):
     try:
         verificador = lista.index(link)
     except:
