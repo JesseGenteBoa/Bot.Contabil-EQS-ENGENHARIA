@@ -9,13 +9,20 @@ class ProcessadorXML:
         self.itens = []
 
     def processarTotaisNotaFiscal(self):
-        totais_nota_fiscal = self.doc["nfeProc"]["NFe"]["infNFe"]["total"]["ICMSTot"]
-
+        try:
+            totais_nota_fiscal = self.doc["nfeProc"]["NFe"]["infNFe"]["total"]["ICMSTot"]
+        except KeyError:
+            totais_nota_fiscal = self.doc["enviNFe"]["NFe"]["infNFe"]["total"]["ICMSTot"]
+ 
         valor_total_da_nf = totais_nota_fiscal["vNF"]
         valor_total_da_nf = formatador2(valor_total_da_nf)
         valor_total_da_nf = float(valor_total_da_nf)
-
-        cnpj_filial_de_entrega = self.doc["nfeProc"]["NFe"]["infNFe"]["dest"]["CNPJ"]
+ 
+        try:
+            cnpj_filial_de_entrega = self.doc["nfeProc"]["NFe"]["infNFe"]["dest"]["CNPJ"]
+        except KeyError:
+            cnpj_filial_de_entrega = self.doc["enviNFe"]["NFe"]["infNFe"]["dest"]["CNPJ"]
+ 
         filial_xml = self.cnpj_dict[cnpj_filial_de_entrega]
 
         return valor_total_da_nf, filial_xml
@@ -169,4 +176,3 @@ class ProcessadorXML:
             pass
 
         return self.itens, self.indices_e_impostos
-
