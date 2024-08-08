@@ -5,7 +5,7 @@ class Mensagens:
         self.root = root
         self.root.withdraw()
 
-        self.info = "Bem-vindo ao Bot.Contabil!"
+        self.info = " Bem-vindo ao Bot.Contabil!"
         self.texto = """A seguir, você verá a nossa interface de controle da automação, nela temos indicadores de resultados e alguns botões de controle bem intuitivos. Passarei uma breve explicação do que cada um faz. 
 
 Botão Inicializar Usuário: Esse botão serve para que o bot possa logar no portal de compras da EQS, - Devido ao servidor trabalhar sempre no limite da capacidade necessária que a empresa demanda, essa etapa pode enfrentar instabilidade e não atingir o resultado esperado de começo. Para garantir um bom funcionamento, execute essa função 2x, primeiro aperte uma e deixe execultar, quando finalizado, aperte novamente para execultar outra vez -.
