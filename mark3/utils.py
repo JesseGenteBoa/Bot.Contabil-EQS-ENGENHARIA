@@ -1,4 +1,3 @@
-
 from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, position, write, FAILSAFE, FailSafeException
 from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
@@ -77,13 +76,13 @@ def descerECopiar():
     hotkey("ctrl", "c", interval=0.1)
     checarFailsafe()
 
-def clicarMicrosiga(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\microsiga.png'):
+def clicarMicrosiga(imagem=r'_internal\Imagens\microsiga.png'):
     x, y = encontrarImagemLocalizada(imagem)
     mouseClique(x, y)
     checarFailsafe()
 
 def mudarSelecao():
-    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\mudarASelecao.png')
+    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'_internal\Imagens\mudarASelecao.png')
     x, y = mudar_a_selecao
     mouseClique(x,y, clicks=4, interval=0.4)
     sleep(1)
@@ -160,16 +159,16 @@ def insistirNoClique(imagem, cliques=2):
 
 
 def clicarDadosDaNota(): 
-    encontrar = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\DadosDaNota.png')
+    encontrar = encontrarImagemLocalizada(r'_internal\Imagens\DadosDaNota.png')
     if type(encontrar) != tuple:            
-        insistirNoClique(r'C:\Users\Usuario\Desktop\mark4\Imagens\DadosDaNota.png')
+        insistirNoClique(r'_internal\Imagens\DadosDaNota.png')
         sleep(0.5)
         checarFailsafe()
     else:
         x, y = encontrar
         mouseClique(x,y, clicks=2)
     try:
-        aparece_enter = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\NCMsegue.png')
+        aparece_enter = encontrarImagem(r'_internal\Imagens\NCMsegue.png')
         if type(aparece_enter) == pyscreeze.Box:
             sleep(0.5)
             press("enter")
@@ -180,21 +179,21 @@ def clicarDadosDaNota():
 
 
 def cancelarLancamento():
-    cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarLancamento.png')
+    cancelar_lancamento_click = encontrarImagemLocalizada(r'_internal\Imagens\CancelarLancamento.png')
     x, y = cancelar_lancamento_click
     sleep(0.5)
     mouseClique(x,y, clicks=3, interval=0.1)
     checarFailsafe()
     while True:
-        cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
+        cancelar_lancamento_click = encontrarImagemLocalizada(r'_internal\Imagens\salvarLancamento.png')
         if type(cancelar_lancamento_click) == tuple:
             mouseClique(x,y, clicks=2, interval=0.1)
             checarFailsafe()
         else:
             break
-    aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
+    aguarde = encontrarImagem(r'_internal\Imagens\Aguarde.png') 
     while type(aguarde) == pyscreeze.Box:
-        aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
+        aguarde = encontrarImagem(r'_internal\Imagens\Aguarde.png') 
         sleep(1)
     checarFailsafe()
 
@@ -259,14 +258,14 @@ def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
 
 
 def clicarValorParcela():
-    valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+    valor_parcela = encontrarImagemLocalizada(r'_internal\Imagens\clicarParcela.png')
     while type(valor_parcela) != tuple:
         moveTo(180, 200)
-        aba_duplicatas = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbaDuplicatas.png')
+        aba_duplicatas = encontrarImagemLocalizada(r'_internal\Imagens\AbaDuplicatas.png')
         x, y =  aba_duplicatas
         checarFailsafe()
         mouseClique(x,y, clicks=4, interval=0.1)
-        valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+        valor_parcela = encontrarImagemLocalizada(r'_internal\Imagens\clicarParcela.png')
         sleep(0.4)
     x, y = valor_parcela
     mouseClique(x,y)
@@ -275,7 +274,7 @@ def clicarValorParcela():
 
 def clicarNaturezaDuplicata():
     while True:
-        natureza_duplicata_clique = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\naturezaDuplicata.png')
+        natureza_duplicata_clique = encontrarImagemLocalizada(r'_internal\Imagens\naturezaDuplicata.png')
         checarFailsafe()
         if type(natureza_duplicata_clique) != tuple:
             moveTo(150, 250)
