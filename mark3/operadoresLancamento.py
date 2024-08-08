@@ -33,12 +33,12 @@ def verificarValorDoItem(lista, indiceX):
     if valor_do_item_no_siga != valor_do_item_na_NF:
         write(lista[indiceX][0])
         sleep(0.8)
-        encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
+        encontrar = utils.encontrarImagem(r'_internal\Imagens\valitenErrado.png')
         utils.checarFailsafe()
         if type(encontrar) == pyscreeze.Box:
             press("enter")
             sleep(0.5)
-            encontrar = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\valitenErrado.png')
+            encontrar = utils.encontrarImagem(r'_internal\Imagens\valitenErrado.png')
             utils.checarFailsafe()
             if type(encontrar) == pyscreeze.Box:
                 press("enter")
