@@ -1,10 +1,9 @@
 from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
-from pydirectinput import click as mouseClique, moveTo, FAILSAFE
+from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
 from selenium.webdriver.common.by import By
 from pyperclip import paste, copy     
 from time import sleep
-import win32com.client as win32
 import xmltodict   
 import pyscreeze
 import utils
@@ -25,7 +24,7 @@ mensagem_sb = "Processo sem boleto."
 mensagem_pb = "Processo Bloqueado."
 mensagem_pe = "Processo com algum erro impeditivo de lançamento."
 mensagem_xi = "Processo com um XML que não consigo ler."
-outlook = win32.Dispatch('outlook.application')
+
 
 cnpj_dict = {'80464753000197': '02', '80464753000430': '04', '80464753000510': '05', '80464753000782': '07', '80464753000863': '08', '80464753000944': '09', '80464753001088': '10', '80464753001169': '11', '80464753001240': '12', '80464753001320': '13', '80464753001401': '14', '80464753001592': '15', '80464753001673': '16', '80464753001916': '19', '80464753002050': '20', '80464753002130': '21', '80464753002211': '22', '80464753002564': '25', '80464753002645': '26', '80464753002807': '28', '80464753002998': '29', '80464753003021': '30', '80464753003102': '31', '80464753003293': '32', '80464753003374': '33', '80464753003617': '34', '80464753003536': '35', '80464753003455': '36', '80464753003706': '37', '80464753003960': '39', '80464753004001': '40', '80464753004184': '41', '80464753004265': '42', '80464753004346': '43', '80464753004699': '46', '80464753004770': '47', '80464753004850': '48', '80464753004931': '49', '80464753005075': '50', '80464753005156': '51', '80464753005407': '54', '80464753005580': '55', '80464753005660': '56', '80464753005741': '57', '80464753005822': '58', '80464753005903': '59', '80464753006047': '60'}
 
@@ -93,7 +92,7 @@ def robozinho():
                                     driver.quit()
                                     utils.checarFailsafe()
                                     sleep(0.2)
-                                    utils.acrescerLista(sem_boleto, nao_lancadas, link, outlook, mensagem_sb)
+                                    utils.acrescerLista(sem_boleto, nao_lancadas, link, mensagem_sb)
                                     return robozinho()
                                 else:
                                     driver.quit() 
@@ -130,7 +129,7 @@ def robozinho():
         sleep(0.3)
 
 
-        caminho = "C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+        caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
         while True:
             try:
@@ -160,7 +159,7 @@ def robozinho():
                 sleep(2)
                 x, y = caixa_de_texto
                 mouseClique(x,y, clicks=3, interval=0.07)
-                copy("C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\")
+                copy("C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\")
                 hotkey("ctrl", "v")
                 sleep(1)
                 press(["tab"]*6, interval=0.5)
@@ -188,7 +187,7 @@ def robozinho():
                     sleep(0.5)
                     aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter2.png')
                     utils.checarFailsafe()
-                caminho = "C:\\Users\\Usuario\\Desktop\\mark4\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+                caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
                 auxiliar = False
             except:
                 auxiliar = True
@@ -197,11 +196,12 @@ def robozinho():
                 press("down")
                 sleep(0.5)
                 utils.clicarMicrosiga()
-                utils.acrescerLista(XML_ilegivel, nao_lancadas, link, outlook, mensagem_xi)
+                utils.acrescerLista(XML_ilegivel, nao_lancadas, link, mensagem_xi)
                 utils.checarFailsafe()
                 return robozinho()
             
         utils.checarFailsafe()
+
         
         processador = extratorXML.ProcessadorXML(doc, cnpj_dict)
         valor_total_da_nf, filial_xml = processador.processarTotaisNotaFiscal()
@@ -213,6 +213,20 @@ def robozinho():
                 impostos_xml = doc["nfeProc"]["NFe"]["infNFe"]["det"]["imposto"]
                 valores_do_item = processador.coletarDadosXML(coletor_xml, impostos_xml)
                 break
+            except KeyError:
+                try:
+                    coletor_xml = doc["enviNFe"]["NFe"]["infNFe"]["det"]["prod"]
+                    impostos_xml = doc["enviNFe"]["NFe"]["infNFe"]["det"]["imposto"]
+                    valores_do_item = processador.coletarDadosXML(coletor_xml, impostos_xml)
+                    break
+                except TypeError:
+                    try:
+                        coletor_xml = doc["enviNFe"]["NFe"]["infNFe"]["det"][const_item]["prod"]
+                        impostos_xml = doc["enviNFe"]["NFe"]["infNFe"]["det"][const_item]["imposto"]
+                        valores_do_item = processador.coletarDadosXML(coletor_xml, impostos_xml)
+                        const_item += 1
+                    except IndexError:
+                        break
             except TypeError:
                 try:
                     coletor_xml = doc["nfeProc"]["NFe"]["infNFe"]["det"][const_item]["prod"]
@@ -262,7 +276,7 @@ def robozinho():
                             clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')  
                             utils.checarFailsafe()
                     utils.cancelar1()
-                    utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                    utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                     return robozinho()
                 except TypeError:
                     utils.clicarDadosDaNota()
@@ -315,7 +329,7 @@ def robozinho():
                 sleep(1)
                 utils.checarFailsafe()
                 if type(fornecedor_bloqueado) == pyscreeze.Box:
-                    utils.acrescerLista(processo_bloqueado, nao_lancadas, link, outlook, mensagem_pb)
+                    utils.acrescerLista(processo_bloqueado, nao_lancadas, link, mensagem_pb)
                 cont = 0
             erro_esquisito = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroEsquisito2.png')
             if type(erro_esquisito) == pyscreeze.Box:
@@ -330,14 +344,14 @@ def robozinho():
                 press("esc", interval=2) 
                 press("enter", interval=2)    
                 utils.cancelar1()
-                utils.acrescerLista(processo_bloqueado, nao_lancadas, link, outlook, mensagem_pb)
+                utils.acrescerLista(processo_bloqueado, nao_lancadas, link, mensagem_pb)
                 return robozinho()
             chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\chaveNaoEncontradaNoSefaz.png')
             if type(chave_nao_encontrada) == pyscreeze.Box:
                 sleep(1)
                 press("enter")
                 utils.cancelar2()
-                utils.acrescerLista(processo_bloqueado, nao_lancadas, link, outlook, mensagem_pb)
+                utils.acrescerLista(processo_bloqueado, nao_lancadas, link, mensagem_pb)
                 return robozinho()
             if cont == 20:
                 press("enter")
@@ -349,7 +363,7 @@ def robozinho():
 
             verificador, item_fracionado = operadoresLancamento.verificarValorDoItem(itens, i)
             if verificador == True:
-                utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                 return robozinho()
             tratamento_item = tratamentoItem.TratadorItem(item_fracionado, itens, i, ctrl_imposto)
             item = tratamento_item.tratarItem()
@@ -363,7 +377,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -388,7 +402,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -412,7 +426,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -438,7 +452,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -461,7 +475,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -485,7 +499,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -507,7 +521,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -529,7 +543,7 @@ def robozinho():
                     codigo = operadoresLancamento.selecionarCaso(natureza)
                     tes = operadoresLancamento.definirTES(codigo, ctrl_imposto)
                     if tes == True:
-                        utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+                        utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
                         return robozinho()
                     operadoresLancamento.escreverTES(tes)
                     operadoresLancamento.inserirDesconto(desc_no_item)
@@ -720,7 +734,7 @@ def robozinho():
             mouseClique(x,y, clicks=2)
             sleep(0.3)
             utils.clicarMicrosiga()
-            utils.acrescerLista(processo_errado, nao_lancadas, link, outlook, mensagem_pe)
+            utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
             return robozinho()
         utils.checarFailsafe()
 
@@ -783,4 +797,3 @@ def robozinho():
     except FailSafeException:
         abortar = True
         return sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas, abortar
-
