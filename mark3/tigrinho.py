@@ -31,7 +31,7 @@ cnpj_dict = {'80464753000197': '02', '80464753000430': '04', '80464753000510': '
 
 def robozinho():
     try:
-        ver_documento = r'C:\Users\Usuario\Desktop\mark4\Imagens\verDocumentos.png'
+        ver_documento = r'_internal\Imagens\verDocumentos.png'
         utils.insistirNoClique(ver_documento, cliques=1)
         sleep(0.4)
         insistir_no_clique = utils.encontrarImagem(ver_documento)
@@ -142,12 +142,12 @@ def robozinho():
                     break
             except FileNotFoundError:
                 while True:
-                    exportarXML = r'C:\Users\Usuario\Desktop\mark4\Imagens\exportarXML.png'
+                    exportarXML = r'_internal\Imagens\exportarXML.png'
                     encontrar = utils.encontrarImagemLocalizada(exportarXML)
                     if type(encontrar) != tuple:  
                         utils.insistirNoClique(exportarXML)
                         sleep(2)
-                        caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarServidor.png')
+                        caixa_de_texto = utils.encontrarImagemLocalizada(r'_internal\Imagens\clicarServidor.png')
                         utils.checarFailsafe()
                         if type(caixa_de_texto) == tuple:
                             break
@@ -165,27 +165,27 @@ def robozinho():
                 press(["tab"]*6, interval=0.5)
                 press("enter")
                 sleep(0.8)
-                caixa_de_texto = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarServidor.png')
+                caixa_de_texto = utils.encontrarImagemLocalizada(r'_internal\Imagens\clicarServidor.png')
                 utils.checarFailsafe()
                 if type(caixa_de_texto) == tuple:
-                    botao_salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\botaoSalvar1.png')
+                    botao_salvar = utils.encontrarImagemLocalizada(r'_internal\Imagens\botaoSalvar1.png')
                     x, y = botao_salvar
                     mouseClique(x,y, clicks=2)
                     utils.checarFailsafe()
                 cont=0
                 while True:
-                    aparece_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter.png')
+                    aparece_enter = utils.encontrarImagem(r'_internal\Imagens\XMLEnter.png')
                     if type(aparece_enter) == pyscreeze.Box:
                         press("enter")
                         sleep(0.8)
-                    aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter2.png')
+                    aparece_enter2 = utils.encontrarImagem(r'_internal\Imagens\XMLEnter2.png')
                     utils.checarFailsafe()
                     if type(aparece_enter2) == pyscreeze.Box:
                         break
                 while type(aparece_enter2) == pyscreeze.Box:
                     press("enter")
                     sleep(0.5)
-                    aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\XMLEnter2.png')
+                    aparece_enter2 = utils.encontrarImagem(r'_internal\Imagens\XMLEnter2.png')
                     utils.checarFailsafe()
                 caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
                 auxiliar = False
@@ -251,7 +251,7 @@ def robozinho():
                 press("tab", interval=0.5)
                 press("enter")
                 sleep(1)
-                clicar_confirmar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarConfirmar.png')
+                clicar_confirmar = utils.encontrarImagemLocalizada(r'_internal\Imagens\clicarConfirmar.png')
                 if type(clicar_confirmar) == tuple:
                     cont = 0
                     while cont < 5:
@@ -263,17 +263,17 @@ def robozinho():
                 break
             else:
                 try:
-                    clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')
+                    clicar_cancelar = utils.encontrarImagemLocalizada(r'_internal\Imagens\CancelarFilial.png')
                     x, y = clicar_cancelar
                     mouseClique(x,y, clicks=2, interval=0.07)
                     sleep(1)
-                    clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')
+                    clicar_cancelar = utils.encontrarImagemLocalizada(r'_internal\Imagens\CancelarFilial.png')
                     if type(clicar_cancelar) == tuple:
                         while type(clicar_cancelar) == tuple:
                             moveTo(150, 100)
                             x, y = clicar_cancelar
                             mouseClique(x,y, clicks=2, interval=0.07)
-                            clicar_cancelar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarFilial.png')  
+                            clicar_cancelar = utils.encontrarImagemLocalizada(r'_internal\Imagens\CancelarFilial.png')  
                             utils.checarFailsafe()
                     utils.cancelar1()
                     utils.acrescerLista(processo_errado, nao_lancadas, link, mensagem_pe)
@@ -285,11 +285,11 @@ def robozinho():
 
         try:
             sleep(0.5)
-            aparece_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\AtencaoEstoque.png')
+            aparece_enter = utils.encontrarImagem(r'_internal\Imagens\AtencaoEstoque.png')
             if type(aparece_enter) == pyscreeze.Box:
                 sleep(0.2)
                 press("enter")
-            aparece_enter2 = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\TES102.png')
+            aparece_enter2 = utils.encontrarImagem(r'_internal\Imagens\TES102.png')
             if type(aparece_enter2) == pyscreeze.Box:
                 sleep(0.2)
                 press("enter")
@@ -311,7 +311,7 @@ def robozinho():
         cont = 0
         while True:
             sleep(1)
-            tela_de_lancamento = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbriuOProcesso.png')
+            tela_de_lancamento = utils.encontrarImagem(r'_internal\Imagens\AbriuOProcesso.png')
             cont +=1
             if type(tela_de_lancamento) == pyscreeze.Box:
                 sleep(0.5)
@@ -320,9 +320,9 @@ def robozinho():
                 press(["right"]*8)
                 utils.checarFailsafe()
                 break
-            lancamento_retroativo = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\LancamentoRetroativo.png')
-            nota_ja_lancada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ProcessoJaLancado.png')
-            fornecedor_bloqueado = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\FornecedorBloqueado.png')
+            lancamento_retroativo = utils.encontrarImagem(r'_internal\Imagens\LancamentoRetroativo.png')
+            nota_ja_lancada = utils.encontrarImagem(r'_internal\Imagens\ProcessoJaLancado.png')
+            fornecedor_bloqueado = utils.encontrarImagem(r'_internal\Imagens\FornecedorBloqueado.png')
             if type(lancamento_retroativo) == pyscreeze.Box or type(nota_ja_lancada) == pyscreeze.Box or type(fornecedor_bloqueado) == pyscreeze.Box:
                 sleep(1)
                 press("enter")
@@ -331,13 +331,13 @@ def robozinho():
                 if type(fornecedor_bloqueado) == pyscreeze.Box:
                     utils.acrescerLista(processo_bloqueado, nao_lancadas, link, mensagem_pb)
                 cont = 0
-            erro_esquisito = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroEsquisito2.png')
+            erro_esquisito = utils.encontrarImagem(r'_internal\Imagens\erroEsquisito2.png')
             if type(erro_esquisito) == pyscreeze.Box:
                 sleep(1)
                 press("enter")
                 utils.cancelar1()
                 return robozinho()
-            erro_generico = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroGenerico.png')
+            erro_generico = utils.encontrarImagem(r'_internal\Imagens\ErroGenerico.png')
             if type(erro_generico) == pyscreeze.Box:
                 sleep(1)
                 press("enter", interval=2) 
@@ -346,7 +346,7 @@ def robozinho():
                 utils.cancelar1()
                 utils.acrescerLista(processo_bloqueado, nao_lancadas, link, mensagem_pb)
                 return robozinho()
-            chave_nao_encontrada = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\chaveNaoEncontradaNoSefaz.png')
+            chave_nao_encontrada = utils.encontrarImagem(r'_internal\Imagens\chaveNaoEncontradaNoSefaz.png')
             if type(chave_nao_encontrada) == pyscreeze.Box:
                 sleep(1)
                 press("enter")
@@ -568,7 +568,7 @@ def robozinho():
             utils.checarFailsafe()
 
 
-        aba_duplicatas = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbaDuplicatas.png')
+        aba_duplicatas = utils.encontrarImagemLocalizada(r'_internal\Imagens\AbaDuplicatas.png')
         x, y =  aba_duplicatas
         mouseClique(x,y, clicks=4, interval=0.1)
         sleep(0.6)
@@ -611,7 +611,7 @@ def robozinho():
             sleep(1)
         utils.clicarNaturezaDuplicata()
         sleep(1)
-        erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
+        erro_parcela = utils.encontrarImagem(r'_internal\Imagens\ErroParcela.png')
         if type(erro_parcela) == pyscreeze.Box:
             press("enter")
             utils.clicarValorParcela()
@@ -653,7 +653,7 @@ def robozinho():
                         sleep(2)
             utils.clicarNaturezaDuplicata()
             sleep(0.6)
-            erro_parcela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroParcela.png')
+            erro_parcela = utils.encontrarImagem(r'_internal\Imagens\ErroParcela.png')
             if type(erro_parcela) == pyscreeze.Box:
                 press("enter")
                 utils.cancelar2()
@@ -668,7 +668,7 @@ def robozinho():
                 utils.descerECopiar()
                 natureza_perc = paste() 
             maior_perc = max(lista_perc)
-            natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\naturezaDuplicata.png')
+            natureza_duplicata_clique = utils.encontrarImagemLocalizada(r'_internal\Imagens\naturezaDuplicata.png')
             x, y = natureza_duplicata_clique
             mouseClique(x,y)
             press("up")
@@ -691,14 +691,14 @@ def robozinho():
             utils.checarFailsafe()
 
 
-        salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
+        salvar = utils.encontrarImagemLocalizada(r'_internal\Imagens\salvarLancamento.png')
         salvarx, salvary = salvar
         sleep(0.7)
         mouseClique(salvarx,salvary, clicks=2, interval=0.1)
         sleep(2)
         cont = 0
         while True:
-            salvar = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
+            salvar = utils.encontrarImagemLocalizada(r'_internal\Imagens\salvarLancamento.png')
             if type(salvar) == tuple:
                 mouseClique(salvarx,salvary, clicks=2, interval=0.1)
                 cont += 1
@@ -708,10 +708,10 @@ def robozinho():
             else:
                 break
             utils.checarFailsafe()
-        erro_de_serie = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ErroDeSerie.png')
+        erro_de_serie = utils.encontrarImagem(r'_internal\Imagens\ErroDeSerie.png')
         if type(erro_de_serie) == pyscreeze.Box:
             press("enter", interval=0.2) 
-            espec_doc = utils.encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CorrigirErroDeSerie.png')
+            espec_doc = utils.encontrarImagemLocalizada(r'_internal\Imagens\CorrigirErroDeSerie.png')
             x, y = espec_doc
             sleep(0.5)
             mouseClique(x,y, clicks=2)
@@ -720,16 +720,16 @@ def robozinho():
             sleep(0.5)
             utils.checarFailsafe()
             mouseClique(salvarx,salvary, clicks=2)
-        erro_esquisito = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroEsquisito.png')
+        erro_esquisito = utils.encontrarImagem(r'_internal\Imagens\erroEsquisito.png')
         if type(erro_esquisito) == pyscreeze.Box:
             press("esc")
             utils.checarFailsafe()
             quit()
-        erro_quantidade = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\erroDeQuantidade.png')
+        erro_quantidade = utils.encontrarImagem(r'_internal\Imagens\erroDeQuantidade.png')
         if type(erro_quantidade) == pyscreeze.Box:
             press("enter")
             utils.cancelarLancamento()
-            mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\mudarASelecao.png')
+            mudar_a_selecao = utils.encontrarImagemLocalizada(imagem=r'_internal\Imagens\mudarASelecao.png')
             x, y = mudar_a_selecao
             mouseClique(x,y, clicks=2)
             sleep(0.3)
@@ -740,19 +740,19 @@ def robozinho():
 
 
         cont = 0
-        etapa_final = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\etapaFinal.png')
+        etapa_final = utils.encontrarImagem(r'_internal\Imagens\etapaFinal.png')
         while type(etapa_final) != pyscreeze.Box:
             sleep(0.2)
-            etapa_final = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\etapaFinal.png')
+            etapa_final = utils.encontrarImagem(r'_internal\Imagens\etapaFinal.png')
         press(["tab"]*3, interval=0.9)
         press("enter")
         sleep(1.5)
         utils.checarFailsafe()
-        ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
+        ultimo_enter = utils.encontrarImagem(r'_internal\Imagens\finalizarLancamento.png')
         if type(ultimo_enter) != pyscreeze.Box:
             while type(ultimo_enter) != pyscreeze.Box:
                 sleep(0.2)
-                ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
+                ultimo_enter = utils.encontrarImagem(r'_internal\Imagens\finalizarLancamento.png')
                 cont +=1
                 if cont == 6:
                     press("enter")
@@ -764,21 +764,21 @@ def robozinho():
         aux = False
         cont2 = 0
         while True:
-            ultima_tela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ultimaTela.png')
+            ultima_tela = utils.encontrarImagem(r'_internal\Imagens\ultimaTela.png')
             if type(ultima_tela) == pyscreeze.Box:
                 aux = True
                 while type(ultima_tela) == pyscreeze.Box:
-                    ultima_tela = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\ultimaTela.png')
+                    ultima_tela = utils.encontrarImagem(r'_internal\Imagens\ultimaTela.png')
                     utils.checarFailsafe()
                     sleep(0.2)
             if aux == True:
                 break
-            ultimo_enter = utils.encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\finalizarLancamento.png')
+            ultimo_enter = utils.encontrarImagem(r'_internal\Imagens\finalizarLancamento.png')
             if type(ultimo_enter) == pyscreeze.Box:
                 cont +=1
                 if cont == 4:
                     aux = True
-                    ultima_tentativa = utils.encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\ultimaTentativa.png')
+                    ultima_tentativa = utils.encontrarImagemLocalizada(imagem=r'_internal\Imagens\ultimaTentativa.png')
                     x, y = ultima_tentativa
                     mouseClique(x,y, clicks=2)
                     moveTo(150, 100)
