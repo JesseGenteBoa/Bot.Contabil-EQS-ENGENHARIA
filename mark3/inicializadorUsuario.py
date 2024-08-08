@@ -11,7 +11,7 @@ import pyscreeze
 FAILSAFE = False
 
 def inicializarUsuario():
-    ver_documento = r'C:\Users\Usuario\Desktop\mark4\Imagens\verDocumentos.png'
+    ver_documento = r'_internal\Imagens\verDocumentos.png'
     utils.insistirNoClique(ver_documento, cliques=1)
     sleep(0.4)
     insistir_no_clique = utils.encontrarImagem(ver_documento)
