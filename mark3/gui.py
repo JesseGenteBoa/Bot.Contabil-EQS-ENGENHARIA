@@ -72,7 +72,7 @@ def abrirGui():
 
 
     OUTPUT_PATH = Path(__file__).parent
-    ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Usuario\Desktop\mark4\Imagens")
+    ASSETS_PATH = OUTPUT_PATH / Path(r"Imagens")
 
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
@@ -386,14 +386,14 @@ def abrirGui():
         fill="#ffffff",
         outline="")
 
-    primeira_logo = r"C:\Users\Usuario\Desktop\mark4\Imagens\eqs_engenharia_logo.png"
+    primeira_logo = r"_internal\Imagens\eqs_engenharia_logo.png"
     imagem_logo_direita = ImageTk.PhotoImage(Image.open(primeira_logo)) 
     label_logo_direita = Label(window, image=imagem_logo_direita, bg=cor_fundo)
     label_logo_direita.image = imagem_logo_direita
     label_logo_direita.place(x=590, y=20)
 
 
-    segunda_logo = r"C:\Users\Usuario\Desktop\mark4\Imagens\LogoEQS.png"
+    segunda_logo = r"_internal\Imagens\LogoEQS.png"
     imagem_logo_esquerda = ImageTk.PhotoImage(Image.open(segunda_logo)) 
     label_logo_esquerda = Label(window, image=imagem_logo_esquerda, bg=cor_fundo)
     label_logo_esquerda.image = imagem_logo_esquerda
