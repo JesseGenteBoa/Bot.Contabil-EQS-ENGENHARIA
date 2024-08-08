@@ -1,8 +1,11 @@
+
 from pyautogui import locateOnScreen, locateCenterOnScreen, hotkey, press, position, write, FAILSAFE, FailSafeException
 from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
 from pyperclip import paste
 from time import sleep
+from email.message import EmailMessage
+import smtplib
 import pyscreeze
 
 
@@ -196,7 +199,6 @@ def cancelarLancamento():
     checarFailsafe()
 
     
-
 def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
     cancelar_lancamento = False
     razoes = []
@@ -286,7 +288,22 @@ def clicarNaturezaDuplicata():
     checarFailsafe()
 
 
-def acrescerLista(lista, lista2, link, outlook, variavel):
+def enviarEmail(corpo):
+    mensagem = EmailMessage()
+    mensagem.set_content(corpo)
+    mensagem['Subject'] = "DANFE PARA LANÇAR"
+    mensagem['From'] = "bot.contabil@eqseng.com.br"
+    mensagem['To'] = "entrada.doc@eqsengenharia.com.br"
+ 
+    try:
+        with smtplib.SMTP_SSL('mail.eqseng.com.br', 465) as servidor:
+            servidor.login("bot.contabil@eqseng.com.br", "EQSeng852@")
+            servidor.send_message(mensagem)
+    except Exception as e:
+        pass
+ 
+ 
+def acrescerLista(lista, lista2, link, variavel):
     try:
         verificador = lista.index(link)
     except:
@@ -295,20 +312,21 @@ def acrescerLista(lista, lista2, link, outlook, variavel):
         verificador = lista2.index(link)
     except:
         lista2.append(link)
-        email = outlook.CreateItem(0)
-        email.To = "entrada.doc@eqsengenharia.com.br"
-        email.Subject = "DANFE PARA LANÇAR"
-        email.HTMLBody = f"""
-        <p>Olá, colaborador!</br></br></p>
+        corpo = f"""
+        Olá, colaborador!
 
-        <p></br>Não consegui lançar o processo abaixo, pode me ajudar?</br></p>
-        <p>{link}</br></p>
-        <p></br>Situação: {variavel}</br></p>
+ 
+        Não consegui lançar o processo abaixo, pode me ajudar?
 
-        <p></br>Atenciosamente,</br></p>
-        <h3>Bot.Contabil</br></h3>
+        {link}
+        
+        Situação: {variavel}
+
+ 
+        Atenciosamente,
+        Bot.Contabil
         """
-        email.Send()
+        enviarEmail(corpo)
 
 
 def tratarLista(lista1, lista2):
@@ -345,3 +363,4 @@ def abrirLinkSelenium(lista):
                     break
         except IndexError:
             driver.quit()
+
