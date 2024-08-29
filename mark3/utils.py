@@ -3,6 +3,8 @@ from pydirectinput import click as mouseClique, moveTo
 from selenium import webdriver                         
 from pyperclip import paste
 from time import sleep
+from email.message import EmailMessage
+import smtplib
 import pyscreeze
 
 
@@ -74,13 +76,13 @@ def descerECopiar():
     hotkey("ctrl", "c", interval=0.1)
     checarFailsafe()
 
-def clicarMicrosiga(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\microsiga.png'):
+def clicarMicrosiga(imagem=r'_internal\Imagens\microsiga.png'):
     x, y = encontrarImagemLocalizada(imagem)
     mouseClique(x, y)
     checarFailsafe()
 
 def mudarSelecao():
-    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'C:\Users\Usuario\Desktop\mark4\Imagens\mudarASelecao.png')
+    mudar_a_selecao = encontrarImagemLocalizada(imagem=r'_internal\Imagens\mudarASelecao.png')
     x, y = mudar_a_selecao
     mouseClique(x,y, clicks=4, interval=0.4)
     sleep(1)
@@ -157,16 +159,16 @@ def insistirNoClique(imagem, cliques=2):
 
 
 def clicarDadosDaNota(): 
-    encontrar = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\DadosDaNota.png')
+    encontrar = encontrarImagemLocalizada(r'_internal\Imagens\DadosDaNota.png')
     if type(encontrar) != tuple:            
-        insistirNoClique(r'C:\Users\Usuario\Desktop\mark4\Imagens\DadosDaNota.png')
+        insistirNoClique(r'_internal\Imagens\DadosDaNota.png')
         sleep(0.5)
         checarFailsafe()
     else:
         x, y = encontrar
         mouseClique(x,y, clicks=2)
     try:
-        aparece_enter = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\NCMsegue.png')
+        aparece_enter = encontrarImagem(r'_internal\Imagens\NCMsegue.png')
         if type(aparece_enter) == pyscreeze.Box:
             sleep(0.5)
             press("enter")
@@ -177,27 +179,28 @@ def clicarDadosDaNota():
 
 
 def cancelarLancamento():
-    cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\CancelarLancamento.png')
+    cancelar_lancamento_click = encontrarImagemLocalizada(r'_internal\Imagens\CancelarLancamento.png')
     x, y = cancelar_lancamento_click
     sleep(0.5)
     mouseClique(x,y, clicks=3, interval=0.1)
     checarFailsafe()
     while True:
-        cancelar_lancamento_click = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\salvarLancamento.png')
+        cancelar_lancamento_click = encontrarImagemLocalizada(r'_internal\Imagens\salvarLancamento.png')
         if type(cancelar_lancamento_click) == tuple:
             mouseClique(x,y, clicks=2, interval=0.1)
             checarFailsafe()
         else:
             break
-    aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
+    aguarde = encontrarImagem(r'_internal\Imagens\Aguarde.png') 
     while type(aguarde) == pyscreeze.Box:
-        aguarde = encontrarImagem(r'C:\Users\Usuario\Desktop\mark4\Imagens\Aguarde.png') 
+        aguarde = encontrarImagem(r'_internal\Imagens\Aguarde.png') 
         sleep(1)
     checarFailsafe()
 
     
-
 def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
+    cancelar_lancamento = False
+    razoes = []
     valor_unit = formatador(valor_unit, casas_decimais="{:.6f}")
     cont = 0
     quantidade_total = []
@@ -237,18 +240,32 @@ def contarItemFracionado(quantidade_siga, valor_unit, quantidade_real):
     sleep(0.5)
     write(valor_unit, interval=0.05)
     checarFailsafe()
-    return quantidade_total
+    try:
+        if sum(quantidade_total) != quantidade_real:
+            cancelar_lancamento = True
+            cancelarEMudar()
+        else:
+            for qtd in quantidade_total:
+                razao = qtd / quantidade_real
+                razoes.append(razao)
+            press(["right"]*3)
+        checarFailsafe()
+    except TypeError:
+        cancelar_lancamento = True
+        cancelarEMudar()
+        checarFailsafe()
+    return razoes, cancelar_lancamento
 
 
 def clicarValorParcela():
-    valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+    valor_parcela = encontrarImagemLocalizada(r'_internal\Imagens\clicarParcela.png')
     while type(valor_parcela) != tuple:
         moveTo(180, 200)
-        aba_duplicatas = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\AbaDuplicatas.png')
+        aba_duplicatas = encontrarImagemLocalizada(r'_internal\Imagens\AbaDuplicatas.png')
         x, y =  aba_duplicatas
         checarFailsafe()
         mouseClique(x,y, clicks=4, interval=0.1)
-        valor_parcela = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\clicarParcela.png')
+        valor_parcela = encontrarImagemLocalizada(r'_internal\Imagens\clicarParcela.png')
         sleep(0.4)
     x, y = valor_parcela
     mouseClique(x,y)
@@ -257,7 +274,7 @@ def clicarValorParcela():
 
 def clicarNaturezaDuplicata():
     while True:
-        natureza_duplicata_clique = encontrarImagemLocalizada(r'C:\Users\Usuario\Desktop\mark4\Imagens\naturezaDuplicata.png')
+        natureza_duplicata_clique = encontrarImagemLocalizada(r'_internal\Imagens\naturezaDuplicata.png')
         checarFailsafe()
         if type(natureza_duplicata_clique) != tuple:
             moveTo(150, 250)
@@ -270,7 +287,22 @@ def clicarNaturezaDuplicata():
     checarFailsafe()
 
 
-def acrescerLista(lista, lista2, link):
+def enviarEmail(corpo):
+    mensagem = EmailMessage()
+    mensagem.set_content(corpo)
+    mensagem['Subject'] = "DANFE PARA LANÇAR"
+    mensagem['From'] = "bot.contabil@eqseng.com.br"
+    mensagem['To'] = "entrada.doc@eqsengenharia.com.br"
+ 
+    try:
+        with smtplib.SMTP_SSL('mail.eqseng.com.br', 465) as servidor:
+            servidor.login("bot.contabil@eqseng.com.br", "EQSeng852@")
+            servidor.send_message(mensagem)
+    except Exception as e:
+        pass
+ 
+ 
+def acrescerLista(lista, lista2, link, variavel):
     try:
         verificador = lista.index(link)
     except:
@@ -279,6 +311,21 @@ def acrescerLista(lista, lista2, link):
         verificador = lista2.index(link)
     except:
         lista2.append(link)
+        corpo = f"""
+        Olá, colaborador!
+
+ 
+        Não consegui lançar o processo abaixo, pode me ajudar?
+
+        {link}
+        
+        Situação: {variavel}
+
+ 
+        Atenciosamente,
+        Bot.Contabil
+        """
+        enviarEmail(corpo)
 
 
 def tratarLista(lista1, lista2):
@@ -315,3 +362,4 @@ def abrirLinkSelenium(lista):
                     break
         except IndexError:
             driver.quit()
+
