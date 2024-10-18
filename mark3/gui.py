@@ -1,15 +1,17 @@
 from pathlib import Path
 from PIL import ImageTk, Image
+from concurrent.futures import ThreadPoolExecutor
 from tkinter import Tk, Canvas, Button, PhotoImage, Label, IntVar
 from tigrinho import robozinho, FailSafeException
 from pyautogui import FAILSAFE, FailSafeException
 from time import sleep
-from utils import abrirLinkSelenium, tratarLista, checarFailsafe
+from utils import abrirLinkSelenium, tratarLista
 from inicializadorUsuario import inicializarUsuario
 import mensagens
+import threading
 
 
-FAILSAFE = False
+FAILSAFE = True
 continuar_loop = False
 lancadas = 0
 sem_boleto = []
@@ -24,7 +26,9 @@ def ativarRobozinho():
     global sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas
 
     try:
-        s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = robozinho()
+        with ThreadPoolExecutor() as executor:
+            future = executor.submit(robozinho)   
+            s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = future.result()
         if abortar == False:
             lancadas += 1
             qtd_lancadas.set(lancadas)
@@ -40,7 +44,6 @@ def ativarRobozinho():
         qtd_processo_errado.set(len(processo_errado))
         qtd_XML_ilegivel.set(len(XML_ilegivel))
         qtd_nao_lancadas.set(len(nao_lancadas))
-        checarFailsafe()
 
     except FailSafeException:
         continuar_loop = False
@@ -54,7 +57,6 @@ def abrirGui():
         ativarRobozinho()
         if continuar_loop:
             window.after(1, rodarRobozinho())
-            checarFailsafe()
 
     def comecar_loop():
         global continuar_loop
@@ -65,8 +67,7 @@ def abrirGui():
         sleep(1)
         window.iconify()
         try:
-            funcao()
-            checarFailsafe()
+            threading.Thread(target=funcao).start()
         except:
             raise FailSafeException
 
@@ -90,8 +91,7 @@ def abrirGui():
 
     window.deiconify()
 
-    robozinhoIcon = r"C:\Users\Usuario\Desktop\mark4\Imagens\robozinho.ico"
-    window.iconbitmap(robozinhoIcon)
+    window.iconbitmap(relative_to_assets("robozinho.ico"))
     window.geometry("788x478+390+110")
     window.title("Automação Entrada de DANFE")
     window.configure(bg = cor_fundo)
@@ -148,6 +148,7 @@ def abrirGui():
         bg="#ffffff",
         relief="groove"
         )
+    
     label_sub_1.place(
         x=45,
         y=306,
@@ -386,14 +387,14 @@ def abrirGui():
         fill="#ffffff",
         outline="")
 
-    primeira_logo = r"_internal\Imagens\eqs_engenharia_logo.png"
+    primeira_logo = r"Imagens\eqs_engenharia_logo.png"
     imagem_logo_direita = ImageTk.PhotoImage(Image.open(primeira_logo)) 
     label_logo_direita = Label(window, image=imagem_logo_direita, bg=cor_fundo)
     label_logo_direita.image = imagem_logo_direita
     label_logo_direita.place(x=590, y=20)
 
 
-    segunda_logo = r"_internal\Imagens\LogoEQS.png"
+    segunda_logo = r"Imagens\LogoEQS.png"
     imagem_logo_esquerda = ImageTk.PhotoImage(Image.open(segunda_logo)) 
     label_logo_esquerda = Label(window, image=imagem_logo_esquerda, bg=cor_fundo)
     label_logo_esquerda.image = imagem_logo_esquerda
