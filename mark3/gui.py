@@ -1,11 +1,10 @@
 from pathlib import Path
 from PIL import ImageTk, Image
-from concurrent.futures import ThreadPoolExecutor
 from tkinter import Tk, Canvas, Button, PhotoImage, Label, IntVar
-from tigrinho import robozinho, FailSafeException
+from tigrinho import robozinho
 from pyautogui import FAILSAFE, FailSafeException
 from time import sleep
-from utils import abrirLinkSelenium, tratarLista
+from utils import abrirLinkSelenium, tratarLista, checarFailsafe
 from inicializadorUsuario import inicializarUsuario
 import mensagens
 import threading
@@ -13,6 +12,7 @@ import threading
 
 FAILSAFE = True
 continuar_loop = False
+abortar = False
 lancadas = 0
 sem_boleto = []
 processo_bloqueado = []
@@ -26,12 +26,18 @@ def ativarRobozinho():
     global sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas
 
     try:
-        with ThreadPoolExecutor() as executor:
-            future = executor.submit(robozinho)   
-            s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = future.result()
+        s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = robozinho()
+           
+    except FailSafeException as pf:
+        continuar_loop = False
+        print(pf)
+    
+    finally:
         if abortar == False:
             lancadas += 1
             qtd_lancadas.set(lancadas)
+        else:
+            continuar_loop = False
             
         sem_boleto = tratarLista(sem_boleto, s_boleto)
         processo_bloqueado = tratarLista(processo_bloqueado, proc_bloqueado)
@@ -44,19 +50,18 @@ def ativarRobozinho():
         qtd_processo_errado.set(len(processo_errado))
         qtd_XML_ilegivel.set(len(XML_ilegivel))
         qtd_nao_lancadas.set(len(nao_lancadas))
-
-    except FailSafeException:
-        continuar_loop = False
-        raise FailSafeException
+        checarFailsafe()
     
 
 def abrirGui():
     global qtd_lancadas, qtd_sem_boleto, qtd_processo_bloqueado, qtd_processo_errado, qtd_XML_ilegivel, qtd_nao_lancadas
 
     def rodarRobozinho():
+        global continuar_loop
         ativarRobozinho()
         if continuar_loop:
             window.after(1, rodarRobozinho())
+            checarFailsafe()
 
     def comecar_loop():
         global continuar_loop
@@ -67,7 +72,8 @@ def abrirGui():
         sleep(1)
         window.iconify()
         try:
-            threading.Thread(target=funcao).start()
+            threading.Thread(target=funcao, daemon=True).start()
+            checarFailsafe()
         except:
             raise FailSafeException
 
