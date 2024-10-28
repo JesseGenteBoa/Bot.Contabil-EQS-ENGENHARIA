@@ -323,7 +323,7 @@ def abrirGui():
         image=button_image_3,
         borderwidth=5,
         highlightthickness=0,
-        command=lambda: abrirLinkSelenium(sem_boleto),
+        command=lambda: threading.Thread(target=abrirLinkSelenium, args=(sem_boleto,), daemon=True).start(),
         relief="groove",
         cursor="hand2"
     )
@@ -340,7 +340,7 @@ def abrirGui():
         image=button_image_4,
         borderwidth=5,
         highlightthickness=0,
-        command=lambda: abrirLinkSelenium(processo_bloqueado),
+        command=lambda: threading.Thread(target=abrirLinkSelenium, args=(processo_bloqueado,), daemon=True).start(),
         relief="groove",
         cursor="hand2"
     )
@@ -357,7 +357,7 @@ def abrirGui():
         image=button_image_5,
         borderwidth=5,
         highlightthickness=0,
-        command=lambda: abrirLinkSelenium(XML_ilegivel),
+        command=lambda: threading.Thread(target=abrirLinkSelenium, args=(XML_ilegivel,), daemon=True).start(),
         relief="groove",
         cursor="hand2"
     )
@@ -374,7 +374,7 @@ def abrirGui():
         image=button_image_6,
         borderwidth=5, 
         highlightthickness=0,
-        command=lambda: abrirLinkSelenium(processo_errado),
+        command=lambda: threading.Thread(target=abrirLinkSelenium, args=(processo_errado,), daemon=True).start(),
         relief="groove",
         cursor="hand2"
     )
