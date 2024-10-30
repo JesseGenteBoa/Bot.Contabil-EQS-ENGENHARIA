@@ -581,7 +581,6 @@ def robozinho():
                     pyautogui.write(valor_parc, interval=0.03)
                     pyautogui.press("left")
                     lista_parc.append(float(valor_parc))
-                    print(lista_parc)
                 else:
                     valor_parcela = paste()
                     valor_parcela = utils.formatador4(valor_parcela)
