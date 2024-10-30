@@ -12,7 +12,6 @@ import pyautogui
 
 
 pyautogui.FAILSAFE = True
-contador = 0
 sem_boleto = []
 processo_bloqueado = []
 processo_errado = []
