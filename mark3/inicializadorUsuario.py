@@ -5,7 +5,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from utils import insistirNoClique, encontrarImagem
+import utils
 import pyscreeze
          
 
@@ -13,13 +13,13 @@ FAILSAFE = True
 
 def inicializarUsuario():
     ver_documento = r'Imagens\verDocumentos.png'
-    insistirNoClique(ver_documento, cliques=1)
+    utils.insistirNoClique(ver_documento, cliques=1)
     sleep(0.4)
-    insistir_no_clique = encontrarImagem(ver_documento)
+    insistir_no_clique = utils.encontrarImagem(ver_documento)
     if type(insistir_no_clique) == pyscreeze.Box:
         while True:
-            insistirNoClique(ver_documento, cliques=1)
-            insistir_no_clique = encontrarImagem(ver_documento)
+            utils.insistirNoClique(ver_documento, cliques=1)
+            insistir_no_clique = utils.encontrarImagem(ver_documento)
             if type(insistir_no_clique) != pyscreeze.Box:
                 break          
     hotkey("alt", "d", interval=0.1)
@@ -32,7 +32,8 @@ def inicializarUsuario():
     servico = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=servico, options=options)
     driver.get(link)
-    
+    utils.checarFailsafe()
+        
         
     sleep(2)
     try:
@@ -51,5 +52,11 @@ def inicializarUsuario():
     hotkey("alt", "tab", interval=0.1)
     hotkey("ctrl", "w")
     hotkey("alt", "tab", interval=0.1)
-    sleep(5)
+    while True:
+        try:
+            abriu = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/po-toolbar/div/div[2]/po-toolbar-profile/div/po-avatar/div/po-icon')
+            break
+        except:
+            sleep(1)
+    utils.checarFailsafe()
 
