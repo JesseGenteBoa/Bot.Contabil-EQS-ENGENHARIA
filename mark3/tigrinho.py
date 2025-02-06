@@ -24,10 +24,10 @@ mensagem_pe = "Processo com algum erro impeditivo de lançamento."
 mensagem_xi = "Processo com um XML que não consigo ler."
 
 
-cnpj_dict = {'80464753000197': '02', '80464753000430': '04', '80464753000510': '05', '80464753000782': '07', '80464753000863': '08', '80464753000944': '09', '80464753001088': '10', '80464753001169': '11', '80464753001240': '12', '80464753001320': '13', '80464753001401': '14', '80464753001592': '15', '80464753001673': '16', '80464753001916': '19', '80464753002050': '20', '80464753002130': '21', '80464753002211': '22', '80464753002564': '25', '80464753002645': '26', '80464753002807': '28', '80464753002998': '29', '80464753003021': '30', '80464753003102': '31', '80464753003293': '32', '80464753003374': '33', '80464753003617': '34', '80464753003536': '35', '80464753003455': '36', '80464753003706': '37', '80464753003960': '39', '80464753004001': '40', '80464753004184': '41', '80464753004265': '42', '80464753004346': '43', '80464753004699': '46', '80464753004770': '47', '80464753004850': '48', '80464753004931': '49', '80464753005075': '50', '80464753005156': '51', '80464753005407': '54', '80464753005580': '55', '80464753005660': '56', '80464753005741': '57', '80464753005822': '58', '80464753005903': '59', '80464753006047': '60'}
+cnpj_dict = {'80464753000197': '02', '80464753000430': '04', '80464753000510': '05', '80464753000782': '07', '80464753000863': '08', '80464753000944': '09', '80464753001088': '10', '80464753001169': '11', '80464753001240': '12', '80464753001320': '13', '80464753001401': '14', '80464753001592': '15', '80464753001673': '16', '80464753001916': '19', '80464753002050': '20', '80464753002130': '21', '80464753002211': '22', '80464753002564': '25', '80464753002645': '26', '80464753002807': '28', '80464753002998': '29', '80464753003021': '30', '80464753003102': '31', '80464753003293': '32', '80464753003374': '33', '80464753003617': '34', '80464753003536': '35', '80464753003455': '36', '80464753003706': '37', '80464753003960': '39', '80464753004001': '40', '80464753004184': '41', '80464753004265': '42', '80464753004346': '43', '80464753004699': '46', '80464753004770': '47', '80464753004850': '48', '80464753004931': '49', '80464753005075': '50', '80464753005156': '51', '80464753005407': '54', '80464753005580': '55', '80464753005660': '56', '80464753005741': '57', '80464753005822': '58', '80464753005903': '59', '80464753006047': '60', '80464753006209': '62'}
 
 
-def robozinho():
+def robozinho(resetar=False):
     try:
         ver_documento = r'Imagens\verDocumentos.png'
         utils.insistirNoClique(ver_documento, cliques=1)
@@ -51,6 +51,11 @@ def robozinho():
         driver.get(link)
         sleep(2)
         tempo_max = 0
+
+        if resetar == True:
+            lista_reset = [sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas, processos_ja_vistos]
+            for lista in lista_reset:
+                lista.clear()
 
 
         while True:
@@ -123,6 +128,7 @@ def robozinho():
 
         caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
+        aux = False
         while True:
             try:
                 with open(caminho) as fd:
@@ -134,21 +140,21 @@ def robozinho():
                     break
             except FileNotFoundError:
                 while True:
-                    exportarXML = r'Imagens\exportarXML.png'
-                    encontrar = utils.encontrarImagemLocalizada(exportarXML)
-                    if type(encontrar) != tuple:  
-                        utils.insistirNoClique(exportarXML)
+                    utils.clicarMicrosiga()
+                    sleep(1)
+                    x, y = utils.encontrarImagemLocalizada(r'Imagens\exportarXML.png')
+                    pyautogui.click(x, y, clicks=2)
+                    sleep(2)
+                    caixa_de_texto = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
+                    if type(caixa_de_texto) != tuple:  
+                        pyautogui.click(x, y, clicks=2)
                         sleep(2)
                         utils.checarFailsafe()
                         caixa_de_texto = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
-                        if type(caixa_de_texto) == tuple:
-                            break
-                    else:
-                        x, y = encontrar
-                        pyautogui.click(x,y, clicks=2)
+                    if type(caixa_de_texto) == tuple:
                         break
                 sleep(2)
-                x, y = caixa_de_texto
+                x, y = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
                 pyautogui.click(x,y, clicks=3, interval=0.07)
                 copy("C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\")
                 pyautogui.hotkey("ctrl", "v")
@@ -163,20 +169,30 @@ def robozinho():
                     pyautogui.click(x,y, clicks=2)
                 cont=0
                 while True:
-                    aparece_enter = utils.encontrarImagem(r'Imagens\XMLEnter.png')
-                    if type(aparece_enter) == pyscreeze.Box:
-                        pyautogui.press("enter", interval=0.8)
-                    aparece_enter2 = utils.encontrarImagem(r'Imagens\XMLEnter2.png')
-                    if type(aparece_enter2) == pyscreeze.Box:
+                    aparece_enter = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter.png')
+                    if type(aparece_enter) == tuple:
+                        pyautogui.press("enter", interval=0.5)
+                    aparece_enter2 = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter2.png')
+                    if type(aparece_enter2) == tuple:
+                        while type(aparece_enter2) == tuple:
+                            sleep(0.5)
+                            pyautogui.press("enter", interval=0.5)
+                            aparece_enter2 = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter2.png')
                         break
-                while type(aparece_enter2) == pyscreeze.Box:
-                    pyautogui.press("enter", interval=0.5)
-                    aparece_enter2 = utils.encontrarImagem(r'Imagens\XMLEnter2.png')
                 caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+                aux = True
             except:
-                with open(caminho, encoding='utf-8') as fd:
-                    doc = xmltodict.parse(fd.read(), attr_prefix="@", cdata_key="#text")
-                    break
+                try:
+                    with open(caminho, encoding='utf-8') as fd:
+                        doc = xmltodict.parse(fd.read(), attr_prefix="@", cdata_key="#text")
+                        break
+                except xmltodict.expat.ExpatError as e:
+                    if aux == True:
+                        utils.tratarXmlIlegivel(XML_ilegivel, nao_lancadas, link, mensagem_xi, aux)
+                        return robozinho()
+                    else:
+                        utils.tratarXmlIlegivel(XML_ilegivel, nao_lancadas, link, mensagem_xi)
+                        return robozinho()
 
         
         processador = extratorXML.ProcessadorXML(doc, cnpj_dict)
@@ -278,8 +294,9 @@ def robozinho():
             sleep(0.5)
             utils.checarFailsafe()
             aparece_enter = utils.encontrarImagem(r'Imagens\AtencaoEstoque.png')
-            if type(aparece_enter) == pyscreeze.Box:
-                sleep(0.2)
+            aparece_enter2 = utils.encontrarImagem(r'Imagens\ajusteDeEstoque.png')
+            if type(aparece_enter) == pyscreeze.Box or type(aparece_enter2) == pyscreeze.Box:
+                sleep(0.3)
                 pyautogui.press("enter")
             aparece_enter2 = utils.encontrarImagem(r'Imagens\TES102.png')
             if type(aparece_enter2) == pyscreeze.Box:
@@ -785,4 +802,4 @@ def robozinho():
     except pyautogui.FailSafeException:
         abortar = True
         return sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas, abortar
-
+    
