@@ -13,6 +13,7 @@ import threading
 FAILSAFE = True
 continuar_loop = False
 abortar = False
+resetar = False
 lancadas = 0
 sem_boleto = []
 processo_bloqueado = []
@@ -23,14 +24,17 @@ nao_lancadas = []
 
 def ativarRobozinho():
     global continuar_loop, lancadas, qtd_lancadas, qtd_sem_boleto, qtd_processo_bloqueado, qtd_processo_errado, qtd_XML_ilegivel, qtd_nao_lancadas
-    global sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas
+    global sem_boleto, processo_bloqueado, processo_errado, XML_ilegivel, nao_lancadas, resetar
 
     try:
-        s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = robozinho()
+        if resetar == True:
+            s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = robozinho(resetar)
+            resetar = False
+        else:
+            s_boleto, proc_bloqueado, proc_errado, xml_ilegivel, n_lancadas, abortar = robozinho()
            
     except FailSafeException as pf:
         continuar_loop = False
-        print(pf)
     
     finally:
         if abortar == False:
@@ -52,6 +56,21 @@ def ativarRobozinho():
         qtd_nao_lancadas.set(len(nao_lancadas))
         checarFailsafe()
     
+
+def resetarBot():
+    global resetar
+    sem_boleto.clear()
+    processo_bloqueado.clear()
+    processo_errado.clear()
+    XML_ilegivel.clear()
+    nao_lancadas.clear()
+    qtd_sem_boleto.set(0)
+    qtd_processo_bloqueado.set(0)
+    qtd_processo_errado.set(0)
+    qtd_XML_ilegivel.set(0)
+    qtd_nao_lancadas.set(0)
+    resetar = True
+ 
 
 def abrirGui():
     global qtd_lancadas, qtd_sem_boleto, qtd_processo_bloqueado, qtd_processo_errado, qtd_XML_ilegivel, qtd_nao_lancadas
@@ -76,7 +95,6 @@ def abrirGui():
             checarFailsafe()
         except:
             raise FailSafeException
-
 
     OUTPUT_PATH = Path(__file__).parent
     ASSETS_PATH = OUTPUT_PATH / Path(r"Imagens")
@@ -294,7 +312,7 @@ def abrirGui():
     )
     button_1.place(
         x=50.0,
-        y=70.0,
+        y=78.0,
         width=261.0,
         height=41.0
     )
@@ -385,6 +403,23 @@ def abrirGui():
         height=33.0
     )
 
+    button_image_7 = PhotoImage(
+        file=relative_to_assets("eqs_engenharia_logo.png"))
+    button_7 = Button(
+        image=button_image_7,
+        borderwidth=2,
+        highlightthickness=0,
+        command=lambda: resetarBot(),
+        relief="groove",
+        cursor="hand2"
+    )
+    button_7.place(
+        x=590,
+        y=20,
+        width=166.0,
+        height=100.0
+    )
+
     canvas.create_rectangle(
         14.999999999999886,
         21.000000000000057,
@@ -393,19 +428,13 @@ def abrirGui():
         fill="#ffffff",
         outline="")
 
-    primeira_logo = r"Imagens\eqs_engenharia_logo.png"
-    imagem_logo_direita = ImageTk.PhotoImage(Image.open(primeira_logo)) 
-    label_logo_direita = Label(window, image=imagem_logo_direita, bg=cor_fundo)
-    label_logo_direita.image = imagem_logo_direita
-    label_logo_direita.place(x=590, y=20)
-
-
-    segunda_logo = r"Imagens\LogoEQS.png"
+    segunda_logo = r"Imagens\logoBratec.png"
     imagem_logo_esquerda = ImageTk.PhotoImage(Image.open(segunda_logo)) 
     label_logo_esquerda = Label(window, image=imagem_logo_esquerda, bg=cor_fundo)
     label_logo_esquerda.image = imagem_logo_esquerda
-    label_logo_esquerda.place(x=340, y=5)
+    label_logo_esquerda.place(x=265, y=5)
 
     window.resizable(False, False)
     window.mainloop()
 
+    
