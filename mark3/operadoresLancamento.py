@@ -1,4 +1,4 @@
-from pyautogui import hotkey, press, write, FAILSAFE, FailSafeException
+from pyautogui import hotkey, press, write, FAILSAFE
 from pyperclip import paste
 from time import sleep
 import pyscreeze
@@ -32,12 +32,11 @@ def verificarValorDoItem(lista, indiceX):
     valor_do_item_na_NF = utils.formatador3(valor_do_item_na_NF)
     if valor_do_item_no_siga != valor_do_item_na_NF:
         write(lista[indiceX][0])
-        sleep(0.8)
+        sleep(1.5)
         encontrar = utils.encontrarImagem(r'Imagens\valitenErrado.png')
         utils.checarFailsafe()
         if type(encontrar) == pyscreeze.Box:
-            press("enter")
-            sleep(0.5)
+            press("enter", interval=0.5)
             encontrar = utils.encontrarImagem(r'Imagens\valitenErrado.png')
             utils.checarFailsafe()
             if type(encontrar) == pyscreeze.Box:
@@ -61,8 +60,7 @@ def verificarValorDoItem(lista, indiceX):
                 sleep(0.2)
                 hotkey("ctrl", "c", interval=0.5)
                 utils.checarFailsafe()
-                desc_prod = paste()
-                desc_prod = desc_prod.lower()
+                desc_prod = paste().lower()
                 if "abracadeira" in desc_prod:
                     quantidade_convertida = quantidade_NF * 100
                     valor_unit_convertido = valor_unit_NF / 100
@@ -335,4 +333,3 @@ def inserirIPI(ipi_no_item, base_ipi, aliq_ipi, passosIPI=12):
     write(ipi_no_item)
     press(["left"]*14)
     utils.checarFailsafe()
-
