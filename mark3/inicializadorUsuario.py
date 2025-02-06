@@ -54,9 +54,12 @@ def inicializarUsuario():
     hotkey("alt", "tab", interval=0.1)
     while True:
         try:
-            abriu = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/po-toolbar/div/div[2]/po-toolbar-profile/div/po-avatar/div/po-icon')
+            abriu = driver.find_element(By.XPATH, '/html/body/app-root/app-main/div/po-toolbar/div/div[2]/po-toolbar-notification/div/po-icon')
+            print("Charizard")
             break
         except:
             sleep(1)
     utils.checarFailsafe()
 
+
+  
