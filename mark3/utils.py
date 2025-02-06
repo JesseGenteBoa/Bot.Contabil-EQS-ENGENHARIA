@@ -55,30 +55,40 @@ def formatador(variavel, casas_decimais="{:.2f}"):
     variavel = variavel.replace(".", ",")
     return variavel
 
+
 def formatador2(variavel):
     variavel = float(variavel)
     variavel = "{:.2f}".format(variavel)
     return variavel
+
 
 def formatador3(variavel):
     variavel = variavel.replace(",", ".")
     variavel = float(variavel)
     return variavel
 
+
 def formatador4(variavel):
     variavel = variavel.replace(".", "")
     variavel = formatador3(variavel)
     return variavel
+
 
 def descerECopiar():
     press("down", interval=0.1)
     hotkey("ctrl", "c", interval=0.1)
     checarFailsafe()
 
+
 def clicarMicrosiga(imagem=r'Imagens\microsiga.png'):
-    x, y = encontrarImagemLocalizada(imagem)
-    mouseClique(x, y)
+    try:
+        x, y = encontrarImagemLocalizada(imagem)
+        mouseClique(x, y)
+    except:
+        x, y = encontrarImagemLocalizada(r'Imagens\microsigaWin11.png')
+        mouseClique(x, y)
     checarFailsafe()
+
 
 def mudarSelecao():
     mudar_a_selecao = encontrarImagemLocalizada(imagem=r'Imagens\mudarASelecao.png')
@@ -87,15 +97,18 @@ def mudarSelecao():
     sleep(1)
     checarFailsafe()
 
+
 def voltarEDescer(passos=1):
     hotkey(["shift", "tab"]*passos, interval=0.15)
     press("down")
     checarFailsafe()
 
+
 def reiniciarPortal():
     clicarMicrosiga()
     voltarEDescer(passos=3)
     checarFailsafe()
+
 
 def cancelar1():
     sleep(0.8)
@@ -104,6 +117,7 @@ def cancelar1():
     clicarMicrosiga()
     checarFailsafe()
 
+
 def cancelar2():
     sleep(0.5)
     cancelarLancamento()
@@ -111,6 +125,7 @@ def cancelar2():
     sleep(0.3)
     clicarMicrosiga()
     checarFailsafe()
+
 
 def cancelar3():
     sleep(0.5)
@@ -121,6 +136,7 @@ def cancelar3():
     cancelar1()
     checarFailsafe()
 
+
 def erroNoPortal():
     sleep(0.3)
     hotkey("alt", "tab", interval=0.1)
@@ -130,16 +146,31 @@ def erroNoPortal():
     sleep(0.2)
     checarFailsafe()
 
+
 def cancelarEMudar():
     cancelarLancamento()
     mudarSelecao()
     checarFailsafe()
+
 
 def escreverNatureza(natureza):
     press("enter")
     write(natureza)
     press("enter")
     press("left")
+    checarFailsafe()
+
+
+def tratarXmlIlegivel(XML_ilegivel, nao_lancadas, link, mensagem_xi, aux=False):
+    clicarMicrosiga()
+    if aux == True:
+        press(["tab"]*3, interval=0.1)
+    else:
+        hotkey(["shift","tab"]*3, interval=0.1)
+    press("down")
+    sleep(0.5)
+    clicarMicrosiga()
+    acrescerLista(XML_ilegivel, nao_lancadas, link, mensagem_xi)
     checarFailsafe()
 
 
@@ -369,3 +400,6 @@ def abrirLinkSelenium(lista):
         except IndexError:
             driver.quit()
 
+
+
+  
