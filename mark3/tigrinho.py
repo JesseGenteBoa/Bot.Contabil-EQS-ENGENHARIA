@@ -126,7 +126,7 @@ def robozinho(resetar=False):
         sleep(0.3)
 
 
-        caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+        caminho = "C:\\Users\\Financeiro\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
 
         aux = False
         while True:
@@ -142,44 +142,43 @@ def robozinho(resetar=False):
                 while True:
                     utils.clicarMicrosiga()
                     sleep(1)
-                    x, y = utils.encontrarImagemLocalizada(r'Imagens\exportarXML.png')
+                    x, y = utils.encontrarImagemLocalizada(r'mark3\Imagens\exportarXML.png')
                     pyautogui.click(x, y, clicks=2)
                     sleep(2)
-                    caixa_de_texto = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
+                    caixa_de_texto = utils.encontrarImagemLocalizada(r'mark3\Imagens\clicarServidor.png')
                     if type(caixa_de_texto) != tuple:  
                         pyautogui.click(x, y, clicks=2)
                         sleep(2)
                         utils.checarFailsafe()
-                        caixa_de_texto = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
+                        caixa_de_texto = utils.encontrarImagemLocalizada(r'mark3\Imagens\clicarServidor.png')
                     if type(caixa_de_texto) == tuple:
                         break
                 sleep(2)
-                x, y = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
+                x, y = utils.encontrarImagemLocalizada(r'mark3\Imagens\clicarServidor.png')
                 pyautogui.click(x,y, clicks=3, interval=0.07)
-                copy("C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\")
+                copy("C:\\Users\\Financeiro\\Desktop\\xmlFiscalio\\")
                 pyautogui.hotkey("ctrl", "v")
                 sleep(1)
                 pyautogui.press(["tab"]*6, interval=0.5)
                 pyautogui.press("enter", interval=0.8)
                 utils.checarFailsafe()
-                caixa_de_texto = utils.encontrarImagemLocalizada(r'Imagens\clicarServidor.png')
+                caixa_de_texto = utils.encontrarImagemLocalizada(r'mark3\Imagens\clicarServidor.png')
                 if type(caixa_de_texto) == tuple:
-                    botao_salvar = utils.encontrarImagemLocalizada(r'Imagens\botaoSalvar1.png')
+                    botao_salvar = utils.encontrarImagemLocalizada(r'mark3\Imagens\botaoSalvar1.png')
                     x, y = botao_salvar
                     pyautogui.click(x,y, clicks=2)
-                cont=0
                 while True:
-                    aparece_enter = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter.png')
+                    aparece_enter = utils.encontrarImagemLocalizada(r'mark3\Imagens\XMLEnter.png')
                     if type(aparece_enter) == tuple:
                         pyautogui.press("enter", interval=0.5)
-                    aparece_enter2 = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter2.png')
+                    aparece_enter2 = utils.encontrarImagemLocalizada(r'mark3\Imagens\XMLEnter2.png')
                     if type(aparece_enter2) == tuple:
                         while type(aparece_enter2) == tuple:
                             sleep(0.5)
                             pyautogui.press("enter", interval=0.5)
-                            aparece_enter2 = utils.encontrarImagemLocalizada(r'Imagens\XMLEnter2.png')
+                            aparece_enter2 = utils.encontrarImagemLocalizada(r'mark3\Imagens\XMLEnter2.png')
                         break
-                caminho = "C:\\Users\\Usuario\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
+                caminho = "C:\\Users\\Financeiro\\Desktop\\xmlFiscalio\\" + chave_de_acesso + ".xml"
                 aux = True
             except:
                 try:
