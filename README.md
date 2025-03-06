@@ -1,14 +1,13 @@
 # **Automação de Lançamento de DANFEs no ERP TOTVS Microsiga**  
 
 ## 📌 **Descrição do Projeto**  
-Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs (Documento Auxiliar de Nota Fiscal Eletrônica) no ERP TOTVS Microsiga**. A automação **extrai informações do XML** de cada nota fiscal e insere esses dados no sistema, garantindo que todas as **regras de negócio** sejam atendidas.  
+Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs (Documento Auxiliar de Nota Fiscal Eletrônica) no ERP TOTVS Microsiga**. A automação **extrai informações do XML** de cada nota fiscal e insere, valida, ou corrige esses dados no sistema, garantindo que todas as **regras de negócio** sejam atendidas.  
 
 A automação é responsável por:  
-✅ Acessar um **portal interno** vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento.  
+✅ Acessar um **portal interno** vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento. Isso é feito através da biblioteca **Selenium**.
 ✅ Buscar o **XML da NF** correspondente na pasta de repositório.  
-✅ Extrair e validar as informações do XML.  
-✅ Realizar o **lançamento no ERP TOTVS Microsiga** usando **Selenium, Pyautogui e Pyperclip**.  
-✅ Corrigir automaticamente **erros comuns**, como filial de entrega incorreta ou valores divergentes.  
+✅ Extrair as informações do XML.  
+✅ Realizar o **lançamento no ERP TOTVS Microsiga** usando **Pyautogui e Pyperclip**, inserindo, validando ou corrigindo os dados no sistema.
 ✅ Repetir o processo até que todas as notas sejam lançadas.  
 
 ## 🖥 **Tecnologias Utilizadas**  
@@ -20,10 +19,9 @@ A automação é responsável por:
 
 ## ⚙️ **Pré-requisitos**  
 Antes de rodar o projeto, certifique-se de ter instalado:  
-- **Python 3.x**  
-- **Google Chrome + ChromeDriver** (compatível com a versão do navegador)  
+- **Python 3.x**    
 - **ERP TOTVS Microsiga** instalado e acessível  
-- **Portal interno** acessível via navegador  
+- Conta no **Portal interno** - acessível via navegador -
 
 ## 📥 **Instalação**  
 
@@ -36,7 +34,6 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 2. **Crie um ambiente virtual (opcional, mas recomendado)**  
    ```sh
    python -m venv venv
-   source venv/bin/activate  # Linux/Mac
    venv\Scripts\activate  # Windows
    ```
    
@@ -45,9 +42,6 @@ Antes de rodar o projeto, certifique-se de ter instalado:
    pip install -r requirements.txt
    ```
    
-4. **Configure o ChromeDriver**  
-   - Baixe a versão correspondente ao seu Google Chrome [aqui](https://sites.google.com/chromium.org/driver/).  
-   - Extraia o executável e adicione ao **PATH do sistema** ou **coloque na pasta do projeto**.  
 
 ## 🚀 **Como Executar**  
 
