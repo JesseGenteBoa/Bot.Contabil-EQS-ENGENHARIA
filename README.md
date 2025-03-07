@@ -21,7 +21,7 @@ A automação é responsável por:
 Antes de rodar o projeto, certifique-se de ter instalado:  
 - **Python 3.x**    
 - **ERP TOTVS Microsiga** instalado e acessível  
-- Conta no **Portal interno** - acessível via navegador -
+- Conta no **Portal interno** - *acessível via navegador* -
 
 ## 📥 **Instalação**  
 
