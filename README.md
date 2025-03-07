@@ -54,4 +54,10 @@ Antes de rodar o projeto, certifique-se de ter instalado:
    ```
 4. Acione o botão **Inicializar Usuário** e aguarde até que o programa tenha feito login no portal do compras. Depois feche o **navegador Selenium** onde foi efeutado o login.
 5. Acione o botão **Play** e acompanhe o processo na interface do Microsiga e do portal do compras.
- 
+
+
+## **Observações**  
+
+1. O código gera logs para apontar os processos com algum empecilho que ele encontrou. Em sua interface, ele exibe as quantidades de processos errados por categoria: Sem Boleto, Processo Bloqueado e Processo Errado, e, ele armazena o link dos processos do portal. Para acessar esses processos basta clicar no botão correspondente (Sem Boleto, Processo Bloqueado, XML Indecifrável, Processo Errado) presente na interface.
+2. Além disso, ele também envia o link do processo impedido por E-mail para o grupo Entrada de Documentos.
+   
