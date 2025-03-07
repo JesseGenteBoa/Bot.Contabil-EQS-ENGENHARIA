@@ -4,7 +4,7 @@
 Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs (Documento Auxiliar de Nota Fiscal Eletrônica) no ERP TOTVS Microsiga**. A automação **extrai dados do XML** de cada nota fiscal e insere, valida, ou corrige esses dados no sistema, garantindo que todas as **regras de negócio** sejam atendidas.  
 
 ### A automação é responsável por:  
-✅ O código acessa o portal interno e coleta a chave de acesso da DANFE.  
+✅ O código acessa o portal interno (portal do compras) e coleta a chave de acesso da DANFE.  
 ✅ Busca o XML correspondente no repositório local.  
 ✅ Extrai os dados do XML, como valores dos itens, impostos e filial de entrega.  
 ✅ Abre o processo de lançamento no Microsiga e insere os dados extraídos.  
