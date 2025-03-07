@@ -14,7 +14,7 @@ A automação é responsável por:
 - **Python** – Linguagem principal da automação.  
 - **Selenium** – Automação do portal interno vinculado ao Microsiga.  
 - **Pyautogui** – Interação com a interface gráfica do ERP.  
-- **Pyperclip** – Manipulação da área de transferência para inserção de dados.  
+- **Pyperclip** – Manipulação da área de transferência para inserção e validação dos dados.  
 - **xmltodict** – Extração de dados estruturados dos arquivos XML.  
 
 ## ⚙️ **Pré-requisitos**  
