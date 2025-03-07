@@ -45,7 +45,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 ## 🚀 **Como Executar**  
 
-1. **Certifique-se de que o ERP Microsiga e o portal interno estão acessíveis**.  
+1. **Certifique-se de que o ERP Microsiga e o portal interno estão acessíveis. O Microsiga precisa estar aberto na tela principal da rotina Processo Pagamento.**.  
 2. **Coloque os arquivos XML das notas na pasta configurada como repositório**.  
 3. **Execute o script principal**:  
    ```sh
