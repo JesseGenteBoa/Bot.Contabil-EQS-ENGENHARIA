@@ -11,6 +11,7 @@ Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs
 ✅ Abre o processo de lançamento no Microsiga e insere os dados extraídos.  
 ✅ Verifica e corrige discrepâncias entre os valores do pedido interno e da NF.  
 ✅ Finaliza o lançamento e inicia o próximo processo.  
+<br/>
 
 ## 🖥 **Tecnologias Utilizadas**  
 - **Python** – Linguagem principal da automação.  
@@ -18,12 +19,14 @@ Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs
 - **Pyautogui** – Interação com a interface gráfica do ERP.  
 - **Pyperclip** – Manipulação da área de transferência para inserção e validação dos dados.  
 - **xmltodict** – Extração de dados estruturados dos arquivos XML.  
+<br/>
 
 ## ⚙️ **Pré-requisitos**  
 Antes de rodar o projeto, certifique-se de ter instalado:  
 - **Python 3.x**    
 - **ERP TOTVS Microsiga** instalado e acessível  
 - Conta no **Portal interno** - *acessível via navegador* -
+<br/>
 
 ## 📥 **Instalação**  
 
