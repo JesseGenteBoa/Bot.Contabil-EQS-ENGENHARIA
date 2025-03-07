@@ -4,7 +4,7 @@
 Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs (Documento Auxiliar de Nota Fiscal Eletrônica) no ERP TOTVS Microsiga**. A automação **extrai dados do XML** de cada nota fiscal e insere, valida, ou corrige esses dados no sistema, garantindo que todas as **regras de negócio** sejam atendidas.  
 
 A automação é responsável por:  
-✅ Acessar um **portal interno** vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento. Isso é feito através da biblioteca **Selenium**.  
+✅ Acessar um **portal interno** (Portal do Compras) vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento. Isso é feito através da biblioteca **Selenium**.  
 ✅ Buscar o **XML da NF** correspondente na pasta de repositório.  
 ✅ Extrair dados do XML.  
 ✅ Realizar o **lançamento no ERP TOTVS Microsiga** usando **Pyautogui e Pyperclip**, inserindo, validando ou corrigindo os dados no sistema.
@@ -45,24 +45,12 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 ## 🚀 **Como Executar**  
 
-1. **Certifique-se de que o ERP Microsiga e o portal interno estão acessíveis. O Microsiga precisa estar aberto na tela principal da rotina Processo Pagamento.**.  
-2. **Coloque os arquivos XML das notas na pasta configurada como repositório**.  
+1. Certifique-se de que o **ERP Microsiga e o portal do compras estão acessíveis e já logados**. O Microsiga precisa estar aberto na tela principal da rotina **Processo Pagamento**.  
+2. Coloque os **arquivos XML** das notas na pasta configurada como **repositório**.  
 3. **Execute o script principal**:  
    ```sh
    python main.py
    ```
-4. **Acompanhe o processo na interface do Microsiga e do portal interno**.  
-
-## ⚠️ **Erros Comuns e Soluções**  
-
-| Erro | Causa Possível | Solução |
-|------|---------------|---------|
-| `selenium.common.exceptions.WebDriverException` | ChromeDriver desatualizado | Baixe a versão correta do ChromeDriver |
-| `pyautogui.FailSafeException` | Mouse movido para o canto superior esquerdo | Remova a segurança (`FAILSAFE=False`) se necessário |
-| `Arquivo XML não encontrado` | XML da NF não está na pasta de repositório | Verifique se o XML foi salvo corretamente |
-
-## 📌 **Contribuição**  
-Sinta-se à vontade para sugerir melhorias, abrir **issues** ou enviar **pull requests**.  
-
-## 📜 **Licença**  
-Este projeto é de uso **interno** e não possui licença pública.  
+4. Acione o botão **Inicializar Usuário** e aguarde até que o programa tenha feito login no portal do compras. Depois feche o **navegador Selenium** onde foi efeutado o login.
+5. Acione o botão **Play** e acompanhe o processo na interface do Microsiga e do portal do compras.
+ 
