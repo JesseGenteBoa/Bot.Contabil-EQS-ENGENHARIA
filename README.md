@@ -3,12 +3,13 @@
 ## 📌 **Descrição do Projeto**  
 Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs (Documento Auxiliar de Nota Fiscal Eletrônica) no ERP TOTVS Microsiga**. A automação **extrai dados do XML** de cada nota fiscal e insere, valida, ou corrige esses dados no sistema, garantindo que todas as **regras de negócio** sejam atendidas.  
 
-A automação é responsável por:  
-✅ Acessar um **portal interno** (Portal do Compras) vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento. Isso é feito através da biblioteca **Selenium**.  
-✅ Buscar o **XML da NF** correspondente na pasta de repositório.  
-✅ Extrair dados do XML.  
-✅ Realizar o **lançamento no ERP TOTVS Microsiga** usando **Pyautogui e Pyperclip**, inserindo, validando ou corrigindo os dados no sistema.
-✅ Repetir o processo até que todas as notas sejam lançadas.  
+### A automação é responsável por:  
+✅ O código acessa o portal interno e coleta a chave de acesso da DANFE.  
+✅ Busca o XML correspondente no repositório local.  
+✅ Extrai os dados do XML, como valores dos itens, impostos e filial de entrega.  
+✅ Abre o processo de lançamento no Microsiga e insere os dados extraídos.  
+✅ Verifica e corrige discrepâncias entre os valores do pedido interno e da NF.  
+✅ Finaliza o lançamento e inicia o próximo processo.  
 
 ## 🖥 **Tecnologias Utilizadas**  
 - **Python** – Linguagem principal da automação.  
