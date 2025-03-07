@@ -15,7 +15,7 @@ A automação é responsável por:
 - **Selenium** – Automação do portal interno vinculado ao Microsiga.  
 - **Pyautogui** – Interação com a interface gráfica do ERP.  
 - **Pyperclip** – Manipulação da área de transferência para inserção de dados.  
-- **LXML** – Extração de dados estruturados dos arquivos XML.  
+- **xmltodict** – Extração de dados estruturados dos arquivos XML.  
 
 ## ⚙️ **Pré-requisitos**  
 Antes de rodar o projeto, certifique-se de ter instalado:  
