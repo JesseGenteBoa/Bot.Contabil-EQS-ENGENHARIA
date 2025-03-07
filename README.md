@@ -46,7 +46,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
    ```sh
    pip install -r requirements.txt
    ```
-   
+<br/>   
 
 ## 🚀 **Como Executar**  
 
@@ -58,7 +58,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
    ```
 4. Acione o botão **Inicializar Usuário** e aguarde até que o programa tenha feito login no portal do compras. Depois feche o **navegador Selenium** onde foi efetuado o login.
 5. Acione o botão **Play** e acompanhe o processo na interface do Microsiga e do portal do compras.
-
+<br/>
 
 ## **Observações**  
 
