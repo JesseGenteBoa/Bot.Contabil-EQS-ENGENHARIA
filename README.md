@@ -6,7 +6,7 @@ Este projeto tem como objetivo **automatizar o processo de lançamento de DANFEs
 A automação é responsável por:  
 ✅ Acessar um **portal interno** vinculado ao ERP, onde estão armazenados boletos, PDFs de NF, chave de acesso e prazos de pagamento. Isso é feito através da biblioteca **Selenium**.  
 ✅ Buscar o **XML da NF** correspondente na pasta de repositório.  
-✅ Extrair as informações do XML.  
+✅ Extrair os dados do XML.  
 ✅ Realizar o **lançamento no ERP TOTVS Microsiga** usando **Pyautogui e Pyperclip**, inserindo, validando ou corrigindo os dados no sistema.
 ✅ Repetir o processo até que todas as notas sejam lançadas.  
 
